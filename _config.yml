@@ -1,0 +1,21 @@
+
+title: Alprog's Burrow
+author:
+  name: Alexander Tuzhik
+  email: alprog@hotmail.com
+description: >-
+  Alprog's personal homepage
+baseurl: ""
+url: "https://alprog.github.io"
+
+plugins:
+  - jekyll-feed
+
+minima:
+  skin: solarized-dark
+
+  social_links:
+      twitter: alprog_
+      telegram: alprog
+      github: alprog
+      linkedin: alprog
