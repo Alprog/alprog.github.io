@@ -20,7 +20,7 @@ class Canvas
 		var scale = 0.13;
 		var scaling = Matrix4x4.Scaling({x:scale, y:scale, z: scale});
 		
-		var lookAt = new Vector4(500, 500, 0, 1);
+		var lookAt = new Vector4(500, 500, 750, 1);
 		lookAt.negate();
 		var translation = Matrix4x4.Translation(lookAt);
 		
@@ -60,7 +60,7 @@ class Canvas
 		for (var i = 0; i < 10; i++)
 		{			
 			this.ctx.beginPath();
-			var alpha = 1 - (p0.z + p1.z) / 2 / 50
+			var alpha = 1 - (p0.z + p1.z) / 2 / 100
 			this.ctx.globalAlpha = Math.max(Math.min(alpha, 1), 0);
 			this.ctx.moveTo(p0.x, p0.y);
 			this.ctx.lineTo(p1.x, p1.y);

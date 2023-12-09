@@ -44,9 +44,9 @@ function draw()
 	
 	requestAnimationFrame(draw);
 	
-	a += 0.001 * 2;
-	b += 0.002 * 2;
-	c += 0.003 * 2;
+	a += 0.001 * 5;
+	b += 0.002 * 5;
+	c += 0.003 * 5;
 }
 
 requestAnimationFrame(draw);
