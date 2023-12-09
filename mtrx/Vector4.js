@@ -45,7 +45,6 @@ class Vector4
 		this.x += v.x;
 		this.y += v.y;
 		this.z += v.z;
-		this.w += v.w;
 	}
 	
 	scale(k)
@@ -53,7 +52,6 @@ class Vector4
 		this.x *= k;
 		this.y *= k;
 		this.z *= k;
-		this.w *= k;
 	}
 		
 	negate()

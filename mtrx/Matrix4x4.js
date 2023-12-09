@@ -19,6 +19,13 @@ class Matrix4x4
 	set forward(value) { this[2] = value }
 	set translation(value) { this[3] = value }
 	
+	static Identity = () => new Matrix4x4(
+		new Vector4(1, 0, 0, 0),
+		new Vector4(0, 1, 0, 0),
+		new Vector4(0, 0, 1, 0),
+		new Vector4(0, 0, 0, 1)
+	)
+	
 	static Scaling = (s) => new Matrix4x4(
 		new Vector4(s.x, 0, 0, 0),
 		new Vector4(0, s.y, 0, 0),
@@ -77,7 +84,7 @@ class Matrix4x4
 	
 	clone()
 	{
-		return new Vector4(this[0], this[1], this[2], this[3]);
+		return new Matrix4x4(this[0], this[1], this[2], this[3]);
 	}
 	
 	multiply(m)
