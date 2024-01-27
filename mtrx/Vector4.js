@@ -26,7 +26,17 @@ class Vector4
 	static Up = () => new Vector4(0, 1, 0, 0)
 	static Forward = () => new Vector4(0, 0, 1, 0)
 	static ZeroPoint = () => new Vector4(0, 0, 0, 1)
-	
+
+  get_length()
+  {
+    return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+  }
+
+  get_length2D()
+  {
+    return Math.sqrt(this.x * this.x + this.y * this.y);
+  }
+
 	clone()
 	{
 		return new Vector4(this.x, this.y, this.z, this.w);
@@ -45,7 +55,14 @@ class Vector4
 		this.x += v.x;
 		this.y += v.y;
 		this.z += v.z;
-	}
+  }
+
+  sub(v)
+  {
+    this.x -= v.x;
+    this.y -= v.y;
+    this.z -= v.z;
+  }
 	
 	scale(k)
 	{

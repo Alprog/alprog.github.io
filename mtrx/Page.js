@@ -9,6 +9,8 @@ var a = 0;
 var b = 0;
 var c = 0;
 
+var pin = new Pin(new Vector4(1500, 0, 0, 1))
+
 function draw() 
 {
 	canvas.set_camera(a, b, c);
@@ -39,14 +41,21 @@ function draw()
 	canvas.line(new Vector4(0,1500,0,1), new Vector4(0,1500,1500,1));
 	canvas.line(new Vector4(1500,1500,0,1), new Vector4(1500,1500,1500,1));
 	canvas.line(new Vector4(1500,0,0,1), new Vector4(1500,0,1500,1));
-		
+
+  pin.draw(canvas)
+
 	//canvas.line(Vector4.ZeroPoint(), Vector4.One().get_scaled(1500), "black", 1);
 	
 	requestAnimationFrame(draw);
-	
-	a += 0.001 * 5;
-	b += 0.002 * 5;
-	c += 0.003 * 5;
+
+	//a += 0.001 * 5;
+	//b += 0.002 * 5;
+	//c += 0.003 * 5;
 }
 
 requestAnimationFrame(draw);
+
+function mouseMove(event)
+{
+  canvas.mouse = new Vector4(event.offsetX, event.offsetY, 0, 1);  
+}

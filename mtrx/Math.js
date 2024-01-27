@@ -8,6 +8,13 @@ function sum(a, b, c, d)
 	return result;
 }
 
+function diff(a, b)
+{
+  var result = a.clone();
+  result.sub(b);
+  return result;
+}
+
 function mult(a, b, c, d)
 {
 	var result = a.clone();

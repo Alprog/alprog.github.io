@@ -10,7 +10,8 @@ class Canvas
 		this.worldToScreenMtrx = Matrix4x4.Identity();
 		
 		this.color = "black"
-		this.width = 1
+    this.width = 1
+    this.mouse = Vector4.ZeroPoint()
 	}
 	
 	set_camera(a, b, c)
@@ -47,17 +48,32 @@ class Canvas
 		result.multiply(this.worldToScreenMtrx);
 		return result;
 	}
-	
+
+  circle(center, radius, color, width)
+  {
+    this.ctx.beginPath();
+
+    var alpha = 1 - center.z / 2 / 100
+    this.ctx.globalAlpha = Math.max(Math.min(alpha, 1), 0);
+    
+    this.ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
+    this.ctx.strokeStyle = color ?? this.color
+    this.ctx.lineWidth = width ?? this.width;
+    this.ctx.stroke();
+  }
+
 	line(p0, p1, color, width)
 	{
 		p0 = this.transform_point(p0)
 		p1 = this.transform_point(p1)
 		
-		var step = new Vector4((p1.x - p0.x) / 10, (p1.y - p0.y) / 10, (p1.z - p0.z) / 10, 0);
+		var segments = 20
+		
+		var step = new Vector4((p1.x - p0.x) / segments, (p1.y - p0.y) / segments, (p1.z - p0.z) / segments, 0);
 		p1 = p0.clone()
 		p1.add(step)
 		
-		for (var i = 0; i < 10; i++)
+		for (var i = 0; i < segments; i++)
 		{			
 			this.ctx.beginPath();
 			var alpha = 1 - (p0.z + p1.z) / 2 / 100
