@@ -18,10 +18,10 @@ class Canvas
 	{
 		var mtrx = Matrix4x4.Identity();
 		
-		var scale = 0.13;
+		var scale = 1.3;
 		var scaling = Matrix4x4.Scaling({x:scale, y:scale, z: scale});
 		
-		var lookAt = new Vector4(500, 500, 750, 1);
+		var lookAt = new Vector4(50, 50, 75, 1);
 		lookAt.negate();
 		var translation = Matrix4x4.Translation(lookAt);
 		

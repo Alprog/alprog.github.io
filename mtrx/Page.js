@@ -9,7 +9,7 @@ var a = 0;
 var b = 0;
 var c = 0;
 
-var pin = new Pin(new Vector4(1500, 0, 0, 1))
+var pin = new Pin(new Vector4(150, 0, 0, 1))
 
 function draw() 
 {
@@ -18,29 +18,29 @@ function draw()
 	canvas.clear();
 	for (var i = 0; i <= 10; i++)
 	{
-		canvas.line(new Vector4(0,i*100,0,1), new Vector4(1000,i*100,0,1));
-		canvas.line(new Vector4(i*100,0,0,1), new Vector4(i*100,1000,0,1));		
+		canvas.line(new Vector4(0,i*10,0,1), new Vector4(100,i*10,0,1));
+		canvas.line(new Vector4(i*10,0,0,1), new Vector4(i*10,100,0,1));		
 	}
-	canvas.line(new Vector4(0,0,0,1), new Vector4(600,300,0,1), "red", 3);
-	canvas.line(new Vector4(600,300,0,1), new Vector4(400,700,0,1), "green", 3);
-	canvas.line(new Vector4(400,700,0,1), new Vector4(1000,1000,0,1), "blue", 3);
+	canvas.line(new Vector4(0,0,0,1), new Vector4(60,30,0,1), "red", 3);
+	canvas.line(new Vector4(60,30,0,1), new Vector4(40,70,0,1), "green", 3);
+	canvas.line(new Vector4(40,70,0,1), new Vector4(100,100,0,1), "blue", 3);
 	
-	canvas.line(Vector4.ZeroPoint(), Vector4.Right().get_scaled(1500), "red", 5);
-	canvas.line(Vector4.ZeroPoint(), Vector4.Up().get_scaled(1500), "green", 5);
-	canvas.line(Vector4.ZeroPoint(), Vector4.Forward().get_scaled(1500), "blue", 5);
+	canvas.line(Vector4.ZeroPoint(), Vector4.Right().get_scaled(150), "red", 5);
+	canvas.line(Vector4.ZeroPoint(), Vector4.Up().get_scaled(150), "green", 5);
+	canvas.line(Vector4.ZeroPoint(), Vector4.Forward().get_scaled(150), "blue", 5);
 	//canvas.line(Vector4.ZeroPoint(), Vector4.Forward().get_scaled(-1500), "cyan", 5);
 		
-	canvas.line(new Vector4(1500,0,0,1), new Vector4(1500,1500,0,1));
-	canvas.line(new Vector4(0,1500,0,1), new Vector4(1500,1500,0,1));
-	canvas.line(new Vector4(1500,0,1500,1), new Vector4(1500,1500,1500,1));
-	canvas.line(new Vector4(0,1500,1500,1), new Vector4(1500,1500,1500,1));
+	canvas.line(new Vector4(150,0,0,1), new Vector4(150,150,0,1));
+	canvas.line(new Vector4(0,150,0,1), new Vector4(150,150,0,1));
+	canvas.line(new Vector4(150,0,150,1), new Vector4(150,150,150,1));
+	canvas.line(new Vector4(0,150,150,1), new Vector4(150,150,150,1));
 
-	canvas.line(new Vector4(0,1500,1500,1), new Vector4(0,0,1500,1));
-	canvas.line(new Vector4(1500,0,1500,1), new Vector4(0,0,1500,1));
+	canvas.line(new Vector4(0,150,150,1), new Vector4(0,0,150,1));
+	canvas.line(new Vector4(150,0,150,1), new Vector4(0,0,150,1));
 	
-	canvas.line(new Vector4(0,1500,0,1), new Vector4(0,1500,1500,1));
-	canvas.line(new Vector4(1500,1500,0,1), new Vector4(1500,1500,1500,1));
-	canvas.line(new Vector4(1500,0,0,1), new Vector4(1500,0,1500,1));
+	canvas.line(new Vector4(0,150,0,1), new Vector4(0,150,150,1));
+	canvas.line(new Vector4(150,150,0,1), new Vector4(150,150,150,1));
+	canvas.line(new Vector4(150,0,0,1), new Vector4(150,0,150,1));
 
   pin.draw(canvas)
 
