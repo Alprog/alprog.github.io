@@ -42,7 +42,7 @@ function draw()
 	canvas.line(new Vector4(150,150,0,1), new Vector4(150,150,150,1));
 	canvas.line(new Vector4(150,0,0,1), new Vector4(150,0,150,1));
 
-  pin.draw(canvas)
+    pin.draw(canvas)
 
 	//canvas.line(Vector4.ZeroPoint(), Vector4.One().get_scaled(1500), "black", 1);
 	
@@ -55,7 +55,14 @@ function draw()
 
 requestAnimationFrame(draw);
 
-function mouseMove(event)
+function onMouseMove(event)
 {
   canvas.mouse = new Vector4(event.offsetX, event.offsetY, 0, 1);  
+}
+
+function onMouseWheel(event)
+{
+  var zoomStep = 1.1;
+  var zoomValue = event.deltaY > 0 ? 1 / zoomStep : zoomStep;
+  canvas.zoom(zoomValue);
 }

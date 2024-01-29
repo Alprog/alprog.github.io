@@ -8,20 +8,26 @@ class Canvas
 		this.ctx = element.getContext("2d");
 		
 		this.worldToScreenMtrx = Matrix4x4.Identity();
-		
+
+    this.scale = 1.3
 		this.color = "black"
     this.width = 1
     this.mouse = Vector4.ZeroPoint()
-	}
+  }
+
+  zoom(value)
+  {
+    this.scale = this.scale * value
+  }
 	
 	set_camera(a, b, c)
 	{
 		var mtrx = Matrix4x4.Identity();
 		
-		var scale = 1.3;
+		var scale = this.scale;
 		var scaling = Matrix4x4.Scaling({x:scale, y:scale, z: scale});
 		
-		var lookAt = new Vector4(50, 50, 75, 1);
+    var lookAt = new Vector4(75, 75, 75, 1);
 		lookAt.negate();
 		var translation = Matrix4x4.Translation(lookAt);
 		
@@ -38,10 +44,13 @@ class Canvas
 	}
 	
 	clear()
-	{
-		this.ctx.clearRect(0, 0, this.size.x, this.size.y );	
-	}
-	
+  {
+    this.ctx.clearRect(0, 0, this.size.x, this.size.y);
+    this.ctx.beginPath();
+    this.ctx.fillStyle = "#eeeeee";
+    this.ctx.fillRect(0, 0, this.size.x, this.size.y);
+  }
+
 	transform_point(p)
 	{
 		var result = new Vector4(p.x, p.y, p.z, 1);
