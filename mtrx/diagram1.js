@@ -1,9 +1,4 @@
 
-var v = new Vector4(1, 2, 3, 1);
-
-var m = Matrix4x4.RotationZ_LHS(Math.PI/2);
-v.multiply(m);
-
 var canvas = new Canvas();
 var a = 0;
 var b = 0;
@@ -42,7 +37,9 @@ function draw()
 	canvas.line(new Vector4(150,150,0,1), new Vector4(150,150,150,1));
 	canvas.line(new Vector4(150,0,0,1), new Vector4(150,0,150,1));
 
-    pin.draw(canvas)
+	canvas.drawText('debug text');
+
+    pin.draw(canvas);
 
 	//canvas.line(Vector4.ZeroPoint(), Vector4.One().get_scaled(1500), "black", 1);
 	

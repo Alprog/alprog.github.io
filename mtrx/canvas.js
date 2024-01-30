@@ -1,8 +1,10 @@
 
 class Canvas
 {
-	constructor(name)
+	constructor(diagram)
 	{
+		this.diagram = diagram;
+
 		var element = document.createElement('canvas');
 		element.width = 800
 		element.height = 450
@@ -70,9 +72,6 @@ class Canvas
 	clear()
 	{
 		this.ctx.clearRect(0, 0, this.size.x, this.size.y);
-		this.ctx.beginPath();
-		this.ctx.fillStyle = "#eeeeee";
-		this.ctx.fillRect(0, 0, this.size.x, this.size.y);
 	}
 
 	transform_point(p)
@@ -119,5 +118,13 @@ class Canvas
 			p0.add(step)
 			p1.add(step)
 		}
+	}
+
+	drawText(text)
+	{
+		this.ctx.globalAlpha = 1
+		this.ctx.color = "black"
+		this.ctx.font = "12px serif";
+		this.ctx.fillText(text, 0, 12);
 	}
 }
