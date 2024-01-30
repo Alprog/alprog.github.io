@@ -16,14 +16,14 @@ function loadStyle(path)
 
 document.body.onload = function()
 {
-	loadStyle("https://alprog.github.io/mtrx/style.css")
+	loadStyle("style.css")
 
-	loadScript("https://alprog.github.io/mtrx/vector4.js")
-	loadScript("https://alprog.github.io/mtrx/matrix4x4.js")
-	loadScript("https://alprog.github.io/mtrx/math.js")
-	loadScript("https://alprog.github.io/mtrx/canvas.js")
-	loadScript("https://alprog.github.io/mtrx/pin.js")
-	loadScript("https://alprog.github.io/mtrx/diagram.js")
+	loadScript("./vector4.js")
+	loadScript("./matrix4x4.js")
+	loadScript("./math.js")
+	loadScript("./canvas.js")
+	loadScript("./pin.js")
+	loadScript("./diagram.js")
 
 	const urlParams = new URLSearchParams(window.location.search);
 	const script = urlParams.get('script')
