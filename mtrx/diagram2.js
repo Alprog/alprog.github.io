@@ -1,0 +1,2 @@
+
+var diagram = new Diagram();
