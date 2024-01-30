@@ -8,34 +8,34 @@ class Vector4
 		this.z = z ?? 0;
 		this.w = w ?? 1;
 	}
-	
+
 	get x() { return this[0] }
 	get y() { return this[1] }
 	get z() { return this[2] }
 	get w() { return this[3] }
-	
+
 	set x(value) { this[0] = value }
 	set y(value) { this[1] = value }
 	set z(value) { this[2] = value }
 	set w(value) { this[3] = value }
-	
+
 	static Zero = () => new Vector4(0, 0, 0, 0)
 	static One = () => new Vector4(1, 1, 1, 1)
-	
+
 	static Right = () => new Vector4(1, 0, 0, 0)
 	static Up = () => new Vector4(0, 1, 0, 0)
 	static Forward = () => new Vector4(0, 0, 1, 0)
 	static ZeroPoint = () => new Vector4(0, 0, 0, 1)
 
-  get_length()
-  {
-    return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
-  }
+    get_length()
+    {
+		return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+    }
 
-  get_length2D()
-  {
-    return Math.sqrt(this.x * this.x + this.y * this.y);
-  }
+    get_length2D()
+    {
+        return Math.sqrt(this.x * this.x + this.y * this.y);
+    }
 
 	clone()
 	{
@@ -55,33 +55,33 @@ class Vector4
 		this.x += v.x;
 		this.y += v.y;
 		this.z += v.z;
-  }
+    }
 
-  sub(v)
-  {
+    sub(v)
+    {
     this.x -= v.x;
     this.y -= v.y;
     this.z -= v.z;
-  }
+    }
 	
-	scale(k)
-	{
-		this.x *= k;
-		this.y *= k;
-		this.z *= k;
-	}
+    scale(k)
+    {
+	    this.x *= k;
+	    this.y *= k;
+	    this.z *= k;
+    }
 		
-	negate()
-	{
-		this.scale(-1);
-	}
+    negate()
+    {
+	    this.scale(-1);
+    }
 	
-	get_scaled(k)
-	{
-		var result = this.clone();
-		result.scale(k);
-		return result;
-	}
+    get_scaled(k)
+    {
+	    var result = this.clone();
+	    result.scale(k);
+	    return result;
+    }
 	
 	multiply(m)
 	{

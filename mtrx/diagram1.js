@@ -55,14 +55,4 @@ function draw()
 
 requestAnimationFrame(draw);
 
-function onMouseMove(event)
-{
-  canvas.mouse = new Vector4(event.offsetX, event.offsetY, 0, 1);  
-}
 
-function onMouseWheel(event)
-{
-  var zoomStep = 1.1;
-  var zoomValue = event.deltaY > 0 ? 1 / zoomStep : zoomStep;
-  canvas.zoom(zoomValue);
-}
