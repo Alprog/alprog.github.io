@@ -1,2 +1,0 @@
-
-var diagram = new Diagram();
