@@ -48,7 +48,7 @@ class Canvas
 
 	set_camera(a, b, c)
 	{
-		var height = 500;
+		var height = 500 / this.scale;
 		var width = height / this.size.y * this.size.x;
 		var depth = 1500;
 
@@ -136,12 +136,18 @@ class Canvas
 		this.ctx.fillText(text, 0, 12);
 	}
 
-	drawTriangle()
+	drawTriangle(p0, p1, p2, color)
 	{
+		p0 = this.transform_point(p0)
+		p1 = this.transform_point(p1)
+		p2 = this.transform_point(p2)
+
+		this.ctx.globalAlpha = 1
+		this.ctx.fillStyle = color
 		this.ctx.beginPath();
-		this.ctx.moveTo(20, 20);
-		this.ctx.lineTo(20, 100);
-		this.ctx.lineTo(70, 100);
+		this.ctx.moveTo(p0.x, p0.y);
+		this.ctx.lineTo(p1.x, p1.y);
+		this.ctx.lineTo(p2.x, p2.y);
 		this.ctx.closePath();
 		this.ctx.fill();
 	}

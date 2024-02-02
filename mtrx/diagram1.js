@@ -37,9 +37,18 @@ function draw()
 	canvas.line(new Vector4(150,150,0,1), new Vector4(150,150,150,1));
 	canvas.line(new Vector4(150,0,0,1), new Vector4(150,0,150,1));
 
-	canvas.drawText('debug text');
+	
 
-	canvas.drawTriangle();
+	var A = new Vector4(0, 0, 0, 1);
+	var B = new Vector4(0, 50, 0, 1);
+	var C = new Vector4(50, 0, 0, 1);
+	var AB = diff(B, A);
+	var AC = diff(C, A);
+	
+	var normal = cross(AB, AC);
+	canvas.drawText(normal.x + " " + normal.y + " " + normal.z);
+
+	canvas.drawTriangle(A, B, C, "#555");
 	
     pin.draw(canvas);
 
@@ -47,9 +56,9 @@ function draw()
 	
 	requestAnimationFrame(draw);
 
-	a += 0.001 * 5;
-	b += 0.002 * 5;
-	c += 0.003 * 5;
+	//a += 0.001 * 5;
+	//b += 0.002 * 5;
+	//c += 0.003 * 5;
 }
 
 requestAnimationFrame(draw);

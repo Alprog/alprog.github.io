@@ -38,5 +38,5 @@ function cross(a, b)
     var z = a.x * b.y - a.y * b.x; // XY
     var x = a.y * b.z - a.z * b.y; // YZ
     var y = a.z * b.x - a.x * b.z; // ZX
-    return Vector4.new(-x, -y, -z, 1); // LHS
+    return new Vector4(-x, -y, -z, 1); // LHS
 }
