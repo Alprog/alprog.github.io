@@ -25,6 +25,7 @@ loadScript("canvas.js")
 loadScript("pin.js")
 loadScript("diagram.js")
 loadScript("line.js")
+loadScript("grid.js")
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script')

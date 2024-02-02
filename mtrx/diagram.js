@@ -29,4 +29,10 @@ class Diagram
 
         this.requestRender();
 	}
+
+    addGrid()
+    {
+        this.objects.push(new Grid());        
+    }
+
 }

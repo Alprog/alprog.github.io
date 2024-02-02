@@ -4,7 +4,7 @@ var a = 0;
 var b = 0;
 var c = 0;
 
-var pin = new Pin(new Vector4(150, 0, 0, 1))
+var pin = new Pin(new Vector4(0, 0, 0, 1))
 
 function draw() 
 {
@@ -39,15 +39,17 @@ function draw()
 
 	canvas.drawText('debug text');
 
+	canvas.drawTriangle();
+	
     pin.draw(canvas);
 
 	//canvas.line(Vector4.ZeroPoint(), Vector4.One().get_scaled(1500), "black", 1);
 	
 	requestAnimationFrame(draw);
 
-	//a += 0.001 * 5;
-	//b += 0.002 * 5;
-	//c += 0.003 * 5;
+	a += 0.001 * 5;
+	b += 0.002 * 5;
+	c += 0.003 * 5;
 }
 
 requestAnimationFrame(draw);

@@ -20,7 +20,7 @@ class Canvas
 		
 		this.worldToScreenMtrx = Matrix4x4.Identity();
 
-		this.scale = 1.3
+		this.scale = 1
 		this.color = "black"
 		this.width = 1
 		this.mouse = Vector4.ZeroPoint()
@@ -48,25 +48,33 @@ class Canvas
 
 	set_camera(a, b, c)
 	{
-		var mtrx = Matrix4x4.Identity();
+		var height = 500;
+		var width = height / this.size.y * this.size.x;
+		var depth = 1500;
 
-		var scale = this.scale;
-		var scaling = Matrix4x4.Scaling({x:scale, y:scale, z: scale});
-
+		var view = Matrix4x4.Identity();
 		var lookAt = new Vector4(75, 75, 75, 1);
-		lookAt.negate();
-		var translation = Matrix4x4.Translation(lookAt);
+		view.multiply( Matrix4x4.Translation(lookAt.get_scaled(-1)) );
+		view.multiply( Matrix4x4.RotationX_LHS(a) );
+		view.multiply( Matrix4x4.RotationY_LHS(b) );
+		view.multiply( Matrix4x4.RotationZ_LHS(c) );
+		view.multiply( Matrix4x4.Translation(new Vector4(0, 0, 100, 1)) );
 
-		var rotation = Matrix4x4.RotationX_LHS(a);
-		rotation.multiply( Matrix4x4.RotationY_LHS(b) );
-		rotation.multiply( Matrix4x4.RotationZ_LHS(c) );
+		// Camera -> NDC
+		var projection = new Matrix4x4(
+			new Vector4(2 / width, 0, 0, 0),
+			new Vector4(0, 2 / height, 0, 0),
+			new Vector4(0, 0, 1 / depth, 0),
+			new Vector4(0, 0, 0, 1)
+		);
 
+		// NDC -> Canvas
 		var toCanvas = mult(
-			Matrix4x4.Scaling(new Vector4(1, -1, 1, 1)),
+			Matrix4x4.Scaling(new Vector4(this.size.x / 2, -this.size.y / 2, 1, 1)),
 			Matrix4x4.Translation(new Vector4(this.size.x / 2, this.size.y / 2, 0, 1))
 		);
 
-		this.worldToScreenMtrx = mult(translation, scaling, rotation, toCanvas);
+		this.worldToScreenMtrx = mult(view, projection, toCanvas);
 	}
 
 	clear()
@@ -85,7 +93,7 @@ class Canvas
 	{
 		this.ctx.beginPath();
 
-		var alpha = 1 - center.z / 2 / 100
+		var alpha = 1 - center.z / 2
 		this.ctx.globalAlpha = Math.max(Math.min(alpha, 1), 0);
 
 		this.ctx.arc(center.x, center.y, radius, 0, 2 * Math.PI);
@@ -108,7 +116,7 @@ class Canvas
 		for (var i = 0; i < segments; i++)
 		{			
 			this.ctx.beginPath();
-			var alpha = 1 - (p0.z + p1.z) / 2 / 100
+			var alpha = 1 - (p0.z + p1.z) / 2
 			this.ctx.globalAlpha = Math.max(Math.min(alpha, 1), 0);
 			this.ctx.moveTo(p0.x, p0.y);
 			this.ctx.lineTo(p1.x, p1.y);
@@ -126,5 +134,15 @@ class Canvas
 		this.ctx.color = "black"
 		this.ctx.font = "12px serif";
 		this.ctx.fillText(text, 0, 12);
+	}
+
+	drawTriangle()
+	{
+		this.ctx.beginPath();
+		this.ctx.moveTo(20, 20);
+		this.ctx.lineTo(20, 100);
+		this.ctx.lineTo(70, 100);
+		this.ctx.closePath();
+		this.ctx.fill();
 	}
 }

@@ -32,3 +32,11 @@ function mult_vm(v, m)
     var v3 = m[3].get_scaled(v[3]);
     return sum(v0, v1, v2, v3);
 }
+
+function cross(a, b)
+{
+    var z = a.x * b.y - a.y * b.x; // XY
+    var x = a.y * b.z - a.z * b.y; // YZ
+    var y = a.z * b.x - a.x * b.z; // ZX
+    return Vector4.new(-x, -y, -z, 1); // LHS
+}
