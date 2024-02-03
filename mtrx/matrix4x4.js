@@ -84,7 +84,12 @@ class Matrix4x4
 	
 	clone()
 	{
-		return new Matrix4x4(this[0], this[1], this[2], this[3]);
+		return new Matrix4x4(
+			this[0].clone(),
+			this[1].clone(),
+			this[2].clone(),
+			this[3].clone()
+		);
 	}
 	
 	multiply(m)

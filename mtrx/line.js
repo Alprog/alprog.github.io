@@ -9,8 +9,8 @@ class Line
         this.width = width ?? 1;
     }
 
-    draw(canvas)
+    render(renderer)
     {
-        canvas.line(this.p0, this.p1, this.color, this.width)
+        renderer.drawLine(this.p0, this.p1, this.color, this.width);
     }
 }

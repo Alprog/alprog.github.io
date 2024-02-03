@@ -43,38 +43,7 @@ class Canvas
 
 	zoom(value)
 	{
-		this.scale = this.scale * value
-	}
-
-	set_camera(a, b, c)
-	{
-		var height = 500 / this.scale;
-		var width = height / this.size.y * this.size.x;
-		var depth = 1500;
-
-		var view = Matrix4x4.Identity();
-		var lookAt = new Vector4(75, 75, 75, 1);
-		view.multiply( Matrix4x4.Translation(lookAt.get_scaled(-1)) );
-		view.multiply( Matrix4x4.RotationX_LHS(a) );
-		view.multiply( Matrix4x4.RotationY_LHS(b) );
-		view.multiply( Matrix4x4.RotationZ_LHS(c) );
-		view.multiply( Matrix4x4.Translation(new Vector4(0, 0, 100, 1)) );
-
-		// Camera -> NDC
-		var projection = new Matrix4x4(
-			new Vector4(2 / width, 0, 0, 0),
-			new Vector4(0, 2 / height, 0, 0),
-			new Vector4(0, 0, 1 / depth, 0),
-			new Vector4(0, 0, 0, 1)
-		);
-
-		// NDC -> Canvas
-		var toCanvas = mult(
-			Matrix4x4.Scaling(new Vector4(this.size.x / 2, -this.size.y / 2, 1, 1)),
-			Matrix4x4.Translation(new Vector4(this.size.x / 2, this.size.y / 2, 0, 1))
-		);
-
-		this.worldToScreenMtrx = mult(view, projection, toCanvas);
+		this.scale = this.scale * value;
 	}
 
 	clear()
@@ -82,14 +51,7 @@ class Canvas
 		this.ctx.clearRect(0, 0, this.size.x, this.size.y);
 	}
 
-	transform_point(p)
-	{
-		var result = new Vector4(p.x, p.y, p.z, 1);
-		result.multiply(this.worldToScreenMtrx);
-		return result;
-	}
-
-	circle(center, radius, color, width)
+	drawCircle(center, radius, color, width)
 	{
 		this.ctx.beginPath();
 
@@ -102,11 +64,8 @@ class Canvas
 		this.ctx.stroke();
 	}
 
-	line(p0, p1, color, width)
+	drawLine(p0, p1, color, width)
 	{
-		p0 = this.transform_point(p0)
-		p1 = this.transform_point(p1)
-
 		var segments = 20
 
 		var step = new Vector4((p1.x - p0.x) / segments, (p1.y - p0.y) / segments, (p1.z - p0.z) / segments, 0);
@@ -138,10 +97,6 @@ class Canvas
 
 	drawTriangle(p0, p1, p2, color)
 	{
-		p0 = this.transform_point(p0)
-		p1 = this.transform_point(p1)
-		p2 = this.transform_point(p2)
-
 		this.ctx.globalAlpha = 1
 		this.ctx.fillStyle = color
 		this.ctx.beginPath();

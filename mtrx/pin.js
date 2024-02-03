@@ -9,13 +9,13 @@ class Pin
     this.point = point
   }
 
-  draw(canvas)
+  render(renderer)
   {
     var point = canvas.transform_point(this.point);
 
     var delta = diff(point, canvas.mouse).get_length2D();
     var hovered = delta <= pin_radius;
 
-    canvas.circle(point, pin_radius, hovered ? "orange" : "black", pin_width)
+    renderer.canvas.circle(point, pin_radius, hovered ? "orange" : "black", pin_width)
   }
 }

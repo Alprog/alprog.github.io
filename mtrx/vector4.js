@@ -59,9 +59,9 @@ class Vector4
 
     sub(v)
     {
-    this.x -= v.x;
-    this.y -= v.y;
-    this.z -= v.z;
+		this.x -= v.x;
+		this.y -= v.y;
+		this.z -= v.z;
     }
 	
     scale(k)
@@ -71,6 +71,14 @@ class Vector4
 	    this.z *= k;
     }
 		
+	normalize()
+	{
+		var length = this.get_length();
+		this.x /= length;
+	    this.y /= length;
+	    this.z /= length;
+	}
+
     negate()
     {
 	    this.scale(-1);

@@ -3,36 +3,56 @@ class Diagram
 {	
 	constructor()
 	{
-        this.initCanvas();
+        this.canvas = new Canvas(this);
+        this.renderer = new Renderer(this.canvas);
+
         this.objects = [];
         this.requestRender();
 	}
 
-    initCanvas()
-    {
-        this.canvas = new Canvas(this);
-        this.canvas.set_camera(0, 0, 0);
-    }
-
     requestRender()
     {
-        requestAnimationFrame(()=>{this.render()});
+        requestAnimationFrame(()=>{
+            this.update();
+            this.render();
+        });
+    }
+
+    update()
+    {
+        if (this.onUpdate)
+        {
+            this.onUpdate();
+        }
     }
 
 	render()
 	{
 		this.canvas.clear();
+        this.renderer.setCamera(0, 0, 0);
 		for (const object of this.objects) 
         {
-            object.draw(this.canvas);
+            this.renderer.setModelMatrix(object.transform);
+            object.render(this.renderer);
         }
 
         this.requestRender();
 	}
 
+    addObject(object)
+    {
+        this.objects.push(object);
+        return object;
+    }
+
     addGrid()
     {
-        this.objects.push(new Grid());        
+        return this.addObject(new Grid());
+    }
+
+    addMesh()
+    {
+        return this.addObject(new Mesh());
     }
 
 }

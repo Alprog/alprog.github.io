@@ -33,10 +33,37 @@ function mult_vm(v, m)
     return sum(v0, v1, v2, v3);
 }
 
+function dot(a, b)
+{
+    return a.x * b.x + a.y * b.y + a.z * b.z;
+}
+
 function cross(a, b)
 {
     var z = a.x * b.y - a.y * b.x; // XY
     var x = a.y * b.z - a.z * b.y; // YZ
     var y = a.z * b.x - a.x * b.z; // ZX
-    return new Vector4(-x, -y, -z, 1); // LHS
+    return new Vector4(x, y, z, 1);
+}
+
+function clamp(value, min, max)
+{
+    return Math.min(Math.max(value, min), max);
+}
+
+function toHex(value)
+{
+    var value = clamp(value, 0, 1);
+    value = Math.floor(value * 255);
+    var text = value.toString(16);
+    if (text.length == 1)
+    {
+        text = "0" + text;
+    }    
+    return text;
+}
+
+function rgb(r, g, b)
+{
+    return "#" + toHex(r) + toHex(g) + toHex(b);
 }

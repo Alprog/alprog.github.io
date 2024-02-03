@@ -16,11 +16,11 @@ class Grid
         ];
     }
 
-    draw(canvas)
+    render(renderer)
     {
         for (const line of this.lines)
         {
-            line.draw(canvas);
+            line.render(renderer);
         }
     }
 }
