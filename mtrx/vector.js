@@ -1,5 +1,5 @@
 
-class Vector4
+class Vector
 {	
 	constructor(x, y, z, w)
 	{
@@ -19,13 +19,13 @@ class Vector4
 	set z(value) { this[2] = value }
 	set w(value) { this[3] = value }
 
-	static Zero = () => new Vector4(0, 0, 0, 0)
-	static One = () => new Vector4(1, 1, 1, 1)
+	static Zero = () => new Vector(0, 0, 0, 0)
+	static One = () => new Vector(1, 1, 1, 1)
 
-	static Right = () => new Vector4(1, 0, 0, 0)
-	static Up = () => new Vector4(0, 1, 0, 0)
-	static Forward = () => new Vector4(0, 0, 1, 0)
-	static ZeroPoint = () => new Vector4(0, 0, 0, 1)
+	static Right = () => new Vector(1, 0, 0, 0)
+	static Up = () => new Vector(0, 1, 0, 0)
+	static Forward = () => new Vector(0, 0, 1, 0)
+	static ZeroPoint = () => new Vector(0, 0, 0, 1)
 
     get_length()
     {
@@ -39,7 +39,7 @@ class Vector4
 
 	clone()
 	{
-		return new Vector4(this.x, this.y, this.z, this.w);
+		return new Vector(this.x, this.y, this.z, this.w);
 	}
 	
 	set(v)

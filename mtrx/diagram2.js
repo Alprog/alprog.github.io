@@ -8,10 +8,10 @@ mesh.transform = Matrix4x4.Identity();
 
 function helper(matrix)
 {
-    var a = new Vector4(-50, -50, -50, 1);
-    var b = new Vector4(-50, 50, -50, 1);
-    var c = new Vector4(50, 50, -50, 1);
-    var d = new Vector4(50, -50, -50, 1);
+    var a = new Vector(-30, -30, -30, 1);
+    var b = new Vector(-30, 30, -30, 1);
+    var c = new Vector(30, 30, -30, 1);
+    var d = new Vector(30, -30, -30, 1);
 
     a = mult(a, matrix);
     b = mult(b, matrix);
@@ -31,7 +31,7 @@ helper(Matrix4x4.RotationY_LHS(-Math.PI / 2));
 
 diagram.addObject(mesh);
 
-diagram.onUpdate = () => 
+diagram.onUpdated = () => 
 {
     mesh.transform.multiply( Matrix4x4.RotationX_LHS(0.010) );
     mesh.transform.multiply( Matrix4x4.RotationY_LHS(0.005) );

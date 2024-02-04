@@ -41,26 +41,26 @@ class Renderer
 		var width = height / this.canvas.size.y * this.canvas.size.x;
 		var depth = 1500;
 
-		var lookAt = new Vector4(75, 75, 75, 1);
+		var lookAt = new Vector(75, 75, 75, 1);
         this.viewMatrix = Matrix4x4.Identity();
 		this.viewMatrix.multiply( Matrix4x4.Translation(lookAt.get_scaled(-1)) );
 		this.viewMatrix.multiply( Matrix4x4.RotationX_LHS(a) );
 		this.viewMatrix.multiply( Matrix4x4.RotationY_LHS(b) );
 		this.viewMatrix.multiply( Matrix4x4.RotationZ_LHS(c) );
-		this.viewMatrix.multiply( Matrix4x4.Translation(new Vector4(0, 0, 100, 1)) );
+		this.viewMatrix.multiply( Matrix4x4.Translation(new Vector(0, 0, 100, 1)) );
 
 		// Camera -> NDC
 		this.projectionMatrix = new Matrix4x4(
-			new Vector4(2 / width, 0, 0, 0),
-			new Vector4(0, 2 / height, 0, 0),
-			new Vector4(0, 0, 1 / depth, 0),
-			new Vector4(0, 0, 0, 1)
+			new Vector(2 / width, 0, 0, 0),
+			new Vector(0, 2 / height, 0, 0),
+			new Vector(0, 0, 1 / depth, 0),
+			new Vector(0, 0, 0, 1)
 		);
 
 		// NDC -> Canvas
 		this.screenMatrix = mult(
-			Matrix4x4.Scaling(new Vector4(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
-			Matrix4x4.Translation(new Vector4(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
+			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
+			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
 		);
 
 		this.refreshTransform();
@@ -68,21 +68,21 @@ class Renderer
 
     toWorldSpace(p)
 	{
-		var result = new Vector4(p.x, p.y, p.z, 1);
+		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.modelMatrix);
 		return result;
 	}
 
     toNDCSpace(p)
 	{
-		var result = new Vector4(p.x, p.y, p.z, 1);
+		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.objectToNDCMatrix);
 		return result;
 	}
 
 	toCanvasSpace(p)
 	{
-		var result = new Vector4(p.x, p.y, p.z, 1);
+		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.objectToCanvasMatrix);
 		return result;
 	}
@@ -122,5 +122,11 @@ class Renderer
             p2 = this.toCanvasSpace(p2);
             this.canvas.drawTriangle(p0, p1, p2, color);
         }
+    }
+
+    drawCircle(center, radius, color, width)
+    {
+        var center = this.toCanvasSpace(center);
+        this.canvas.drawCircle(center, radius, color, width);
     }
 }

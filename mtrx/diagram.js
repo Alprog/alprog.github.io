@@ -5,9 +5,10 @@ class Diagram
 	{
         this.canvas = new Canvas(this);
         this.renderer = new Renderer(this.canvas);
-
         this.objects = [];
-        this.requestRender();
+        this.onUpdated = null;
+
+        this.requestRender();        
 	}
 
     requestRender()
@@ -20,9 +21,9 @@ class Diagram
 
     update()
     {
-        if (this.onUpdate)
+        if (this.onUpdated)
         {
-            this.onUpdate();
+            this.onUpdated();
         }
     }
 

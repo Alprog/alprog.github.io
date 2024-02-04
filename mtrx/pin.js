@@ -4,18 +4,16 @@ var pin_width = 3
 
 class Pin
 {
-  constructor(point)
-  {
-    this.point = point
-  }
+	constructor(point)
+	{
+	}
 
-  render(renderer)
-  {
-    var point = canvas.transform_point(this.point);
+	render(renderer)
+	{
+		var point = new Vector(0, 0, 0, 1);
+		var delta = diff(point, renderer.canvas.mouse).get_length2D();
+		var hovered = delta <= pin_radius;
 
-    var delta = diff(point, canvas.mouse).get_length2D();
-    var hovered = delta <= pin_radius;
-
-    renderer.canvas.circle(point, pin_radius, hovered ? "orange" : "black", pin_width)
-  }
+		renderer.drawCircle(point, pin_radius, hovered ? "orange" : "black", pin_width)
+	}
 }
