@@ -27,7 +27,7 @@ class Custom
         renderer.drawLine(new Vector(0,150,0,1), new Vector(0,150,150,1));
         renderer.drawLine(new Vector(150,150,0,1), new Vector(150,150,150,1));
         renderer.drawLine(new Vector(150,0,0,1), new Vector(150,0,150,1));
-	}
+    }
 }
 
 diagram.objects.push(new Custom());

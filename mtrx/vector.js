@@ -41,6 +41,21 @@ class Vector
 	{
 		return new Vector(this.x, this.y, this.z, this.w);
 	}
+
+	without_column(index)
+	{
+		switch(index)
+		{
+			case 0:
+				return [/*-x-*/ this.y, this.z, this.w];
+			case 1:
+				return [this.x, /*-y-*/ this.z, this.w];
+			case 2:
+				return [this.x, this.y, /*-z-*/ this.w];
+			case 3:
+				return [this.x, this.y, this.z /*-w-*/];
+		}
+	}
 	
 	set(v)
 	{
@@ -64,11 +79,15 @@ class Vector
 		this.z -= v.z;
     }
 	
-    scale(k)
+    scale(k, scale_w)
     {
 	    this.x *= k;
 	    this.y *= k;
 	    this.z *= k;
+		if (scale_w)
+		{
+			this.w *= k;
+		}
     }
 		
 	normalize()

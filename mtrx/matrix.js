@@ -1,9 +1,18 @@
 
-class Matrix2x2
+class Matrix3x3
 {
 	determinant()
 	{
-
+		var a = this[0][0];
+		var b = this[0][1];
+		var c = this[0][2];
+		var d = this[1][0];
+		var e = this[1][1];
+		var f = this[1][2];
+		var g = this[2][0];
+		var h = this[2][1];
+		var i = this[2][2];
+		return a*e*i + b*f*g + c*d*h - c*e*g - b*d*i - a*f*h;
 	}
 }
 
@@ -111,5 +120,54 @@ class Matrix4x4
 	toString()
 	{
 		return this.right + "<br>" + this.up + "<br>" + this.forward + "<br>" + this.translation;
+	}
+
+	scale(k)
+	{
+		for (var row = 0; row < 4; row++)
+		{
+			this[row].scale(k, true);
+		}
+	}
+
+	get_inverse()
+	{
+		var mtrx = this.get_adjugate();
+		var det = 0;
+		for (var i = 0; i < 4; i++)
+		{
+			det += this[0][i] * mtrx[i][0];
+		}
+		mtrx.scale(1 / det);
+		return mtrx;
+	}
+
+	get_adjugate()
+	{
+		var adj = new Matrix4x4();
+		for (var row = 0; row < 4; row++)
+		{
+			for (var col = 0; col < 4; col++)
+			{
+				var det = this.get_minor_matrix(row, col).determinant();
+				var sign = (row + col) % 2 ? -1 : 1;
+				adj[col][row] = det * sign;
+			}
+		}
+		return adj;
+	}
+
+	get_minor_matrix(except_row, except_col)
+	{
+		var minor_mtrx = new Matrix3x3();
+		var index = 0;
+		for (var row = 0; row < 4; row++)
+		{
+			if (row != except_row)
+			{
+				minor_mtrx[index++] = this[row].without_column(except_col);
+			}
+		}
+		return minor_mtrx;
 	}
 }
