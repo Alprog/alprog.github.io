@@ -31,9 +31,11 @@ helper(Matrix4x4.RotationY_LHS(-Math.PI / 2));
 
 diagram.addObject(mesh);
 
+//mesh.transform.multiply( Matrix4x4.Translation(new Vector(75, 75, 75)) );
+
 diagram.onUpdated = () => 
 {
-    mesh.transform.multiply( Matrix4x4.RotationX_LHS(0.010) );
-    mesh.transform.multiply( Matrix4x4.RotationY_LHS(0.005) );
-    mesh.transform.multiply( Matrix4x4.RotationZ_LHS(0.003) );
+    mesh.transform.premultiply( Matrix4x4.RotationX_LHS(0.010) );
+    mesh.transform.premultiply( Matrix4x4.RotationY_LHS(0.005) );
+    mesh.transform.premultiply( Matrix4x4.RotationZ_LHS(0.003) );
 };

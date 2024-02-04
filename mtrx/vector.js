@@ -98,6 +98,14 @@ class Vector
 	    this.z /= length;
 	}
 
+	homo_normalize()
+	{
+		this.x /= this.w;
+		this.y /= this.w;
+		this.z /= this.w;
+		this.w /= this.w;
+	}
+
     negate()
     {
 	    this.scale(-1);

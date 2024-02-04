@@ -38,7 +38,8 @@ class Renderer
     setCamera(a, b, c)
     {
 		var height = 500 / this.canvas.scale;
-		var width = height / this.canvas.size.y * this.canvas.size.x;
+        var aspect = this.canvas.size.x / this.canvas.size.y;
+		var width = height * aspect;
 		var depth = 1500;
 
 		var lookAt = new Vector(75, 75, 75, 1);
@@ -47,7 +48,9 @@ class Renderer
 		this.viewMatrix.multiply( Matrix4x4.RotationX_LHS(a) );
 		this.viewMatrix.multiply( Matrix4x4.RotationY_LHS(b) );
 		this.viewMatrix.multiply( Matrix4x4.RotationZ_LHS(c) );
-		this.viewMatrix.multiply( Matrix4x4.Translation(new Vector(0, 0, 100, 1)) );
+		this.viewMatrix.multiply( Matrix4x4.Translation(new Vector(0, 0, 500, 1)) );
+
+        
 
 		// Camera -> NDC
 		this.projectionMatrix = new Matrix4x4(
@@ -55,6 +58,15 @@ class Renderer
 			new Vector(0, 2 / height, 0, 0),
 			new Vector(0, 0, 1 / depth, 0),
 			new Vector(0, 0, 0, 1)
+		);
+
+        var a = Math.PI / 4;
+        var cot = 1 / Math.tan(a / 2);
+		this.projectionMatrix = new Matrix4x4(
+			new Vector(cot / aspect, 0, 0, 0),
+			new Vector(0, cot, 0, 0),
+			new Vector(0, 0, 0, 1),
+			new Vector(0, 0, 0, 0)
 		);
 
 		// NDC -> Canvas
@@ -70,6 +82,7 @@ class Renderer
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.modelMatrix);
+        result.homo_normalize();
 		return result;
 	}
 
@@ -77,6 +90,7 @@ class Renderer
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.objectToNDCMatrix);
+        result.homo_normalize();
 		return result;
 	}
 
@@ -84,6 +98,7 @@ class Renderer
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
 		result.multiply(this.objectToCanvasMatrix);
+        result.homo_normalize();
 		return result;
 	}
 

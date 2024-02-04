@@ -98,6 +98,14 @@ class Matrix4x4
 		new Vector(0, 0, 1, 0),
 		new Vector(t.x, t.y, t.z, 1)
 	)
+
+	set_column(index, vector)
+	{
+		this[0][index] = vector[0];
+		this[1][index] = vector[1];
+		this[2][index] = vector[2];
+		this[3][index] = vector[3];
+	}
 	
 	clone()
 	{
@@ -116,6 +124,15 @@ class Matrix4x4
 		this.forward.multiply(m);
 		this.translation.multiply(m);
 	}
+
+	premultiply(m)
+	{
+		var m = mult(m, this);
+		this[0] = m[0];
+		this[1] = m[1];
+		this[2] = m[2];
+		this[3] = m[3];
+	}
 		
 	toString()
 	{
@@ -127,6 +144,18 @@ class Matrix4x4
 		for (var row = 0; row < 4; row++)
 		{
 			this[row].scale(k, true);
+		}
+	}
+
+	transpose()
+	{
+		var old = this.clone();
+		for (var row = 0; row < 4; row++)
+		{
+			for (var col = 0; col < 4; col++)
+			{
+				this[row][col] = old[col][row];
+			}
 		}
 	}
 

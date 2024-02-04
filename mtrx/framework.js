@@ -27,6 +27,7 @@ loadScript("renderer.js")
 loadScript("pin.js")
 loadScript("diagram.js")
 loadScript("line.js")
+loadScript("ray.js")
 loadScript("grid.js")
 loadScript("mesh.js")
 
