@@ -3,10 +3,10 @@ class Camera
 {
     constructor(position, lookAt, aspect, FOV)
     {
-        this.position = position ?? new Vector(0, 0, -500, 0);
+        this.position = position ?? new Vector(0, 0, -1);
         this.lookAt = lookAt ?? Vector.ZeroPoint();
         this.aspect = aspect ?? 1;
-        this.setFov(FOV ?? Math.PI / 2);
+        this.setFov(FOV ?? Math.PI / 4);
     }
 
     getViewMatrix()
@@ -14,13 +14,14 @@ class Camera
         var offset = this.position.get_scaled(-1);
         var offsetMtrx = Matrix4x4.Translation(offset);
 
-        var forward = diff(this.lookAt - this.position);
+        var forward = diff(this.lookAt, this.position);
+        forward.normalize();
         var right = cross(Vector.Up(), forward);
         var up = cross(forward, right);
         var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
         orientationMtrx.transpose();
     
-        this.viewMatrix = mult(offsetMtrx, orientationMtrx);
+        return mult(offsetMtrx, orientationMtrx);
     }
 
     setFov(vFOV)

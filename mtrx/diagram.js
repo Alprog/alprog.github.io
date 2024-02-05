@@ -4,7 +4,12 @@ class Diagram
 	constructor()
 	{
         this.canvas = new Canvas(this);
-        this.camera = new Camera();
+        this.camera = new Camera(
+            new Vector(75, 75, -500),
+            new Vector(75, 75, 75),
+            this.canvas.getAspect(),
+            Math.PI / 4
+        );
         this.renderer = new Renderer(this.canvas);
         this.objects = [];
         this.onUpdated = null;
@@ -30,9 +35,8 @@ class Diagram
 
 	render()
 	{
-        this.a = (this.a ?? 0) + 0.01;
 		this.canvas.clear();
-        this.renderer.setCamera(this.a, 0, 0);
+        this.renderer.setCamera(this.camera);
 		for (const object of this.objects) 
         {
             this.renderer.setModelMatrix(object.transform);

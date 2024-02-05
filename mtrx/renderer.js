@@ -8,7 +8,12 @@ class Renderer
         this.modelMatrix = Matrix4x4.Identity();      // Object -> World
         this.viewMatrix = Matrix4x4.Identity();       // World -> Camera
         this.projectionMatrix = Matrix4x4.Identity(); // Camera -> NDC
-        this.screenMatrix = Matrix4x4.Identity();     // NDC -> Canvas
+
+		// NDC -> Canvas
+		this.screenMatrix = mult(
+			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
+			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
+		);
 
         this.refreshTransform();
     }
@@ -35,47 +40,11 @@ class Renderer
         this.refreshTransform();
     }
 
-    setCamera(a, b, c)
+    setCamera(camera)
     {
-		var height = 500 / this.canvas.scale;
-        var aspect = this.canvas.size.x / this.canvas.size.y;
-		var width = height * aspect;
-		var depth = 1500;
-
-		var lookAt = new Vector(75, 75, 75, 1);
-        this.viewMatrix = Matrix4x4.Identity();
-		this.viewMatrix.multiply( Matrix4x4.Translation(lookAt.get_scaled(-1)) );
-		this.viewMatrix.multiply( Matrix4x4.RotationX_LHS(a) );
-		this.viewMatrix.multiply( Matrix4x4.RotationY_LHS(b) );
-		this.viewMatrix.multiply( Matrix4x4.RotationZ_LHS(c) );
-		this.viewMatrix.multiply( Matrix4x4.Translation(new Vector(0, 0, 500, 1)) );
-
-        
-
-		// Camera -> NDC
-		this.projectionMatrix = new Matrix4x4(
-			new Vector(2 / width, 0, 0, 0),
-			new Vector(0, 2 / height, 0, 0),
-			new Vector(0, 0, 1 / depth, 0),
-			new Vector(0, 0, 0, 1)
-		);
-
-        var a = Math.PI / 4;
-        var cot = 1 / Math.tan(a / 2);
-		this.projectionMatrix = new Matrix4x4(
-			new Vector(cot / aspect, 0, 0, 0),
-			new Vector(0, cot, 0, 0),
-			new Vector(0, 0, 0, 1),
-			new Vector(0, 0, 0, 0)
-		);
-
-		// NDC -> Canvas
-		this.screenMatrix = mult(
-			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
-			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
-		);
-
-		this.refreshTransform();
+        this.viewMatrix = camera.getViewMatrix();
+        this.projectionMatrix = camera.projectionMatrix;
+        this.refreshTransform();
     }
 
     toWorldSpace(p)

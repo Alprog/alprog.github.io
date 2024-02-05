@@ -26,6 +26,11 @@ class Canvas
 		this.mouse = Vector.ZeroPoint();
 	}
 
+	getAspect()
+	{
+		return this.size.x / this.size.y;
+	}
+
 	onMouseWheel(event)
 	{
 		var zoomStep = 1.1;
