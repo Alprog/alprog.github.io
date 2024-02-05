@@ -18,7 +18,7 @@ function loadStyle(path)
 
 loadStyle("style.css")
 
-loadScript("Vector.js")
+loadScript("vector.js")
 loadScript("matrix.js")
 loadScript("math.js")
 loadScript("canvas.js")
