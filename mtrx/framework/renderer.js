@@ -4,53 +4,33 @@ class Renderer
     constructor(canvas)
     {
         this.canvas = canvas;
+        this.matrix_table = new MatrixTable();
 
-        this.modelMatrix = Matrix4x4.Identity();      // Object -> World
-        this.viewMatrix = Matrix4x4.Identity();       // World -> Camera
-        this.projectionMatrix = Matrix4x4.Identity(); // Camera -> NDC
+        this.matrix_table.setModelMatrix(Matrix4x4.Identity());
+        this.matrix_table.setViewMatrix(Matrix4x4.Identity());
+        this.matrix_table.setProjectionMatrix(Matrix4x4.Identity());
 
-		// NDC -> Canvas
-		this.screenMatrix = mult(
+        this.matrix_table.setPresentMatrix(mult(
 			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
 			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
-		);
-
-        this.refreshTransform();
-    }
-
-    refreshTransform()
-    {
-        this.objectToNDCMatrix = mult(
-            this.modelMatrix, 
-            this.viewMatrix,
-            this.projectionMatrix,
-        );
-
-        this.objectToCanvasMatrix = mult(
-            this.modelMatrix, 
-            this.viewMatrix,
-            this.projectionMatrix,
-            this.screenMatrix
-        );
+		));
     }
 
     setModelMatrix(matrix)
     {
-        this.modelMatrix = matrix ?? Matrix4x4.Identity();
-        this.refreshTransform();
+        this.matrix_table.setModelMatrix(matrix ?? Matrix4x4.Identity());
     }
 
     setCamera(camera)
     {
-        this.viewMatrix = camera.getViewMatrix();
-        this.projectionMatrix = camera.projectionMatrix;
-        this.refreshTransform();
+        this.matrix_table.setViewMatrix(camera.viewMatrix);
+        this.matrix_table.setProjectionMatrix(camera.projectionMatrix);
     }
 
     toWorldSpace(p)
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.modelMatrix);
+		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, WORLD_SPACE));
         result.homo_normalize();
 		return result;
 	}
@@ -58,7 +38,7 @@ class Renderer
     toNDCSpace(p)
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.objectToNDCMatrix);
+		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, CLIP_SPACE));
         result.homo_normalize();
 		return result;
 	}
@@ -66,7 +46,7 @@ class Renderer
 	toCanvasSpace(p)
 	{
 		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.objectToCanvasMatrix);
+		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, CANVAS_SPACE));
         result.homo_normalize();
 		return result;
 	}
