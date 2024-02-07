@@ -10,6 +10,9 @@ class Diagram
             this.canvas.getAspect(),
             Math.PI / 4
         );
+
+        //this.camera.setOrtho(400);
+
         this.renderer = new Renderer(this.canvas);
         this.objects = [];
         this.onUpdated = null;

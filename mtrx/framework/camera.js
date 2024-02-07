@@ -38,7 +38,7 @@ class Camera
 
     setOrtho(height)
     {
-		var width = height * aspect;
+		var width = height * this.aspect;
 		var depth = 1500;
 		this.projectionMatrix = new Matrix4x4(
 			new Vector(2 / width, 0, 0, 0),
