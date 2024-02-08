@@ -7,6 +7,11 @@ class Custom
 {
 	render(renderer)
 	{
+        var mousePoint = renderer.canvas.mouse.clone();
+        var matrix = renderer.matrix_table.getMatrix(CANVAS_SPACE, CAMERA_SPACE);
+        mousePoint.multiply(matrix);
+        console.log(mousePoint);
+
 		for (var i = 0; i <= 10; i++)
         {
             renderer.drawLine(new Vector(0,i*10,0,1), new Vector(100,i*10,0,1));
