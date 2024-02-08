@@ -1,4 +1,17 @@
 
+
+function cloneElements(array)
+{
+    for (var i = 0; i < array.length; i++)
+    {
+        if (array[i] && array[i].clone)
+        {
+            array[i] = array[i].clone();
+        }
+    }
+    return array;
+}
+
 class Renderer
 {
     constructor(canvas)
@@ -34,13 +47,17 @@ class Renderer
 
     //----------------------------------------------------
 
-    drawLine(p0, p1, color, width)
+    drawLine() { this.drawLineInternal(...cloneElements(arguments)); }
+    drawTriangle() { this.drawTriangleInternal(...cloneElements(arguments)); }
+    drawCircle() { this.drawCircleInternal(...cloneElements(arguments)); }
+
+    drawLineInternal(p0, p1, color, width)
     {
         this.makeCloud( p0, p1 ).transformTo( CANVAS_SPACE );
         this.canvas.drawLine(p0, p1, color, width);
     }
 
-    drawTriangle(a, b, c, color)
+    drawTriangleInternal(a, b, c, color)
     {
         var cloud = this.makeCloud( a, b, c );
         cloud.transformTo( WORLD_SPACE );
@@ -62,7 +79,7 @@ class Renderer
         }
     }
 
-    drawCircle(center, radius, color, width)
+    drawCircleInternal(center, radius, color, width)
     {
         this.makeCloud( center ).transformTo( CANVAS_SPACE );
         this.canvas.drawCircle(center, radius, color, width);

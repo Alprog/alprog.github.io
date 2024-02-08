@@ -11,6 +11,6 @@ class Line
 
     render(renderer)
     {
-        renderer.drawLine(this.p0.clone(), this.p1.clone(), this.color, this.width);
+        renderer.drawLine(this.p0, this.p1, this.color, this.width);
     }
 }
