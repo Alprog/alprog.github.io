@@ -8,9 +8,17 @@ class Custom
 	render(renderer)
 	{
         var mousePoint = renderer.canvas.mouse.clone();
-        var matrix = renderer.matrix_table.getMatrix(CANVAS_SPACE, CAMERA_SPACE);
+        var matrix = renderer.matrix_table.getMatrix(CANVAS_SPACE, WORLD_SPACE);
         mousePoint.multiply(matrix);
-        console.log(mousePoint);
+        if (mousePoint.w == 0)
+        {
+            mousePoint.normalize();
+        }
+        var x = mousePoint.x;
+        var y = mousePoint.y;
+        var z = mousePoint.z;
+        //console.log(Math.asin(y) / Math.PI * 180);
+        //console.log(x + " " + y + " " + z + " " + mousePoint.w);
 
 		for (var i = 0; i <= 10; i++)
         {

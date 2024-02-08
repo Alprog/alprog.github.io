@@ -95,7 +95,7 @@ class Camera
                     new Vector(scaleX, 0, 0, 0),
                     new Vector(0, scaleY, 0, 0),
                     new Vector(0, 0, 0, 1),
-                    new Vector(0, 0, 0, 0)
+                    new Vector(0, 0, 1, 0)
                 );
             }
             else
