@@ -15,7 +15,7 @@ class Mesh
     {
         for (const t of this.triangles)
         {
-            renderer.drawTriangle(t.p0, t.p1, t.p2, t.color);
+            renderer.drawTriangle(t.p0.clone(), t.p1.clone(), t.p2.clone(), t.color);
         }
     }
 }

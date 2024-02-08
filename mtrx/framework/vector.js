@@ -25,6 +25,9 @@ class Vector
 	static Right = () => new Vector(1, 0, 0, 0)
 	static Up = () => new Vector(0, 1, 0, 0)
 	static Forward = () => new Vector(0, 0, 1, 0)
+	static RightPoint = () => new Vector(1, 0, 0, 1)
+	static UpPoint = () => new Vector(0, 1, 0, 1)
+	static ForwardPoint = () => new Vector(0, 0, 1, 1)
 	static ZeroPoint = () => new Vector(0, 0, 0, 1)
 
     get_length()

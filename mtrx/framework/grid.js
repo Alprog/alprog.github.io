@@ -10,9 +10,9 @@ class Grid
     {
         // axis
         this.lines = [
-            new Line(Vector.ZeroPoint(), Vector.Right().get_scaled(150), "red", 5),
-            new Line(Vector.ZeroPoint(), Vector.Up().get_scaled(150), "green", 5),
-            new Line(Vector.ZeroPoint(), Vector.Forward().get_scaled(150), "blue", 5)
+            new Line(Vector.ZeroPoint(), Vector.RightPoint().get_scaled(150), "red", 5),
+            new Line(Vector.ZeroPoint(), Vector.UpPoint().get_scaled(150), "green", 5),
+            new Line(Vector.ZeroPoint(), Vector.ForwardPoint().get_scaled(150), "blue", 5)
         ];
     }
 

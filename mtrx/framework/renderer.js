@@ -27,70 +27,44 @@ class Renderer
         this.matrix_table.setProjectionMatrix(camera.getProjectionMatrix());
     }
 
-    toWorldSpace(p)
-	{
-		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, WORLD_SPACE));
-        result.homo_normalize();
-		return result;
-	}
-
-    toNDCSpace(p)
-	{
-		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, CLIP_SPACE));
-        result.homo_normalize();
-		return result;
-	}
-
-	toCanvasSpace(p)
-	{
-		var result = new Vector(p.x, p.y, p.z, 1);
-		result.multiply(this.matrix_table.getMatrix(OBJECT_SPACE, CANVAS_SPACE));
-        result.homo_normalize();
-		return result;
-	}
+    makeCloud()
+    {
+        return new PointCloud( arguments, OBJECT_SPACE, this.matrix_table );
+    }
 
     //----------------------------------------------------
 
     drawLine(p0, p1, color, width)
     {
-        p0 = this.toCanvasSpace(p0);
-        p1 = this.toCanvasSpace(p1);
+        this.makeCloud( p0, p1 ).transformTo( CANVAS_SPACE );
         this.canvas.drawLine(p0, p1, color, width);
     }
 
-    drawTriangle(p0, p1, p2, color)
+    drawTriangle(a, b, c, color)
     {
-        var a = this.toWorldSpace(p0);
-        var b = this.toWorldSpace(p1);
-        var c = this.toWorldSpace(p2);
+        var cloud = this.makeCloud( a, b, c );
+        cloud.transformTo( WORLD_SPACE );
+
+        var ab = diff(b, a);
+        var ac = diff(c, a);
+        var worldNormal = cross(ab, ac);
+        worldNormal.normalize();
+        color = rgb(worldNormal.x, worldNormal.y, worldNormal.z)
+
+        cloud.transformTo( CLIP_SPACE );
         var ab = diff(b, a);
         var ac = diff(c, a);
         var normal = cross(ab, ac);
-        normal.normalize();
-
-        color = rgb(normal.x, normal.y, normal.z)
-
-        var a = this.toNDCSpace(p0);
-        var b = this.toNDCSpace(p1);
-        var c = this.toNDCSpace(p2);
-        var ab = diff(b, a);
-        var ac = diff(c, a);
-        var normal = cross(ab, ac);
-
         if (normal.z <= 0)
         {
-            p0 = this.toCanvasSpace(p0);
-            p1 = this.toCanvasSpace(p1);
-            p2 = this.toCanvasSpace(p2);
-            this.canvas.drawTriangle(p0, p1, p2, color);
+            cloud.transformTo( CANVAS_SPACE );
+            this.canvas.drawTriangle(a, b, c, color);
         }
     }
 
     drawCircle(center, radius, color, width)
     {
-        var center = this.toCanvasSpace(center);
+        this.makeCloud( center ).transformTo( CANVAS_SPACE );
         this.canvas.drawCircle(center, radius, color, width);
     }
 }
