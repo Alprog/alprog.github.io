@@ -7,8 +7,8 @@ class Diagram
         this.camera = new Camera(
             new Vector(75, 75, -500),
             new Vector(75, 75, 75),
-            this.canvas.getAspect(),
-            Math.PI / 4
+            Math.PI / 4,
+            this.canvas.getAspect()
         );
 
         //this.camera.setOrtho(400);

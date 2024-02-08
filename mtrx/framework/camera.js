@@ -1,52 +1,117 @@
 
 class Camera
 {
-    constructor(position, lookAt, aspect, FOV)
+    constructor(position, lookAt, vFov, aspect)
     {
-        this.position = position ?? new Vector(0, 0, -1);
-        this.lookAt = lookAt ?? Vector.ZeroPoint();
-        this.updateViewMatrix();
-
-        this.aspect = aspect ?? 1;
-        this.setFov(FOV ?? Math.PI / 4);
+        this.setPosition(position ?? new Vector(0, 0, -1));
+        this.setLookAt(lookAt ?? Vector.ZeroPoint());
+        this.setFov(vFov ?? Math.PI / 4);
+        this.setAspect(aspect ?? 1);
     }
 
-    updateViewMatrix()
+    setPosition(position)
     {
-        var offset = this.position.get_scaled(-1);
-        var offsetMtrx = Matrix4x4.Translation(offset);
-
-        var forward = diff(this.lookAt, this.position);
-        forward.normalize();
-        var right = cross(Vector.Up(), forward);
-        var up = cross(forward, right);
-        var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
-        orientationMtrx.transpose();
-    
-        this.viewMatrix = mult(offsetMtrx, orientationMtrx);
+        if (!this.position || !this.position.equals(position))
+        {
+            this.position = position;
+            this.viewMatrix = null;
+        }
     }
 
-    setFov(vFOV)
+    setLookAt(lookAt)
     {
-        var scaleY = 1 / Math.tan(vFOV / 2);
-        var scaleX = scaleY / this.aspect;
-		this.projectionMatrix = new Matrix4x4(
-			new Vector(scaleX, 0, 0, 0),
-			new Vector(0, scaleY, 0, 0),
-			new Vector(0, 0, 0, 1),
-			new Vector(0, 0, 0, 0)
-		);
+        if (!this.lookAt || !this.lookAt.equals(lookAt))
+        {
+            this.lookAt = lookAt;
+            this.viewMatrix = null;
+        }
+    }
+
+    setFov(vFov)
+    {
+        if (this.vFov != vFov)
+        {
+            this.vFov = vFov;
+            this.orthoSize = null;
+            this.projectionMatrix = null;
+        }
+    }
+
+    setOrthoSize(orthoSize)
+    {
+        if (this.orthoSize != orthoSize)
+        {
+            this.orthoSize = orthoSize;
+            this.vFov = null;
+            this.projectionMatrix = null;
+        }
+    }
+
+    setAspect(aspect)
+    {
+        if (this.aspect != aspect)
+        {
+            this.aspect = aspect;
+            this.projectionMatrix = null;
+        }
     }
 
     setOrtho(height)
     {
 		var width = height * this.aspect;
 		var depth = 1500;
-		this.projectionMatrix = new Matrix4x4(
-			new Vector(2 / width, 0, 0, 0),
-			new Vector(0, 2 / height, 0, 0),
-			new Vector(0, 0, 1 / depth, 0),
-			new Vector(0, 0, 0, 1)
-		);
+		
+    }
+
+    getViewMatrix()
+    {
+        if (!this.viewMatrix)
+        {
+            var offset = this.position.get_scaled(-1);
+            var offsetMtrx = Matrix4x4.Translation(offset);
+    
+            var forward = diff(this.lookAt, this.position);
+            forward.normalize();
+            var right = cross(Vector.Up(), forward);
+            var up = cross(forward, right);
+            var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
+            orientationMtrx.transpose();
+        
+            this.viewMatrix = mult(offsetMtrx, orientationMtrx);
+        }
+
+        return this.viewMatrix;
+    }
+
+    getProjectionMatrix()
+    {
+        if (!this.projectionMatrix)
+        {
+            if (this.vFov)
+            {
+                var scaleY = 1 / Math.tan(this.vFov / 2);
+                var scaleX = scaleY / this.aspect;
+                this.projectionMatrix = new Matrix4x4(
+                    new Vector(scaleX, 0, 0, 0),
+                    new Vector(0, scaleY, 0, 0),
+                    new Vector(0, 0, 0, 1),
+                    new Vector(0, 0, 0, 0)
+                );
+            }
+            else
+            {
+                var height = this.orthoSize;
+                var width = height * this.aspect;
+                var depth = 1500;
+                this.projectionMatrix = new Matrix4x4(
+                    new Vector(2 / width, 0, 0, 0),
+                    new Vector(0, 2 / height, 0, 0),
+                    new Vector(0, 0, 1 / depth, 0),
+                    new Vector(0, 0, 0, 1)
+                );
+            }
+        }
+
+        return this.projectionMatrix;
     }
 }

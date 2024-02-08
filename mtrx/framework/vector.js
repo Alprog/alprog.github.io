@@ -127,6 +127,11 @@ class Vector
 		this[3] = v.x * m.right[3] + v.y * m.up[3] + v.z * m.forward[3] + v.w * m.translation[3];
 	}
 
+	equals(v)
+	{
+		return this.x == v.x && this.y == v.y && this.z == v.z && this.z == v.z;
+	}
+
 	toString()
 	{
 		return this.x + ", " + this.y + ", " + this.z + ", " + this.w;

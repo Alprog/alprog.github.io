@@ -23,8 +23,8 @@ class Renderer
 
     setCamera(camera)
     {
-        this.matrix_table.setViewMatrix(camera.viewMatrix);
-        this.matrix_table.setProjectionMatrix(camera.projectionMatrix);
+        this.matrix_table.setViewMatrix(camera.getViewMatrix());
+        this.matrix_table.setProjectionMatrix(camera.getProjectionMatrix());
     }
 
     toWorldSpace(p)
