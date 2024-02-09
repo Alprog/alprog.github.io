@@ -1,10 +1,11 @@
 
 function sum(a, b, c, d)
 {
-	var result = a.clone();
-	result.add(b);
-	if (c) result.add(c);
-	if (d) result.add(d);	
+    var result = arguments[0].clone();
+    for (var i = 1; i < arguments.length; i++)
+    {
+        result.add(arguments[i]);
+    }	
 	return result;
 }
 
@@ -15,12 +16,13 @@ function diff(a, b)
     return result;
 }
 
-function mult(a, b, c, d)
+function mult()
 {
-    var result = a.clone();
-    result.multiply(b);
-    if (c) result.multiply(c);
-    if (d) result.multiply(d);
+    var result = arguments[0].clone();
+    for (var i = 1; i < arguments.length; i++)
+    {
+        result.multiply(arguments[i]);
+    }
     return result;
 }
 
@@ -49,21 +51,4 @@ function cross(a, b)
 function clamp(value, min, max)
 {
     return Math.min(Math.max(value, min), max);
-}
-
-function toHex(value)
-{
-    var value = clamp(value, 0, 1);
-    value = Math.floor(value * 255);
-    var text = value.toString(16);
-    if (text.length == 1)
-    {
-        text = "0" + text;
-    }    
-    return text;
-}
-
-function rgb(r, g, b)
-{
-    return "#" + toHex(r) + toHex(g) + toHex(b);
 }

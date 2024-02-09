@@ -11,6 +11,9 @@ class Canvas
 
 		element.addEventListener("wheel", (e) => { this.onMouseWheel(e)});
 		element.addEventListener("mousemove", (e) => { this.onMouseMove(e)});
+		element.addEventListener("mousedown", (e) => { this.pressed = true; });
+		element.addEventListener("mouseup", (e) => { this.pressed = false; });
+		element.addEventListener("mouseout", (e) => { this.pressed = false; });
 
 		document.body.appendChild(element); 
 

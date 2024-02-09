@@ -1,17 +1,5 @@
 
 
-function cloneElements(array)
-{
-    for (var i = 0; i < array.length; i++)
-    {
-        if (array[i] && array[i].clone)
-        {
-            array[i] = array[i].clone();
-        }
-    }
-    return array;
-}
-
 class Renderer
 {
     constructor(canvas)

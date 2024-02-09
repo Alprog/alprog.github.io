@@ -20,6 +20,7 @@ loadStyle("style.css")
 
 loadScript("framework/vector.js")
 loadScript("framework/matrix.js")
+loadScript("framework/matrix_object.js")
 loadScript("framework/math.js")
 loadScript("framework/canvas.js")
 loadScript("framework/camera.js")
@@ -32,6 +33,7 @@ loadScript("framework/line.js")
 loadScript("framework/ray.js")
 loadScript("framework/grid.js")
 loadScript("framework/mesh.js")
+loadScript("framework/utils.js")
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script')
