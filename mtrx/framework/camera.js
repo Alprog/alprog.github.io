@@ -63,6 +63,13 @@ class Camera
 		
     }
 
+    getViewDirection()
+    {
+        var direction = diff(this.lookAt, this.position);
+        direction.normalize();
+        return direction;
+    }
+
     getViewMatrix()
     {
         if (!this.viewMatrix)

@@ -23,7 +23,7 @@ class Canvas
 		this.scale = 1;
 		this.color = "black";
 		this.width = 1;
-		this.mouse = Vector.ZeroPoint();
+		this.mousePosition = Vector.ZeroPoint();
 	}
 
 	getAspect()
@@ -43,7 +43,7 @@ class Canvas
 
 	onMouseMove(event)
 	{
-		this.mouse = new Vector(event.offsetX, event.offsetY, 0, 1);  
+		this.mousePosition = new Vector(event.offsetX, event.offsetY, 0, 1);  
 	}
 
 	zoom(value)

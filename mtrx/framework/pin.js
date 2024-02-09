@@ -11,7 +11,7 @@ class Pin
 	render(renderer)
 	{
 		var point = new Vector(0, 0, 0, 1);
-		var delta = diff(point, renderer.canvas.mouse).get_length2D();
+		var delta = diff(point, renderer.canvas.mousePosition).get_length2D();
 		var hovered = delta <= pin_radius;
 
 		renderer.drawCircle(point, pin_radius, hovered ? "orange" : "black", pin_width)

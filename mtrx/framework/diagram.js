@@ -11,7 +11,7 @@ class Diagram
             this.canvas.getAspect()
         );
 
-        this.camera.setOrthoSize(400);
+        //this.camera.setOrthoSize(400);
 
         this.renderer = new Renderer(this.canvas);
         this.objects = [];
@@ -28,8 +28,26 @@ class Diagram
         });
     }
 
+    calcMouseRay()
+    {
+        var mousePosition = this.canvas.mousePosition;
+        var matrix = this.renderer.matrix_table.getMatrix(CANVAS_SPACE, WORLD_SPACE);
+        var product = mult(mousePosition, matrix);
+        if (product.w == 0)
+        {
+            var direction = product.get_normalized();
+            return new Ray(this.camera.position, direction);
+        }
+        else
+        {
+            var direction = this.camera.getViewDirection();
+            return new Ray(product, direction);
+        }
+    }
+
     update()
     {
+        this.mouseRay = this.calcMouseRay();
         if (this.onUpdated)
         {
             this.onUpdated();

@@ -120,7 +120,14 @@ class Vector
 	    result.scale(k);
 	    return result;
     }
-	
+
+	get_normalized()
+    {
+	    var result = this.clone();
+	    result.normalize();
+	    return result;
+    }
+
 	multiply(m)
 	{
 		var v = this.clone();
