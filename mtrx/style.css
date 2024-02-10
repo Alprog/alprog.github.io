@@ -1,14 +1,35 @@
 
-body 
+html, body
 {
+    height: 100%;
     background-color: #ddd;
     margin: 0;
     padding: 0; 
 }
 
-canvas 
+#main_panel
+{
+    display: flex; 
+    height: 100%;
+}
+
+#canvas_panel
+{
+    display:block;
+    flex:100%;
+}
+
+#side_panel
+{
+    background-color:#ccc;
+    width: 200px;
+}
+
+canvas
 { 
-    display:block; 
+    display: block;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     border: 0px; 

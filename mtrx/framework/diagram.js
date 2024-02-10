@@ -4,6 +4,7 @@ class Diagram
 	constructor()
 	{
         this.canvas = new Canvas(this);
+                
         this.camera = new Camera(
             new Vector(75, 75, -500),
             new Vector(75, 75, 75),
@@ -47,6 +48,11 @@ class Diagram
 
     update()
     {
+        if (this.canvas.refreshSize())
+        {
+            this.camera.setAspect(this.canvas.getAspect());
+            this.renderer.refreshPresentMatrix();
+        }
         this.mouseRay = this.calcMouseRay();
         if (this.onUpdated)
         {
@@ -82,5 +88,4 @@ class Diagram
     {
         return this.addObject(new Mesh());
     }
-
 }

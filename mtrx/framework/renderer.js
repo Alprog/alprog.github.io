@@ -10,11 +10,7 @@ class Renderer
         this.matrix_table.setModelMatrix(Matrix4x4.Identity());
         this.matrix_table.setViewMatrix(Matrix4x4.Identity());
         this.matrix_table.setProjectionMatrix(Matrix4x4.Identity());
-
-        this.matrix_table.setPresentMatrix(mult(
-			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
-			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
-		));
+        this.refreshPresentMatrix();
     }
 
     setModelMatrix(matrix)
@@ -26,6 +22,14 @@ class Renderer
     {
         this.matrix_table.setViewMatrix(camera.getViewMatrix());
         this.matrix_table.setProjectionMatrix(camera.getProjectionMatrix());
+    }
+
+    refreshPresentMatrix()
+    {
+        this.matrix_table.setPresentMatrix(mult(
+			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
+			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
+		));
     }
 
     makeCloud()

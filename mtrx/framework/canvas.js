@@ -6,19 +6,19 @@ class Canvas
 		this.diagram = diagram;
 
 		var element = document.createElement('canvas');
-		element.width = 800
-		element.height = 450
 
 		element.addEventListener("wheel", (e) => { this.onMouseWheel(e)});
 		element.addEventListener("mousemove", (e) => { this.onMouseMove(e)});
 		element.addEventListener("mousedown", (e) => { this.pressed = true; });
 		element.addEventListener("mouseup", (e) => { this.pressed = false; });
 		element.addEventListener("mouseout", (e) => { this.pressed = false; });
+		this.element = element;
 
-		document.body.appendChild(element); 
+		document.getElementById("canvas_panel").appendChild(element);
 
+		this.refreshSize();
+		
 
-		this.size = { x: element.width, y: element.height }
 		this.ctx = element.getContext("2d");
 		
 		this.worldToScreenMtrx = Matrix4x4.Identity();
@@ -27,6 +27,18 @@ class Canvas
 		this.color = "black";
 		this.width = 1;
 		this.mousePosition = Vector.ZeroPoint();
+	}
+
+	refreshSize()
+	{
+		this.size = { x: this.element.offsetWidth, y: this.element.offsetHeight }
+		if (this.element.width != this.size.x || this.element.height != this.size.y)
+		{
+			this.element.width = this.size.x;
+			this.element.height = this.size.y;
+			return true;
+		}
+		return false;
 	}
 
 	getAspect()
@@ -46,7 +58,7 @@ class Canvas
 
 	onMouseMove(event)
 	{
-		this.mousePosition = new Vector(event.offsetX, event.offsetY, 0, 1);  
+		this.mousePosition = new Vector(event.offsetX, event.offsetY, 0, 1);
 	}
 
 	zoom(value)
