@@ -6,7 +6,7 @@ class Diagram
         this.canvas = new Canvas(this);
                 
         this.camera = new Camera(
-            new Vector(75, 75, -500),
+            new Vector(75, 75, -300),
             new Vector(75, 75, 75),
             Math.PI / 4,
             this.canvas.getAspect()
