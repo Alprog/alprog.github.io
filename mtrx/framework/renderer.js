@@ -26,8 +26,9 @@ class Renderer
 
     refreshPresentMatrix()
     {
+        var mirrorY = mode.isLHS() ? -1 : +1;
         this.matrix_table.setPresentMatrix(mult(
-			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, -this.canvas.size.y / 2, 1, 1)),
+			Matrix4x4.Scaling(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2 * mirrorY, 1, 1)),
 			Matrix4x4.Translation(new Vector(this.canvas.size.x / 2, this.canvas.size.y / 2, 0, 1))
 		));
     }

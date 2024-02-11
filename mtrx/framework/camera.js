@@ -98,10 +98,11 @@ class Camera
             {
                 var scaleY = 1 / Math.tan(this.vFov / 2);
                 var scaleX = scaleY / this.aspect;
+                var k = mode.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(scaleX, 0, 0, 0),
                     new Vector(0, scaleY, 0, 0),
-                    new Vector(0, 0, 0, 1),
+                    new Vector(0, 0, 0, k),
                     new Vector(0, 0, 1, 0)
                 );
             }
@@ -110,6 +111,7 @@ class Camera
                 var height = this.orthoSize;
                 var width = height * this.aspect;
                 var depth = 1500;
+                var k = mode.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(2 / width, 0, 0, 0),
                     new Vector(0, 2 / height, 0, 0),

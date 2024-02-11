@@ -35,7 +35,7 @@ var ry = Matrix4x4.RotationY_LHS(0);
 var rz = Matrix4x4.RotationZ_LHS(Math.PI / 6);
 var t = Matrix4x4.Translation(new Vector(50, 70));
 var TRS = mult(s, rx, ry, rz, t);
-console.log(TRS)
+//console.log(TRS)
 //diagram.addObject(mesh);
 diagram.addObject(new MatrixObject(TRS));
 //mesh.transform.multiply( Matrix4x4.Translation(new Vector(75, 75, 75)) );

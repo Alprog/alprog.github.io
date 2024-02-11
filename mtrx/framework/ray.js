@@ -10,7 +10,7 @@ class Ray
     castToPlane(plane)
     {
         var d = -dot(this.direction, plane.normal);
-        if (d > 0)
+        if (d != 0)
         {
             var delta = diff(this.origin, plane.center);
             var distanceToPlane = dot(delta, plane.normal);

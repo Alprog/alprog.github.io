@@ -12,7 +12,7 @@ class Diagram
             this.canvas.getAspect()
         );
 
-        //this.camera.setOrthoSize(400);
+        //this.camera.setOrthoSize(250);
 
         this.renderer = new Renderer(this.canvas);
         this.objects = [];

@@ -16,7 +16,7 @@ function loadStyle(path)
 	document.head.appendChild(style); 
 }
 
-loadStyle("style.css")
+loadStyle("diagram_styles.css")
 
 loadScript("framework/vector.js")
 loadScript("framework/matrix.js")
@@ -34,9 +34,8 @@ loadScript("framework/ray.js")
 loadScript("framework/grid.js")
 loadScript("framework/mesh.js")
 loadScript("framework/utils.js")
+loadScript("framework/mode.js")
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script')
 loadScript(script)
-
-
