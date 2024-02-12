@@ -119,7 +119,7 @@ class Matrix4x4
 	
 	multiply(m)
 	{
-		this.right.multiply(m);
+    this.right.multiply(m);
 		this.up.multiply(m);
 		this.forward.multiply(m);
 		this.translation.multiply(m);

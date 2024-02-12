@@ -80,6 +80,7 @@ class Camera
             var forward = diff(this.lookAt, this.position);
             forward.normalize();
             var right = cross(Vector.Up(), forward);
+            right.normalize();
             var up = cross(forward, right);
             var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
             orientationMtrx.transpose();
@@ -101,7 +102,7 @@ class Camera
                 var k = mode.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(scaleX, 0, 0, 0),
-                    new Vector(0, scaleY, 0, 0),
+                    new Vector(0, k * scaleY, 0, 0),
                     new Vector(0, 0, 0, k),
                     new Vector(0, 0, 1, 0)
                 );

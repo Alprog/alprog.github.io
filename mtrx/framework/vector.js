@@ -103,10 +103,13 @@ class Vector
 
 	homo_normalize()
 	{
-		this.x /= this.w;
-		this.y /= this.w;
-		this.z /= this.w;
-		this.w /= this.w;
+		if (this.w != 0)
+		{
+			this.x /= this.w;
+			this.y /= this.w;
+			this.z /= this.w;
+			this.w /= this.w;	
+		}
 	}
 
     negate()
@@ -134,7 +137,7 @@ class Vector
 		this[0] = v.x * m.right[0] + v.y * m.up[0] + v.z * m.forward[0] + v.w * m.translation[0];
 		this[1] = v.x * m.right[1] + v.y * m.up[1] + v.z * m.forward[1] + v.w * m.translation[1];
 		this[2] = v.x * m.right[2] + v.y * m.up[2] + v.z * m.forward[2] + v.w * m.translation[2];
-		this[3] = v.x * m.right[3] + v.y * m.up[3] + v.z * m.forward[3] + v.w * m.translation[3];
+		this[3] = v.x * m.right[3] + v.y * m.up[3] + v.z * m.forward[3] + v.w * m.translation[3];		
 	}
 
 	equals(v)
