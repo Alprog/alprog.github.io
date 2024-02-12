@@ -6,6 +6,7 @@ diagram.addGrid();
 var pin = new Pin(new Vector(150, 0, 0, 1));
 
 var a = -Math.PI / 2;
+var b = 0;
 
 class Custom
 {
@@ -39,7 +40,8 @@ class Custom
         renderer.drawLine(new Vector(150,0,0,1), new Vector(150,0,150,1));
 
         a = a + 0.01;
-        var pos = new Vector(75, Math.cos(a)*375+75, Math.sin(a)*375+75);
+        b = b + 0.01;
+        var pos = new Vector(Math.cos(a)*375+75, 75 + Math.sin(b)*50, Math.sin(a)*375+75);
         diagram.camera.setPosition(pos)
     }
 }

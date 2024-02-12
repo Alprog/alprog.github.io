@@ -78,6 +78,10 @@ class Camera
             var offsetMtrx = Matrix4x4.Translation(offset);
     
             var forward = diff(this.lookAt, this.position);
+            if (mode.isRHS())
+            {
+                forward.negate();
+            }
             forward.normalize();
             var right = cross(Vector.Up(), forward);
             right.normalize();
@@ -102,7 +106,7 @@ class Camera
                 var k = mode.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(scaleX, 0, 0, 0),
-                    new Vector(0, k * scaleY, 0, 0),
+                    new Vector(0, scaleY, 0, 0),
                     new Vector(0, 0, 0, k),
                     new Vector(0, 0, 1, 0)
                 );
@@ -116,7 +120,7 @@ class Camera
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(2 / width, 0, 0, 0),
                     new Vector(0, 2 / height, 0, 0),
-                    new Vector(0, 0, 1 / depth, 0),
+                    new Vector(0, 0, -1 / depth, 0),
                     new Vector(0, 0, 0, 1)
                 );
             }
