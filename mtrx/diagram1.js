@@ -5,7 +5,7 @@ diagram.addGrid();
 
 var pin = new Pin(new Vector(150, 0, 0, 1));
 
-var a = -Math.PI / 2;
+var a = 0;
 var b = 0;
 
 class Custom
@@ -41,10 +41,21 @@ class Custom
 
         a = a + 0.01;
         b = b + 0.01;
-        var pos = new Vector(Math.cos(a)*375+75, 75 + Math.sin(b)*50, Math.sin(a)*375+75);
+
+        var center = new Vector(75, 75, 75);
+        var back = coordinateSystem.Backward.unit.get_scaled(375);
+
+        var pos = sum(center, back);
         diagram.camera.setPosition(pos)
     }
 }
 
 diagram.objects.push(new Custom());
 diagram.objects.push(pin);
+
+/*console.log(detectAxis('Forward'));
+console.log(detectAxis('Backward'));
+console.log(detectAxis('Left'));
+console.log(detectAxis('Right'));
+console.log(detectAxis('Up'));
+console.log(detectAxis('Down'));*/

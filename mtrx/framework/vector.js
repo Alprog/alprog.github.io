@@ -23,8 +23,12 @@ class Vector
 	static One = () => new Vector(1, 1, 1, 1)
 
 	static Right = () => new Vector(1, 0, 0, 0)
+	static Left = () => new Vector(-1, 0, 0, 0)
 	static Up = () => new Vector(0, 1, 0, 0)
+	static Down = () => new Vector(0, -1, 0, 0)
 	static Forward = () => new Vector(0, 0, 1, 0)
+	static Backward = () => new Vector(0, 0, -1, 0)
+
 	static RightPoint = () => new Vector(1, 0, 0, 1)
 	static UpPoint = () => new Vector(0, 1, 0, 1)
 	static ForwardPoint = () => new Vector(0, 0, 1, 1)

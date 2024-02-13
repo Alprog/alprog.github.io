@@ -78,15 +78,26 @@ class Camera
             var offsetMtrx = Matrix4x4.Translation(offset);
     
             var forward = diff(this.lookAt, this.position);
-            if (mode.isRHS())
-            {
-                forward.negate();
-            }
+            console.log(this.lookAt);
+            console.log(this.position);
+            console.log(forward);
             forward.normalize();
-            var right = cross(Vector.Up(), forward);
-            right.normalize();
-            var up = cross(forward, right);
-            var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
+
+            
+
+            var axisA = getBaseAxis(forward, 'Forward');
+            var axisB = getBaseAxis(Vector.Up(), 'Up');
+            var axisC = calc3rdAxis(axisA, axisB);
+            axisC.normalize();
+            axisB = calc3rdAxis(axisA, axisC);
+           
+            
+            var orientationMtrx = createBasis(axisA, axisB, axisC);
+            
+            //var right = cross(Vector.Up(), forward);
+            //right.normalize();
+            //var up = cross(forward, right);
+            //var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
             orientationMtrx.transpose();
         
             this.viewMatrix = mult(offsetMtrx, orientationMtrx);
@@ -103,7 +114,7 @@ class Camera
             {
                 var scaleY = 1 / Math.tan(this.vFov / 2);
                 var scaleX = scaleY / this.aspect;
-                var k = mode.isRHS() ? -1 : +1;
+                var k = coordinateSystem.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(scaleX, 0, 0, 0),
                     new Vector(0, scaleY, 0, 0),
@@ -116,7 +127,7 @@ class Camera
                 var height = this.orthoSize;
                 var width = height * this.aspect;
                 var depth = 1500;
-                var k = mode.isRHS() ? -1 : +1;
+                var k = coordinateSystem.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(2 / width, 0, 0, 0),
                     new Vector(0, 2 / height, 0, 0),
