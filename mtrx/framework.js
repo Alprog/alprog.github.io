@@ -35,7 +35,7 @@ loadScript("framework/grid.js")
 loadScript("framework/mesh.js")
 loadScript("framework/utils.js")
 loadScript("framework/mode.js")
-loadScript("framework/axes.js")
+loadScript("framework/coordinate_system.js")
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script')

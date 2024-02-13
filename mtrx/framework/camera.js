@@ -78,26 +78,24 @@ class Camera
             var offsetMtrx = Matrix4x4.Translation(offset);
     
             var forward = diff(this.lookAt, this.position);
-            console.log(this.lookAt);
-            console.log(this.position);
-            console.log(forward);
             forward.normalize();
 
-            
+            if (coordinateSystem.isRHS())
+            {
+                forward.negate();
+            }
 
-            var axisA = getBaseAxis(forward, 'Forward');
-            var axisB = getBaseAxis(Vector.Up(), 'Up');
-            var axisC = calc3rdAxis(axisA, axisB);
-            axisC.normalize();
-            axisB = calc3rdAxis(axisA, axisC);
-           
+            // var axisA = getBaseAxis(forward, 'Forward');
+            // var axisB = getBaseAxis(coordinateSystem.Up.direction, 'Up');
+            // var axisC = calc3rdAxis(axisA, axisB);
+            // axisC.normalize();
+            // axisB = calc3rdAxis(axisA, axisC);
+            // var orientationMtrx = createBasis(axisA, axisB, axisC);
             
-            var orientationMtrx = createBasis(axisA, axisB, axisC);
-            
-            //var right = cross(Vector.Up(), forward);
-            //right.normalize();
-            //var up = cross(forward, right);
-            //var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
+            var right = cross(coordinateSystem.Up.direction, forward);
+            right.normalize();
+            var up = cross(forward, right);
+            var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
             orientationMtrx.transpose();
         
             this.viewMatrix = mult(offsetMtrx, orientationMtrx);

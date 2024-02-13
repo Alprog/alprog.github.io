@@ -1,6 +1,9 @@
 
 const axisNames = "XYZ";
 
+const LHS = 0;
+const RHS = 1;
+
 class BaseDirection
 {
     constructor(name, axisIndex, axisSign)
@@ -17,12 +20,40 @@ class BaseDirection
     }
 }
 
+function detectHandness(axesCode)
+{
+    const leftOrder = "RUF";
+    const swaps = { L: "R", D: "U", B: "F" };
+
+    var leftHanded = true;
+    var newCode = "";
+    for (var i = 0; i < axesCode.length; i++)
+    {
+        var char = axesCode[i];
+        var swapChar = swaps[char];
+        newCode += swapChar ?? char;
+        if (swapChar)
+        {
+            leftHanded = !leftHanded;
+        }
+    }
+
+    if (!(leftOrder + leftOrder).includes(newCode))
+    {
+        leftHanded = !leftHanded;
+    }
+
+    return leftHanded ? LHS : RHS;
+}
+
 class CoordinateSystem
 {
     constructor()
     {
         const urlParams = new URLSearchParams(window.location.search);
-        const chars = urlParams.get('axes') ?? "RUF";
+        const axesCode = urlParams.get('axes') ?? "RUF";
+
+        this.handness = detectHandness(axesCode);
 
         var dirNames = {
             R: ["Right", "Left"],
@@ -35,7 +66,7 @@ class CoordinateSystem
 
         for (var axisIndex = 0; axisIndex < 3; axisIndex++)
         {
-            var names = dirNames[chars[axisIndex]];
+            var names = dirNames[axesCode[axisIndex]];
             var positive = new BaseDirection(names[0], axisIndex, +1);
             var negative = new BaseDirection(names[1], axisIndex, -1);
             positive.opposite = negative;
@@ -45,14 +76,10 @@ class CoordinateSystem
             this[axisNames[axisIndex]] = positive;
             this[axisIndex] = positive;
         }
-
-        console.log(this);
     }
 
-    isRHS()
-    {
-        return this.Forward.unit.z < 0;
-    }
+    isLHS() { return this.handness == LHS; }
+    isRHS() { return this.handness == RHS; }
 }
 
 coordinateSystem = new CoordinateSystem();

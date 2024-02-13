@@ -43,9 +43,10 @@ class Custom
         b = b + 0.01;
 
         var center = new Vector(75, 75, 75);
-        var back = coordinateSystem.Backward.unit.get_scaled(375);
+        var back = coordinateSystem.Backward.unit.get_scaled(375 * Math.cos(a));
+        var right = coordinateSystem.Right.unit.get_scaled(375 * Math.sin(a));
 
-        var pos = sum(center, back);
+        var pos = sum(center, back, right);
         diagram.camera.setPosition(pos)
     }
 }
