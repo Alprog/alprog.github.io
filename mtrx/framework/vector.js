@@ -22,17 +22,21 @@ class Vector
 	static Zero = () => new Vector(0, 0, 0, 0)
 	static One = () => new Vector(1, 1, 1, 1)
 
-	static Right = () => new Vector(1, 0, 0, 0)
-	static Left = () => new Vector(-1, 0, 0, 0)
-	static Up = () => new Vector(0, 1, 0, 0)
-	static Down = () => new Vector(0, -1, 0, 0)
-	static Forward = () => new Vector(0, 0, 1, 0)
-	static Backward = () => new Vector(0, 0, -1, 0)
+	static Right = () => coordinateSystem.Right.direction.clone();
+	static Left = () => coordinateSystem.Left.direction.clone();
+	static Up = () => coordinateSystem.Up.direction.clone();
+	static Down = () => coordinateSystem.Down.direction.clone();
+	static Forward = () => coordinateSystem.Forward.direction.clone();
+	static Backward = () => coordinateSystem.Backward.direction.clone();
 
-	static RightPoint = () => new Vector(1, 0, 0, 1)
-	static UpPoint = () => new Vector(0, 1, 0, 1)
-	static ForwardPoint = () => new Vector(0, 0, 1, 1)
-	static ZeroPoint = () => new Vector(0, 0, 0, 1)
+	static UnitX = () => new Vector(1, 0, 0, 1);
+	static UnitY = () => new Vector(0, 1, 0, 1);
+	static UnitZ = () => new Vector(0, 0, 1, 1);
+	static DirectionX = () => new Vector(1, 0, 0, 0);
+	static DirectionY = () => new Vector(0, 1, 0, 0);
+	static DirectionZ = () => new Vector(0, 0, 1, 0);
+
+	static ZeroPoint = () => new Vector(0, 0, 0, 1);
 
     get_length()
     {
@@ -81,28 +85,28 @@ class Vector
 
     sub(v)
     {
-		this.x -= v.x;
-		this.y -= v.y;
-		this.z -= v.z;
+		  this.x -= v.x;
+		  this.y -= v.y;
+		  this.z -= v.z;
     }
 	
     scale(k, scale_w)
     {
-	    this.x *= k;
-	    this.y *= k;
-	    this.z *= k;
-		if (scale_w)
-		{
-			this.w *= k;
-		}
+      this.x *= k;
+      this.y *= k;
+      this.z *= k;
+      if (scale_w)
+      {
+        this.w *= k;
+      }
     }
 		
 	normalize()
 	{
-		var length = this.get_length();
-		this.x /= length;
-	    this.y /= length;
-	    this.z /= length;
+    var length = this.get_length();
+    this.x /= length;
+    this.y /= length;
+    this.z /= length;
 	}
 
 	homo_normalize()
@@ -138,10 +142,10 @@ class Vector
 	multiply(m)
 	{
 		var v = this.clone();
-		this[0] = v.x * m.right[0] + v.y * m.up[0] + v.z * m.forward[0] + v.w * m.translation[0];
-		this[1] = v.x * m.right[1] + v.y * m.up[1] + v.z * m.forward[1] + v.w * m.translation[1];
-		this[2] = v.x * m.right[2] + v.y * m.up[2] + v.z * m.forward[2] + v.w * m.translation[2];
-		this[3] = v.x * m.right[3] + v.y * m.up[3] + v.z * m.forward[3] + v.w * m.translation[3];		
+    this[0] = v.x * m.axisX[0] + v.y * m.axisY[0] + v.z * m.axisZ[0] + v.w * m.translation[0];
+    this[1] = v.x * m.axisX[1] + v.y * m.axisY[1] + v.z * m.axisZ[1] + v.w * m.translation[1];
+    this[2] = v.x * m.axisX[2] + v.y * m.axisY[2] + v.z * m.axisZ[2] + v.w * m.translation[2];
+    this[3] = v.x * m.axisX[3] + v.y * m.axisY[3] + v.z * m.axisZ[3] + v.w * m.translation[3];		
 	}
 
 	equals(v)

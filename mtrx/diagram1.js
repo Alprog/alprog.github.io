@@ -53,10 +53,3 @@ class Custom
 
 diagram.objects.push(new Custom());
 diagram.objects.push(pin);
-
-/*console.log(detectAxis('Forward'));
-console.log(detectAxis('Backward'));
-console.log(detectAxis('Left'));
-console.log(detectAxis('Right'));
-console.log(detectAxis('Up'));
-console.log(detectAxis('Down'));*/

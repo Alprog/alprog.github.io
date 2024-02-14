@@ -58,13 +58,23 @@ class Renderer
         var ac = diff(c, a);
         var worldNormal = cross(ab, ac);
         worldNormal.normalize();
-        color = rgb(worldNormal.x, worldNormal.y, worldNormal.z)
+        worldNormal.w = 0;
+        color = rgb(worldNormal.x, worldNormal.y, worldNormal.z);
 
-        cloud.transformTo( CLIP_SPACE );
+        cloud.points = [
+            cloud.points[0],
+            cloud.points[1],
+            cloud.points[2],
+            worldNormal
+        ];
+
+        cloud.transformTo( CLIP_SPACE );     
         var ab = diff(b, a);
         var ac = diff(c, a);
         var normal = cross(ab, ac);
-        if (normal.z <= 0)
+
+        var isClockwise = normal.z < 0;
+        if (isClockwise == coordinateSystem.isLHS())
         {
             cloud.transformTo( CANVAS_SPACE );
             this.canvas.drawTriangle(a, b, c, color);

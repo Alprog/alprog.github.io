@@ -18,22 +18,22 @@ class Matrix3x3
 
 class Matrix4x4
 {
-	constructor(right, up, forward, translation)
+	constructor(axisX, axisY, axisZ, translation)
 	{
-		this[0] = right ?? Vector.Right();
-		this[1] = up ?? Vector.Up();
-		this[2] = forward ?? Vector.Forward();
+		this[0] = axisX ?? Vector.DirectionX();
+		this[1] = axisY ?? Vector.DirectionY();
+		this[2] = axisZ ?? Vector.DirectionZ();
 		this[3] = translation ?? Vector.ZeroPoint();
 	}
 	
-	get right() { return this[0] }
-	get up() { return this[1] }
-	get forward() { return this[2] }
+	get axisX() { return this[0] }
+	get axisY() { return this[1] }
+	get axisZ() { return this[2] }
 	get translation() { return this[3] }
 	
-	set right(value) { this[0] = value }
-	set up(value) { this[1] = value }
-	set forward(value) { this[2] = value }
+	set axisX(value) { this[0] = value }
+	set axisY(value) { this[1] = value }
+	set axisZ(value) { this[2] = value }
 	set translation(value) { this[3] = value }
 	
 	static Identity = () => new Matrix4x4(
@@ -119,9 +119,9 @@ class Matrix4x4
 	
 	multiply(m)
 	{
-    	this.right.multiply(m);
-		this.up.multiply(m);
-		this.forward.multiply(m);
+    	this.axisX.multiply(m);
+		this.axisY.multiply(m);
+		this.axisZ.multiply(m);
 		this.translation.multiply(m);
 	}
 
