@@ -37,9 +37,6 @@ loadScript("framework/utils.js");
 loadScript("framework/mode.js");
 loadScript("framework/coordinate_system.js");
 
-window.onload = () =>
-{
-	const urlParams = new URLSearchParams(window.location.search);
-	const script = urlParams.get('script');
-	loadScript(script);
-}
+const urlParams = new URLSearchParams(window.location.search);
+const script = urlParams.get('script');
+loadScript(script);
