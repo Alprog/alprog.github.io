@@ -16,27 +16,27 @@ function loadStyle(path)
 	document.head.appendChild(style); 
 }
 
-loadStyle("diagram_styles.css")
+loadStyle("diagram_styles.css");
 
-loadScript("framework/vector.js")
-loadScript("framework/matrix.js")
-loadScript("framework/matrix_object.js")
-loadScript("framework/math.js")
-loadScript("framework/canvas.js")
-loadScript("framework/camera.js")
-loadScript("framework/matrix_table.js")
-loadScript("framework/point_cloud.js")
-loadScript("framework/renderer.js")
-loadScript("framework/pin.js")
-loadScript("framework/diagram.js")
-loadScript("framework/line.js")
-loadScript("framework/ray.js")
-loadScript("framework/grid.js")
-loadScript("framework/mesh.js")
-loadScript("framework/utils.js")
-loadScript("framework/mode.js")
-loadScript("framework/coordinate_system.js")
+loadScript("framework/vector.js");
+loadScript("framework/matrix.js");
+loadScript("framework/matrix_object.js");
+loadScript("framework/math.js");
+loadScript("framework/canvas.js");
+loadScript("framework/camera.js");
+loadScript("framework/matrix_table.js");
+loadScript("framework/point_cloud.js");
+loadScript("framework/renderer.js");
+loadScript("framework/pin.js");
+loadScript("framework/diagram.js");
+loadScript("framework/line.js");
+loadScript("framework/ray.js");
+loadScript("framework/grid.js");
+loadScript("framework/mesh.js");
+loadScript("framework/utils.js");
+loadScript("framework/mode.js");
+loadScript("framework/coordinate_system.js");
 
 const urlParams = new URLSearchParams(window.location.search);
-const script = urlParams.get('script')
-loadScript(script)
+const script = urlParams.get('script');
+loadScript(script);
