@@ -4,6 +4,8 @@ class MatrixObject extends Matrix4x4
     constructor(matrix)
     {
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
+
+        
     }
 
     render(renderer)

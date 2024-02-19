@@ -12,12 +12,6 @@ class Custom
 {
 	render(renderer)
 	{
-        if (diagram.canvas.pressed)
-        {
-            var plane = {center: new Vector(20, 20, 0), normal: new Vector(0, 0, -1, 0)};
-            pin.position = diagram.mouseRay.castToPlane(plane);    
-        }
-
 		for (var i = 0; i <= 10; i++)
         {
             renderer.drawLine(new Vector(0,i*10,0,1), new Vector(100,i*10,0,1));

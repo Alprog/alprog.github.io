@@ -53,10 +53,53 @@ class Diagram
             this.camera.setAspect(this.canvas.getAspect());
             this.renderer.refreshPresentMatrix();
         }
-        this.mouseRay = this.calcMouseRay();
+
+        this.processInput();
+
         if (this.onUpdated)
         {
             this.onUpdated();
+        }
+    }
+
+    hover(object)
+    {
+        if (this.hovered_object != object)
+        {
+            if (this.hovered_object)
+            {
+                this.hovered_object.hovered = false;
+            }
+            this.hovered_object = object;
+            if (this.hovered_object)
+            {
+                this.hovered_object.hovered = true;
+            }
+        }
+    }
+
+    processInput()
+    {
+        var mouseRay = this.calcMouseRay();
+        if (this.canvas.pressed)
+        {
+            if (this.hovered_object)
+            {
+                this.hovered_object.drag(mouseRay);
+            }
+        }
+        else
+        {
+            for (var i = this.objects.length - 1; i >= 0; i--)
+            {
+                var object = this.objects[i];
+                if (object.check_hover && object.check_hover(this.renderer))
+                {
+                    this.hover(object);
+                    return;
+                }
+            }
+            this.hover(null);
         }
     }
 
