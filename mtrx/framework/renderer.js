@@ -39,6 +39,21 @@ class Renderer
 
     //----------------------------------------------------
 
+    renderObjects(objects)
+    {
+        for (const object of objects) 
+        {
+            this.setModelMatrix(object.transform);
+            object.render(this);
+            if (object.children)
+            {
+                this.renderObjects(object.children);
+            }
+        }
+    }
+
+    //----------------------------------------------------
+
     drawLine() { this.drawLineInternal(...cloneElements(arguments)); }
     drawTriangle() { this.drawTriangleInternal(...cloneElements(arguments)); }
     drawCircle() { this.drawCircleInternal(...cloneElements(arguments)); }

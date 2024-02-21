@@ -78,6 +78,24 @@ class Diagram
         }
     }
 
+    mouse_pick(objects)
+    {
+        for (var i = objects.length - 1; i >= 0; i--)
+        {
+            var object = objects[i];
+            var picked = object.children && this.mouse_pick(object.children);
+            if (picked)
+            {
+                return picked;
+            }           
+            if (object.hover && object.hover(this.renderer))
+            {
+                return object;
+            }
+        }
+        return null;
+    }
+
     processInput()
     {
         var mouseRay = this.calcMouseRay();
@@ -90,16 +108,8 @@ class Diagram
         }
         else
         {
-            for (var i = this.objects.length - 1; i >= 0; i--)
-            {
-                var object = this.objects[i];
-                if (object.check_hover && object.check_hover(this.renderer))
-                {
-                    this.hover(object);
-                    return;
-                }
-            }
-            this.hover(null);
+            var object = this.mouse_pick(this.objects);
+            this.hover(object);        
         }
     }
 
@@ -107,12 +117,7 @@ class Diagram
 	{
 		this.canvas.clear();
         this.renderer.setCamera(this.camera);
-		for (const object of this.objects) 
-        {
-            this.renderer.setModelMatrix(object.transform);
-            object.render(this.renderer);
-        }
-
+		this.renderer.renderObjects(this.objects);
         this.requestRender();
 	}
 

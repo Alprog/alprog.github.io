@@ -4,22 +4,24 @@ var pin_width = 3
 
 class Pin
 {
-	constructor(diagram, position)
+	constructor(getter, setter)
 	{
-		this.position = new Vector(0, 0, 0, 1);
+		this.get_position = getter;
+		this.set_position = setter;
 	}
 
 	drag(mouseRay)
 	{
         var plane = {center: new Vector(20, 20, 0), normal: new Vector(0, 0, -1, 0)};
-        this.position = mouseRay.castToPlane(plane);   
+        this.set_position(mouseRay.castToPlane(plane));   
 		this.dragging = true; 
 	}
 
-	check_hover(renderer)
+	hover(renderer)
 	{
+		var position = this.get_position();
 		var matrix = renderer.matrix_table.getMatrix(WORLD_SPACE, CANVAS_SPACE);
-		var screenPoint = mult(this.position, matrix);
+		var screenPoint = mult(position, matrix);
 		screenPoint.homo_normalize();
 
 		var delta = diff(screenPoint, renderer.canvas.mousePosition).get_length2D();
@@ -33,8 +35,8 @@ class Pin
 
 	render(renderer)
 	{
-		renderer.drawLine(Vector.ZeroPoint(), this.position);
-		renderer.drawCircle(this.position, pin_radius, this.get_color(), pin_width)
+		var position = this.get_position();
+		renderer.drawCircle(position, pin_radius, this.get_color(), pin_width)
 		this.dragging = false;
 	}
 }

@@ -13,6 +13,3 @@ var t = Matrix4x4.Translation(new Vector(50, 70));
 var TRS = mult(s, rx, ry, rz, t);
 
 diagram.addObject(new MatrixObject(TRS));
-
-diagram.addObject(new Pin(diagram));
-diagram.addObject(new Pin(diagram));

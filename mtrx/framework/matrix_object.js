@@ -4,8 +4,35 @@ class MatrixObject extends Matrix4x4
     constructor(matrix)
     {
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
+        this.children = [];
+        this.addPins();
+    }
 
-        
+    addPins()
+    {
+        // translation
+        this.children.push(new Pin(
+            () => this.translation,
+            (v) => this.translation.set(v)
+        ));
+
+        // axis x
+        this.children.push(new Pin(
+            () => sum(this.translation, this.axisX),
+            (v) => this.axisX.set(diff(v, this.translation))
+        ));
+
+        // axis y
+        this.children.push(new Pin(
+            () => sum(this.translation, this.axisY),
+            (v) => this.axisY.set(diff(v, this.translation))
+        ));
+
+        // axis z
+        // this.children.push(new Pin(
+        //     () => sum(this.translation, this.axisZ),
+        //     (v) => this.axisZ.set(diff(v, this.translation))
+        // ));
     }
 
     render(renderer)
