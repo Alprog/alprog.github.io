@@ -9,9 +9,9 @@ class Canvas
 
 		element.addEventListener("wheel", (e) => { this.onMouseWheel(e)});
 		element.addEventListener("mousemove", (e) => { this.onMouseMove(e)});
-		element.addEventListener("mousedown", (e) => { this.pressed = true; });
-		element.addEventListener("mouseup", (e) => { this.pressed = false; });
-		element.addEventListener("mouseout", (e) => { this.pressed = false; });
+		element.addEventListener("mousedown", (e) => { this.setPressed(true); });
+		element.addEventListener("mouseup", (e) => { this.setPressed(false); });
+		element.addEventListener("mouseout", (e) => { this.setPressed(false); });
 		this.element = element;
 
 		document.getElementById("canvas_panel").appendChild(element);
@@ -27,6 +27,12 @@ class Canvas
 		this.color = "black";
 		this.width = 1;
 		this.mousePosition = Vector.ZeroPoint();
+	}
+
+	setPressed(pressed)
+	{
+		this.pressed = pressed;
+		this.element.style = pressed ? "cursor:grab" : "";
 	}
 
 	refreshSize()

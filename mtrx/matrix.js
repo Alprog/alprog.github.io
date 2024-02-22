@@ -1,6 +1,8 @@
 
 var diagram = new Diagram();
 
+diagram.addObject(new Rotator(diagram.camera, new Vector(75, 75, 75, 1)));
+
 diagram.addGrid();
 
 var matrix = new Matrix4x4();

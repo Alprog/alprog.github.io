@@ -43,6 +43,11 @@ class Vector
 		return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
     }
 
+	get_length_squared()
+    {
+		return this.x * this.x + this.y * this.y + this.z * this.z;
+    }
+
     get_length2D()
     {
         return Math.sqrt(this.x * this.x + this.y * this.y);

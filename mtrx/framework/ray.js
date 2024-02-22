@@ -19,6 +19,22 @@ class Ray
         }
     }
 
+    castToSphere(sphere)
+    {
+        var toCenter = diff(sphere.center, this.origin);       
+        var wayToNormal = dot(toCenter, this.direction);
+        var normalPoint = sum(this.origin, this.direction.get_scaled(wayToNormal));
+        var distance = diff(sphere.center, normalPoint).get_length();
+        if (distance <= sphere.radius)
+        {
+            var sin = distance / sphere.radius;
+            var cos = Math.sqrt(1 - sin * sin);
+            var depth = Math.abs(cos * sphere.radius);
+            var wayToIntersect = wayToNormal - depth;
+            return sum(this.origin, this.direction.get_scaled(wayToIntersect));
+        }
+    }
+
     toString()
     {
         return "pos: " + this.origin.toString() + "\ndir: " + this.direction.toString();
