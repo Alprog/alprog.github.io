@@ -29,6 +29,13 @@ class Diagram
         });
     }
 
+    calcMouseClipPos()
+    {
+        var mousePosition = this.canvas.mousePosition;
+        var matrix = this.renderer.matrix_table.getMatrix(CANVAS_SPACE, CLIP_SPACE);
+        return mult(mousePosition, matrix);
+    }
+
     calcMouseRay()
     {
         var mousePosition = this.canvas.mousePosition;
@@ -98,12 +105,19 @@ class Diagram
 
     processInput()
     {
-        var mouseRay = this.calcMouseRay();
+        var prevClipPos = this.mouseClipPos ?? Vector.Zero();
+        this.mouseClipPos = this.calcMouseClipPos();
+
+        var mouse_args = {
+            ray: this.calcMouseRay(),
+            delta: diff(this.mouseClipPos, prevClipPos)
+        };
+
         if (this.canvas.pressed)
         {
             if (this.hovered_object)
             {
-                this.hovered_object.drag(mouseRay);
+                this.hovered_object.drag(mouse_args);
             }
         }
         else

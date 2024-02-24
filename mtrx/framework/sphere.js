@@ -5,5 +5,5 @@ class Sphere
     {
         this.center = center;
         this.radius = radius;
-    }    
+    }
 }

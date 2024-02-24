@@ -10,10 +10,10 @@ class Pin
 		this.set_position = setter;
 	}
 
-	drag(mouseRay)
+	drag(mouse_args)
 	{
         var plane = {center: new Vector(20, 20, 0), normal: new Vector(0, 0, -1, 0)};
-        this.set_position(mouseRay.castToPlane(plane));   
+        this.set_position(mouse_args.ray.castToPlane(plane));   
 		this.dragging = true; 
 	}
 
