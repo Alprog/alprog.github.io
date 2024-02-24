@@ -10,9 +10,16 @@ class Pin
 		this.set_position = setter;
 	}
 
+	get_drag_plane(direction)
+	{
+		var axes = [Vector.UnitX(), Vector.UnitY(), Vector.UnitZ()];
+		var axis = getBestElement(axes, (axis) => Math.abs(dot(axis, direction)));
+		return {center: this.get_position(), normal: axis};
+	}
+
 	drag(mouse_args)
 	{
-        var plane = {center: new Vector(20, 20, 0), normal: new Vector(0, 0, -1, 0)};
+        var plane = this.get_drag_plane(mouse_args.ray.direction);
         this.set_position(mouse_args.ray.castToPlane(plane));   
 		this.dragging = true; 
 	}

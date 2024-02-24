@@ -38,6 +38,7 @@ loadScript("framework/mode.js");
 loadScript("framework/coordinate_system.js");
 loadScript("framework/rotator.js");
 loadScript("framework/sphere.js");
+loadScript("framework/axis_pin.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');

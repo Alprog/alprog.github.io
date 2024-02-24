@@ -16,23 +16,9 @@ class MatrixObject extends Matrix4x4
             (v) => this.translation.set(v)
         ));
 
-        // axis x
-        this.children.push(new Pin(
-            () => sum(this.translation, this.axisX),
-            (v) => this.axisX.set(diff(v, this.translation))
-        ));
-
-        // axis y
-        this.children.push(new Pin(
-            () => sum(this.translation, this.axisY),
-            (v) => this.axisY.set(diff(v, this.translation))
-        ));
-
-        // axis z
-        // this.children.push(new Pin(
-        //     () => sum(this.translation, this.axisZ),
-        //     (v) => this.axisZ.set(diff(v, this.translation))
-        // ));
+        this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation));
+        this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation));
+        this.children.push(new AxisPin(this.axisZ, this.axisX, this.axisY, this.translation));
     }
 
     render(renderer)

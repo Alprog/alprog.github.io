@@ -27,3 +27,19 @@ function cloneElements(array)
     }
     return array;
 }
+
+function getBestElement(array, functor)
+{
+    var best_element = null;
+    var best_value = 0;
+    for (var element of array)
+    {
+        var value = functor(element);
+        if (value > best_value)
+        {
+            best_value = value;
+            best_element = element;
+        }
+    }
+    return best_element;
+}
