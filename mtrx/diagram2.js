@@ -1,6 +1,7 @@
 
 var diagram = new Diagram();
 
+diagram.addObject(new Rotator(diagram.camera, Vector.One().get_scaled(75)));
 diagram.addGrid();
 
 var mesh = new Mesh();
@@ -45,12 +46,4 @@ var a = 0;
 diagram.onUpdated = () => 
 {
     mesh.transform.premultiply( Matrix4x4.RotationX_LHS(0.010) );
-    //mesh.transform.premultiply( Matrix4x4.RotationY_LHS(0.005) );
-    //mesh.transform.premultiply( Matrix4x4.RotationZ_LHS(0.003) );
-
-    var center = new Vector(75, 75, 75);
-    var back = coordinateSystem.Backward.unit.get_scaled(375 * Math.cos(a));
-    var right = coordinateSystem.Right.unit.get_scaled(375 * Math.sin(a));
-    var pos = sum(center, back, right);
-    diagram.camera.setPosition(pos)
 };
