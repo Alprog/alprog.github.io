@@ -4,10 +4,11 @@ var pin_width = 3
 
 class Pin
 {
-	constructor(getter, setter)
+	constructor(getter, setter, on_changed)
 	{
 		this.get_position = getter;
 		this.set_position = setter;
+		this.on_changed = on_changed;
 	}
 
 	get_drag_plane(direction)
@@ -20,7 +21,8 @@ class Pin
 	drag(mouse_args)
 	{
         var plane = this.get_drag_plane(mouse_args.ray.direction);
-        this.set_position(mouse_args.ray.castToPlane(plane));   
+        this.set_position(mouse_args.ray.castToPlane(plane));
+		this.on_changed();
 		this.dragging = true; 
 	}
 
