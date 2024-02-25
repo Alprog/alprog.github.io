@@ -6,19 +6,22 @@ class MatrixObject extends Matrix4x4
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
         this.children = [];
         this.addPins();
+        this.editor = new Editor(this);
     }
 
     addPins()
     {
+        var on_changed = () => this.editor.refresh();
+
         // translation
         this.children.push(new Pin(
             () => this.translation,
             (v) => this.translation.set(v)
         ));
 
-        this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation));
-        this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation));
-        this.children.push(new AxisPin(this.axisZ, this.axisX, this.axisY, this.translation));
+        this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation, on_changed));
+        this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation, on_changed));
+        this.children.push(new AxisPin(this.axisZ, this.axisX, this.axisY, this.translation, on_changed));
     }
 
     render(renderer)

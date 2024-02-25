@@ -4,17 +4,18 @@ var pin_width = 3
 
 class AxisPin
 {
-	constructor(axisA, axisB, axisC, translation)
+	constructor(axisA, axisB, axisC, translation, on_changed)
 	{
 		this.axisA = axisA; // editable
 		this.axisB = axisB;
 		this.axisC = axisC;
 		this.translation = translation;
+		this.on_changed = on_changed;
 	}
 
 	get_drag_plane(direction)
 	{
-		var axes = [this.axisA, this.axisB, this.axisC];
+		var axes = [this.axisB, this.axisC];
 		var axis = getBestElement(axes, (axis) => Math.abs(dot(axis.get_normalized(), direction)));
 		this.normal_axis = axis;
 		return {center: this.get_position(), normal: axis.get_normalized()};
@@ -38,13 +39,19 @@ class AxisPin
 
 	drag(mouse_args)
 	{
-        var plane = this.get_drag_plane(mouse_args.ray.direction);
+		if (!this.prev_dragging)
+		{
+			this.dragging_plane = this.get_drag_plane(mouse_args.ray.direction);
+		}
+		
 		if (this.normal_axis == this.axisA)
 			return;
 
-		var point = mouse_args.ray.castToPlane(plane);
+		var point = mouse_args.ray.castToPlane(this.dragging_plane);
+		point.w = 0;
         this.axisA.set(diff(point, this.translation));
 		this.normalize();
+		this.on_changed();
 		this.dragging = true; 
 	}
 
@@ -89,6 +96,7 @@ class AxisPin
 				renderer.drawLine(p1, p2, "black", 1);*/
 			}
 		}
+		this.prev_dragging = this.dragging;
 		this.dragging = false;
 	}
 }

@@ -25,6 +25,38 @@ html, body
     width: 200px;
 }
 
+.matrix_editor
+{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    height: 100px;
+}
+
+.field_editor_x
+{
+    color: red;
+    width: 30px;
+}
+
+.field_editor_y
+{
+    color: green;
+    width: 30px;
+}
+
+.field_editor_z
+{
+    color: blue;
+    width: 30px;
+}
+
+.field_editor_w
+{
+    color: purple;
+    width: 30px;
+}
+
 canvas
 { 
     display: block;

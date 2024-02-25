@@ -9,6 +9,11 @@ class Camera
         this.setAspect(aspect ?? 1);
     }
 
+    getViewDirection()
+    {
+        return diff(this.lookAt, this.position).get_normalized();
+    }
+
     setPosition(position)
     {
         if (!this.position || !this.position.equals(position))
