@@ -5,10 +5,19 @@
 		<meta charset="UTF-8" />
 		<title>Matrices: how they work?</title>
 		<link rel="stylesheet" href="styles.css">
-		
 	</head>
 	<body>
 		<div id="page">
+
+<div class="sticky_header" id="language_header">
+	<div class="ontop">
+		<select id="language_selector">
+			<option value="EN">English</option>
+			<option value="RU">Русский</option>
+		</select>
+	</div>
+</div>
+<div class="sticky_header"></div>
 
 <h1>Matrices: how they work?</h1>
 
@@ -24,8 +33,44 @@ In this article I want to introduce an easy way to think about matrices that rev
 Reader should be familiar with <a href="https://en.wikipedia.org/wiki/Vector_(mathematics_and_physics)">Vector Arithmetic</a>.
 It would also be good to have  a basic understanding of a matrices as a black box objects that store somehow <a href="https://en.wikipedia.org/wiki/Linear_map">linear transformations</a> and can combine them by matrix multiplication operation.
 
+<h3>Conventions</h3>
+
+<div class="sticky_header">
+	<div id="convention_panel">
+		<select id="axes_selector">
+			<option value="RUF">RUF (Unity)</option>
+			<option value="FRU">FRU (Unreal)</option>
+			<option value="RUB">RUB (Godot, XNA)</option>				
+			<option value="RFU">RFU (O3DE, Blender)</option>			
+		</select>
+	
+		<select id="mult_selector">
+			<option value="pre">Pre-multiplication</option>
+			<option value="post">Post-multiplication</option>
+		</select>
+	</div>
+</div>
+
 <h3>Anatomy of Matrix</h3>
 
+<div>
+	<iframe class="diagram" title="D1" src="diagram.html?script=diagram1.js&axes=RUF" width="500" height="300" scrolling=no></iframe>
+</div>
+
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>some text<br>
+
+<br>
+
 		</div>
-	</body>	
+		<script src="article.js"></script>
+	</body>
 </html>

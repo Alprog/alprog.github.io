@@ -14,3 +14,16 @@ html, body
     margin: auto;
     width: 800px;
 }
+
+.sticky_header {
+    background-color: #ddd;
+    position: sticky;
+    top: 0px;
+    padding: 5px;
+}
+
+#language_header {
+    float: right;
+    text-align: right;
+    z-index: 70;
+}
