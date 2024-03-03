@@ -19,12 +19,15 @@ class Binding
     }
 }
 
+const is_post_multiplication = urlParams.get('mult') == 'post';
+
 class Editor
 {
     constructor(matrix_object)
     {
         var editor = document.createElement('div');
-        editor.setAttribute("class", "matrix_editor");
+        var classes = "matrix_editor " + (is_post_multiplication ? "column_major" : "row_major");
+        editor.setAttribute("class", classes);
 
         this.fields = [];
         var components = "xyzw";

@@ -22,15 +22,29 @@ html, body
 #side_panel
 {
     background-color:#ccc;
-    width: 200px;
+}
+
+#side_panel_content
+{
+    width: 300px;
 }
 
 .matrix_editor
 {
     display: flex;
-    flex-flow: row wrap;
     justify-content: space-between;
+    width: 160px;
     height: 100px;
+}
+
+.row_major
+{
+    flex-flow: row wrap;
+}
+
+.column_major
+{
+    flex-flow: column wrap;
 }
 
 .field_editor_x
