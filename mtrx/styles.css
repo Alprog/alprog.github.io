@@ -30,3 +30,9 @@ h1, h2, h3 {
     text-align: right;
     z-index: 70;
 }
+
+.mini_diagram
+{
+    width: 100px;
+    height: 100px;
+}

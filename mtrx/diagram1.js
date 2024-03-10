@@ -35,3 +35,5 @@ class Custom
 }
 
 diagram.objects.push(new Custom());
+
+dom_flush();

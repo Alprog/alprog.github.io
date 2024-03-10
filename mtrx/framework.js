@@ -41,6 +41,8 @@ loadScript("framework/sphere.js");
 loadScript("framework/axis_pin.js");
 loadScript("framework/editor.js");
 loadScript("framework/dom_utils.js");
+loadScript("framework/humanoid.js");
+loadScript("framework/color.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');

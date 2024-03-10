@@ -6,11 +6,14 @@ class Renderer
     {
         this.canvas = canvas;
         this.matrix_table = new MatrixTable();
+        this.light_direction = new Vector(1,-3,2).get_normalized();
 
         this.matrix_table.setModelMatrix(Matrix4x4.Identity());
         this.matrix_table.setViewMatrix(Matrix4x4.Identity());
         this.matrix_table.setProjectionMatrix(Matrix4x4.Identity());
         this.refreshPresentMatrix();
+
+        this.commands = [];
     }
 
     setModelMatrix(matrix)
@@ -38,7 +41,7 @@ class Renderer
     }
 
     //----------------------------------------------------
-
+   
     renderObjects(objects)
     {
         for (const object of objects) 
@@ -50,6 +53,22 @@ class Renderer
                 this.renderObjects(object.children);
             }
         }
+        this.flushCommands();
+    }
+
+    schedule(order, command)
+    {
+        this.commands.push( { order: order, execute: command } );
+    }
+
+    flushCommands()
+    {
+        this.commands.sort( (a, b) => { return a.order - b.order; } );
+        for (const command of this.commands)
+        {
+            command.execute();
+        }
+        this.commands = [];
     }
 
     //----------------------------------------------------
@@ -74,7 +93,9 @@ class Renderer
         var worldNormal = cross(ab, ac);
         worldNormal.normalize();
         worldNormal.w = 0;
-        color = rgb(worldNormal.x, worldNormal.y, worldNormal.z);
+
+        var k = -dot(worldNormal, this.light_direction);
+        color.scale(k);
 
         cloud.points = [
             cloud.points[0],
@@ -92,7 +113,10 @@ class Renderer
         if (isClockwise == coordinateSystem.isLHS())
         {
             cloud.transformTo( CANVAS_SPACE );
-            this.canvas.drawTriangle(a, b, c, color);
+            var order = (a.z + b.z + c.z) / 3;
+            this.schedule(order, () => {
+                this.canvas.drawTriangle(a, b, c, color.toHexString()); 
+            });
         }
     }
 

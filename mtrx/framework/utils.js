@@ -11,11 +11,6 @@ function toHex(value)
     return text;
 }
 
-function rgb(r, g, b)
-{
-    return "#" + toHex(r) + toHex(g) + toHex(b);
-}
-
 function cloneElements(array)
 {
     for (var i = 0; i < array.length; i++)

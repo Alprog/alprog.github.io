@@ -47,3 +47,5 @@ diagram.onUpdated = () =>
 {
     mesh.transform.premultiply( Matrix4x4.RotationX_LHS(0.010) );
 };
+
+dom_flush();

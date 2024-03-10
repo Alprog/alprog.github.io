@@ -6,26 +6,44 @@ class Mesh
         this.triangles = [];
     }
 
-    addTriangle(p0, p1, p2)
+    addTriangle(a, b, c)
     {
-        this.triangles.push({p0: p0, p1: p1, p2: p2});
+        this.triangles.push({a: a, b: b, c: c});
+    }
+
+    addTriangles(a, b, c, d)
+    {
+        this.addTriangle(a, b, c);
+        this.addTriangle(a, c, d);    
+    }
+
+    addQuad(matrix)
+    {
+        matrix = matrix ?? Matrix4x4.Identity();
+        this.addTriangles(
+            mult(new Vector(-1, -1, -1, 1), matrix),
+            mult(new Vector(-1, 1, -1, 1), matrix),
+            mult(new Vector(1, 1, -1, 1), matrix),
+            mult(new Vector(1, -1, -1, 1), matrix)            
+        );
+    }
+
+    addCube(matrix)
+    {
+        matrix = matrix ?? Matrix4x4.Identity();
+        this.addQuad(matrix);
+        this.addQuad(mult(Matrix4x4.RotationX_LHS(Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationX_LHS(Math.PI), matrix));
+        this.addQuad(mult(Matrix4x4.RotationX_LHS(-Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationY_LHS(Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationY_LHS(-Math.PI / 2), matrix));
     }
 
     render(renderer)
     {
-        var index = 0;
         for (const t of this.triangles)
         {
-            var center = sum(t.p0, t.p1, t.p2).get_scaled(1/3);
-            var ab = diff(t.p1, t.p0);
-            var ac = diff(t.p2, t.p0);
-            var normal = cross(ab, ac).get_normalized();
-            var end = sum(center, normal.get_scaled(30));
-
-            renderer.drawTriangle(t.p0, t.p1, t.p2, t.color);
-            //renderer.drawLine(center, end);    
-
-            index++;
+            renderer.drawTriangle(t.a, t.b, t.c, t.color ?? new Color(1, 0, 0));
         }
     }
 }
