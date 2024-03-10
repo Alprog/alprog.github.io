@@ -1,5 +1,4 @@
 
-
 html, body
 {
     margin: 0;
@@ -8,6 +7,10 @@ html, body
     text-align: justify;
     background-color: #f6f4f0;
     font-size: 17px;
+}
+
+h1, h2, h3 {
+    color: brown;
 }
 
 #page {

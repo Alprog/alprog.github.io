@@ -25,9 +25,9 @@ class Editor
 {
     constructor(matrix_object)
     {
-        var editor = document.createElement('div');
         var classes = "matrix_editor " + (is_post_multiplication ? "column_major" : "row_major");
-        editor.setAttribute("class", classes);
+        
+        var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
 
         this.fields = [];
         var components = "xyzw";
@@ -37,17 +37,13 @@ class Editor
             var vector = matrix_object[row];
             for (var col = 0; col < 4; col++)
             {
-                var field = document.createElement('input');
-                field.setAttribute("class", field_class);
+                var field = editor.createChildInput(null, field_class);
                 field.binding = new Binding(field, vector, col);
                 field.binding.load();
                 field.onchange = (e) => e.target.binding.save();
-                editor.appendChild(field);
                 this.fields.push(field);
             }
         }
-
-		document.getElementById("side_panel").appendChild(editor);
     }
 
     refresh()

@@ -1,8 +1,17 @@
 
 class Diagram
 {	
-	constructor()
+	constructor(has_side_panel)
 	{
+        var main_panel = document.body.createChildDiv("main_panel");
+        var canvas_panel = main_panel.createChildDiv("canvas_panel");
+
+        if (has_side_panel)
+        {
+            var side_panel = main_panel.createChildDiv("side_panel");
+            side_panel.createChildDiv("side_panel_content");    
+        }
+
         this.canvas = new Canvas(this);
                 
         this.camera = new Camera(

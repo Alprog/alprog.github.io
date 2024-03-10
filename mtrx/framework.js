@@ -40,6 +40,7 @@ loadScript("framework/rotator.js");
 loadScript("framework/sphere.js");
 loadScript("framework/axis_pin.js");
 loadScript("framework/editor.js");
+loadScript("framework/dom_utils.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');

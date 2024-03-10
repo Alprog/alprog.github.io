@@ -5,7 +5,7 @@ class Canvas
 	{
 		this.diagram = diagram;
 
-		var element = document.createElement('canvas');
+		var element = get_by_id("canvas_panel").createChild('canvas');
 
 		element.addEventListener("wheel", (e) => { this.onMouseWheel(e)});
 		element.addEventListener("mousemove", (e) => { this.onMouseMove(e)});
@@ -14,8 +14,7 @@ class Canvas
 		element.addEventListener("mouseout", (e) => { this.setPressed(false); });
 		this.element = element;
 
-		document.getElementById("canvas_panel").appendChild(element);
-
+		
 		this.refreshSize();
 		
 

@@ -1,5 +1,5 @@
 
-var diagram = new Diagram();
+var diagram = new Diagram(true);
 
 diagram.addObject(new Rotator(diagram.camera, new Vector(75, 75, 75, 1)));
 
@@ -15,3 +15,5 @@ var TRS = mult(s, rx, ry, rz, t);
 
 var matrix_object = new MatrixObject(TRS);
 diagram.addObject(matrix_object);
+
+dom_flush();
