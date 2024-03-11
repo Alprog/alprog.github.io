@@ -3,24 +3,34 @@ class Mesh
 {
     constructor()
     {
-        this.triangles = [];
+        this.vertices = [];
+        this.faces = [];
     }
 
     addTriangle(a, b, c)
     {
-        this.triangles.push({a: a, b: b, c: c});
+        this.addFace(a, b, c);
     }
 
-    addTriangles(a, b, c, d)
+    addFace(a, b, c, d)
     {
-        this.addTriangle(a, b, c);
-        this.addTriangle(a, c, d);    
+        var i = this.vertices.length;
+        if (d)
+        {
+            this.vertices.push(a, b, c, d);
+            this.faces.push([i, i + 1, i + 2, i + 3]);    
+        }
+        else
+        {
+            this.vertices.push(a, b, c);
+            this.faces.push([i, i + 1, i + 2]);   
+        }
     }
 
     addQuad(matrix)
     {
         matrix = matrix ?? Matrix4x4.Identity();
-        this.addTriangles(
+        this.addFace(
             mult(new Vector(-1, -1, -1, 1), matrix),
             mult(new Vector(-1, 1, -1, 1), matrix),
             mult(new Vector(1, 1, -1, 1), matrix),
@@ -41,9 +51,17 @@ class Mesh
 
     render(renderer)
     {
-        for (const t of this.triangles)
+        for (const f of this.faces)
         {
-            renderer.drawTriangle(t.a, t.b, t.c, t.color ?? new Color(1, 0, 0));
+            var a = this.vertices[f[0]];
+            var b = this.vertices[f[1]];
+            var c = this.vertices[f[2]];
+            var d = this.vertices[f[3]];
+            renderer.drawTriangle(a, b, c, new Color(1, 0, 0));
+            if (d)
+            {
+                renderer.drawTriangle(a, c, d, new Color(1, 0, 0));
+            }
         }
     }
 }

@@ -43,6 +43,7 @@ loadScript("framework/editor.js");
 loadScript("framework/dom_utils.js");
 loadScript("framework/humanoid.js");
 loadScript("framework/color.js");
+loadScript("framework/object_rotator.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');

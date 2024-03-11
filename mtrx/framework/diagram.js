@@ -13,10 +13,10 @@ class Diagram
         }
 
         this.canvas = new Canvas(this);
-                
+
         this.camera = new Camera(
-            new Vector(75, 75, -300),
-            new Vector(75, 75, 75),
+            new Vector(0, 0, -350),
+            Vector.ZeroPoint(),
             Math.PI / 4,
             this.canvas.getAspect()
         );

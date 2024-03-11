@@ -136,7 +136,7 @@ class Matrix4x4
 		
 	toString()
 	{
-		return this.right + "<br>" + this.up + "<br>" + this.forward + "<br>" + this.translation;
+		return this.axisX + "<br>" + this.axisY + "<br>" + this.axisZ + "<br>" + this.translation;
 	}
 
 	scale(k)
