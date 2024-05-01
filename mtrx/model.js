@@ -1,13 +1,13 @@
 
 var diagram = new Diagram();
 
-var humanoid = new Humanoid();
+var model = new Airplane();
 
-humanoid.transform = Matrix4x4.Scaling(Vector.One().get_scaled(20));
+model.transform = Matrix4x4.Scaling(Vector.One().get_scaled(20));
 
-diagram.addObject(humanoid);
+diagram.addObject(model);
 
-diagram.addObject(new ObjectRotator(humanoid));
+diagram.addObject(new ObjectRotator(model));
 
 
 dom_flush();

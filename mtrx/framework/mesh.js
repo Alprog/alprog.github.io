@@ -4,7 +4,13 @@ class Mesh
     constructor()
     {
         this.vertices = [];
+        this.materials = [];
         this.faces = [];
+    }
+
+    setMaterial(material)
+    {
+        this.colors.push(material);
     }
 
     addTriangle(a, b, c)
@@ -15,15 +21,16 @@ class Mesh
     addFace(a, b, c, d)
     {
         var i = this.vertices.length;
+        var material_index = this.materials.length - 1;
         if (d)
         {
             this.vertices.push(a, b, c, d);
-            this.faces.push([i, i + 1, i + 2, i + 3]);    
+            this.faces.push([material_index, i, i + 1, i + 2, i + 3]);    
         }
         else
         {
             this.vertices.push(a, b, c);
-            this.faces.push([i, i + 1, i + 2]);   
+            this.faces.push([material_index, i, i + 1, i + 2]);   
         }
     }
 
@@ -51,16 +58,15 @@ class Mesh
 
     render(renderer)
     {
-        for (const f of this.faces)
+        for (const face of this.faces)
         {
-            var a = this.vertices[f[0]];
-            var b = this.vertices[f[1]];
-            var c = this.vertices[f[2]];
-            var d = this.vertices[f[3]];
-            renderer.drawTriangle(a, b, c, new Color(1, 0, 0));
-            if (d)
+            var material = this.materials[face[0]] ?? Material.Default();
+            var a = this.vertices[face[1]];
+            for (var i = 3; i < face.length; i++)
             {
-                renderer.drawTriangle(a, c, d, new Color(1, 0, 0));
+                var b = this.vertices[face[i - 1]];
+                var c = this.vertices[face[i]];
+                renderer.drawTriangle(a, b, c, material.diffuse);
             }
         }
     }

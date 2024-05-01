@@ -44,6 +44,10 @@ loadScript("framework/dom_utils.js");
 loadScript("framework/humanoid.js");
 loadScript("framework/color.js");
 loadScript("framework/object_rotator.js");
+loadScript("framework/material.js");
+
+loadScript("models/littleman.js");
+loadScript("models/airplane.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');
