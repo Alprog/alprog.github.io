@@ -30,6 +30,7 @@ loadScript("framework/renderer.js");
 loadScript("framework/pin.js");
 loadScript("framework/diagram.js");
 loadScript("framework/line.js");
+loadScript("framework/label.js");
 loadScript("framework/ray.js");
 loadScript("framework/grid.js");
 loadScript("framework/mesh.js");

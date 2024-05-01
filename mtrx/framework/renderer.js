@@ -81,6 +81,7 @@ class Renderer
     drawLine() { this.drawLineInternal(...cloneElements(arguments)); }
     drawTriangle() { this.drawTriangleInternal(...cloneElements(arguments)); }
     drawCircle() { this.drawCircleInternal(...cloneElements(arguments)); }
+    drawText() { this.drawTextInternal(...cloneElements(arguments)); }
 
     drawLineInternal(p0, p1, color, width)
     {
@@ -129,5 +130,11 @@ class Renderer
     {
         this.makeCloud( center ).transformTo( CANVAS_SPACE );
         this.canvas.drawCircle(center, radius, color, width);
+    }
+
+    drawTextInternal(text, position)
+    {
+        this.makeCloud( position ).transformTo( CANVAS_SPACE );
+        this.canvas.drawText(text, position);
     }
 }
