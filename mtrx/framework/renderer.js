@@ -18,7 +18,7 @@ class Renderer
 
     setModelMatrix(matrix)
     {
-        this.matrix_table.setModelMatrix(matrix ?? Matrix4x4.Identity());
+        this.matrix_table.setModelMatrix(matrix);
     }
 
     setCamera(camera)
@@ -42,15 +42,20 @@ class Renderer
 
     //----------------------------------------------------
    
-    renderObjects(objects)
+    renderObjects(objects, parentMatrix)
     {
         for (const object of objects) 
         {
-            this.setModelMatrix(object.transform);
+            var modelMatrix = object.transform ?? Matrix4x4.Identity();
+            if (parentMatrix)
+            {
+                modelMatrix = mult(modelMatrix, parentMatrix);
+            }
+            this.setModelMatrix(modelMatrix);
             object.render(this);
             if (object.children)
             {
-                this.renderObjects(object.children);
+                this.renderObjects(object.children, modelMatrix);
             }
         }
         this.flushCommands();
