@@ -7,9 +7,7 @@ var model = new Airplane();
 model.transform = Matrix4x4.Scaling(Vector.One().get_scaled(10));
 
 var model = new Littleman();
-var S = Matrix4x4.Scaling(Vector.One().get_scaled(100));
-var R = Matrix4x4.RotationY_RHS(Math.PI / 4);
-model.transform = mult(R, S);
+model.transform = Matrix4x4.Scaling(Vector.One().get_scaled(100));
 
 
 rootObject.children = [
