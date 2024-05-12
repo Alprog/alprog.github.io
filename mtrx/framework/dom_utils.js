@@ -1,15 +1,15 @@
 
-var append_stack = [];
+var append_list = [];
 var elements = {};
 
 function dom_flush()
 {
-    for (var i = append_stack.length - 1; i >= 0; i--)
+    append_list.sort((a, b) => b.child.level - a.child.level);
+    for (const pair of append_list)
     {
-        var pair = append_stack[i];
         pair.parent.appendChild(pair.child);
     }
-    append_stack = [];
+    append_list = [];
 }
 
 function createElement(tag, id, classes, parent)
@@ -25,7 +25,9 @@ function createElement(tag, id, classes, parent)
     {
         element.setAttribute("class", classes);
     }
-    append_stack.push({parent: parent, child: element});
+    element.level = (parent.level ?? 0) + 1;
+
+    append_list.push({parent: parent, child: element});    
     return element;
 }
 
