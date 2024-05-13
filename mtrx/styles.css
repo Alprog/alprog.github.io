@@ -18,6 +18,12 @@ h1, h2, h3 {
     width: 800px;
 }
 
+.home_button
+{
+    position: relative;
+    top: 4px;
+}
+
 .sticky_header {
     background-color: #eb906e;
     position: sticky;
