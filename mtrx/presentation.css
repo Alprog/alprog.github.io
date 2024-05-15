@@ -1,0 +1,47 @@
+
+:root {
+    --margin-height: 30px;
+    --header-height: 50px;
+    --footer-height: 50px;
+
+    --full-offset: calc(var(--margin-height) * 2 + var(--header-height) + var(--footer-height))
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    background-color: #f6f4f0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: calc((100vh - var(--full-offset)) * 4 / 3);
+    height: 100vh;
+}
+
+.margin {
+    height: var(--margin-height);
+}
+
+#header {
+    height: var(--header-height);
+    background-color: pink;
+}
+
+#slide {
+    flex:auto;
+    background-color: gray;
+}
+
+#footer {
+    height: var(--footer-height);
+    background-color: pink;
+}
+
+.slider {
+    width: 70%;
+}
