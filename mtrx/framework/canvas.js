@@ -110,6 +110,7 @@ class Canvas
 	{
 		this.ctx.fillStyle = "black"
 		this.ctx.font = "16px serif";
+		this.ctx.textAlign = "center";
 		this.ctx.fillText(text, startPoint.x, startPoint.y);
 	}
 

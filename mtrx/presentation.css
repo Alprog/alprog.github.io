@@ -22,10 +22,11 @@ body {
     display: flex;
     flex: 1 1 0;
     height: 100%;
+    flex-direction: column;
 }
 
-.left {
-    flex-direction: column;
+.right {
+    align-items: end;
 }
 
 .margin {
@@ -58,6 +59,11 @@ body {
     border: 0px;
 }
 
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .navigation_button_block {
     margin: 0 10px;
 }
@@ -67,3 +73,11 @@ body {
     height: 100%;
 }
 
+.space {
+    flex: auto;
+}
+
+p {
+    padding: 0;
+    margin: 0;
+}

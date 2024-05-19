@@ -39,6 +39,7 @@ h1, h2, h3 {
 
 .mini_diagram
 {
-    width: 100px;
-    height: 100px;
+    width: calc(100vw / 8 );
+    height: calc(100vh / 6);
+    border: 0;
 }
