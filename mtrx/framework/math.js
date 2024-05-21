@@ -52,3 +52,14 @@ function clamp(value, min, max)
 {
     return Math.min(Math.max(value, min), max);
 }
+
+function min(a, b)
+{
+    return a < b ? a : b;
+}
+
+function max(a, b)
+{
+    return a > b ? a : b;
+}
+

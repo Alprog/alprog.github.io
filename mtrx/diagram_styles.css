@@ -16,59 +16,78 @@ html, body
 #canvas_panel
 {
     display:block;
-    flex:100%;
+    flex: 100%;
 }
 
 #side_panel
 {
+    flex: 0 0 auto;
+    min-width: 200px;
+    width: 300px;
+    max-width: calc(100vw - 200px);
     background-color:#ccc;
+    resize: horizontal;
+    overflow: hidden;
+    display: flex;
 }
 
 #side_panel_content
 {
-    width: 300px;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: auto;
 }
 
 .matrix_editor
 {
-    display: flex;
-    justify-content: space-between;
-    width: 160px;
-    height: 100px;
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    aspect-ratio: 1;
+    gap: 3px;
 }
 
 .row_major
 {
-    flex-flow: row wrap;
+    grid-auto-flow: row;
 }
 
 .column_major
 {
-    flex-flow: column wrap;
+    grid-auto-flow: column;
+}
+
+.field_editor
+{
+    border: 0;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: consolas;
+    width: 100%;
+    aspect-ratio: 1;
 }
 
 .field_editor_x
 {
     color: red;
-    width: 30px;
 }
 
 .field_editor_y
 {
     color: green;
-    width: 30px;
 }
 
 .field_editor_z
 {
     color: blue;
-    width: 30px;
 }
 
 .field_editor_w
 {
-    color: purple;
-    width: 30px;
+    color: magenta;    
 }
 
 canvas

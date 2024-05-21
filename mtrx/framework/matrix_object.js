@@ -36,18 +36,24 @@ class MatrixObject extends Matrix4x4
         renderer.drawLine(origin, x, "red", width);
         renderer.drawLine(origin, y, "green", width);
         renderer.drawLine(origin, z, "blue", width);
-        renderer.drawLine(Vector.ZeroPoint(), this.translation, "purple", width);
+        renderer.drawLine(Vector.ZeroPoint(), this.translation, "magenta", width);
    
         width = 0.5;
         var color = "black";
         var xy = sum(origin, this[0], this[1]);
         var yz = sum(origin, this[1], this[2]);
         var xz = sum(origin, this[0], this[2]);
+        var xyz = sum(origin, this[0], this[1], this[2]);
         renderer.drawLine(x, xy, color, width);
         renderer.drawLine(y, xy, color, width);
         renderer.drawLine(y, yz, color, width);
         renderer.drawLine(z, yz, color, width);
         renderer.drawLine(x, xz, color, width);
         renderer.drawLine(z, xz, color, width);
+
+        var color = "black";
+        renderer.drawLine(xyz, xy, color, width);
+        renderer.drawLine(xyz, yz, color, width);
+        renderer.drawLine(xyz, xz, color, width);
     }
 }
