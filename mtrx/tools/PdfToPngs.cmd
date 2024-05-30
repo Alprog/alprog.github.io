@@ -1,0 +1,1 @@
+ magick convert -density 128 Matrix.pdf slide.png
