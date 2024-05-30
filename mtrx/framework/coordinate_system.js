@@ -50,8 +50,7 @@ class CoordinateSystem
 {
     constructor()
     {
-        const urlParams = new URLSearchParams(window.location.search);
-        const axesCode = urlParams.get('axes') ?? "RUF";
+        const axesCode = The.Config.get("axis");
 
         this.handness = detectHandness(axesCode);
 
@@ -81,5 +80,3 @@ class CoordinateSystem
     isLHS() { return this.handness == LHS; }
     isRHS() { return this.handness == RHS; }
 }
-
-coordinateSystem = new CoordinateSystem();

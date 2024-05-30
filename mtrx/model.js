@@ -1,5 +1,5 @@
 
-config.force_default("axis", "RUF");
+The.Config.force_default("axis", "RUF");
 
 var diagram = new Diagram();
 

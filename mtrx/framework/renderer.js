@@ -116,7 +116,7 @@ class Renderer
         var normal = cross(ab, ac);
 
         var isClockwise = normal.z < 0;
-        if (isClockwise == coordinateSystem.isLHS())
+        if (isClockwise == The.CoordinateSystem.isLHS())
         {
             cloud.transformTo( CANVAS_SPACE );
             var order = (a.z + b.z + c.z) / 3;

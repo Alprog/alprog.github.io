@@ -3,8 +3,7 @@ class Mode
 {
     constructor()
     {
-        const urlParams = new URLSearchParams(window.location.search);
-        const axis = urlParams.get('axis')
+        const axis = The.Config.get('axis')
         this.rhs = axis == 'r';
     }
 
@@ -18,5 +17,3 @@ class Mode
         return this.rhs;
     }
 }
-
-mode = new Mode();

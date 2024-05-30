@@ -85,19 +85,19 @@ class Camera
             var forward = diff(this.lookAt, this.position);
             forward.normalize();
 
-            if (coordinateSystem.isRHS())
+            if (The.CoordinateSystem.isRHS())
             {
                 forward.negate();
             }
 
             // var axisA = getBaseAxis(forward, 'Forward');
-            // var axisB = getBaseAxis(coordinateSystem.Up.direction, 'Up');
+            // var axisB = getBaseAxis(The.CoordinateSystem.Up.direction, 'Up');
             // var axisC = calc3rdAxis(axisA, axisB);
             // axisC.normalize();
             // axisB = calc3rdAxis(axisA, axisC);
             // var orientationMtrx = createBasis(axisA, axisB, axisC);
             
-            var right = cross(coordinateSystem.Up.direction, forward);
+            var right = cross(The.CoordinateSystem.Up.direction, forward);
             right.normalize();
             var up = cross(forward, right);
             var orientationMtrx = new Matrix4x4(right, up, forward, Vector.ZeroPoint());
@@ -117,7 +117,7 @@ class Camera
             {
                 var scaleY = 1 / Math.tan(this.vFov / 2);
                 var scaleX = scaleY / this.aspect;
-                var k = coordinateSystem.isRHS() ? -1 : +1;
+                var k = The.CoordinateSystem.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(scaleX, 0, 0, 0),
                     new Vector(0, scaleY, 0, 0),
@@ -130,7 +130,7 @@ class Camera
                 var height = this.orthoSize;
                 var width = height * this.aspect;
                 var depth = 1500;
-                var k = coordinateSystem.isRHS() ? -1 : +1;
+                var k = The.CoordinateSystem.isRHS() ? -1 : +1;
                 this.projectionMatrix = new Matrix4x4(
                     new Vector(2 / width, 0, 0, 0),
                     new Vector(0, 2 / height, 0, 0),

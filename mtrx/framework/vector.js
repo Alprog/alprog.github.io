@@ -22,12 +22,12 @@ class Vector
 	static Zero = () => new Vector(0, 0, 0, 0)
 	static One = () => new Vector(1, 1, 1, 1)
 
-	static Right = () => coordinateSystem.Right.direction.clone();
-	static Left = () => coordinateSystem.Left.direction.clone();
-	static Up = () => coordinateSystem.Up.direction.clone();
-	static Down = () => coordinateSystem.Down.direction.clone();
-	static Forward = () => coordinateSystem.Forward.direction.clone();
-	static Backward = () => coordinateSystem.Backward.direction.clone();
+	static Right = () => The.CoordinateSystem.Right.direction.clone();
+	static Left = () => The.CoordinateSystem.Left.direction.clone();
+	static Up = () => The.CoordinateSystem.Up.direction.clone();
+	static Down = () => The.CoordinateSystem.Down.direction.clone();
+	static Forward = () => The.CoordinateSystem.Forward.direction.clone();
+	static Backward = () => The.CoordinateSystem.Backward.direction.clone();
 
 	static UnitX = () => new Vector(1, 0, 0, 1);
 	static UnitY = () => new Vector(0, 1, 0, 1);

@@ -47,6 +47,7 @@ loadScript("framework/humanoid.js");
 loadScript("framework/color.js");
 loadScript("framework/object_rotator.js");
 loadScript("framework/material.js");
+loadScript("framework/the.js");
 
 loadScript("models/littleman.js");
 loadScript("models/airplane.js");
