@@ -5,7 +5,7 @@ class Config
     {
         this.defaults = {
             lang: "en",
-            axis: "RUF",
+            axes: "RUF",
             mult: "pre"
         };
 
@@ -18,8 +18,6 @@ class Config
             this.params[key] = value;
             this.current[key] = value;
         }
-
-        this.update();
     }
 
     get(key)

@@ -50,7 +50,7 @@ class CoordinateSystem
 {
     constructor()
     {
-        const axesCode = The.Config.get("axis");
+        const axesCode = The.Config.get("axes");
 
         this.handness = detectHandness(axesCode);
 

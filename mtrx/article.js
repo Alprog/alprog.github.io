@@ -8,7 +8,10 @@ function onConventionChange(e)
     var diagrams = document.getElementsByClassName("diagram");
     for (const diagram of diagrams)
     {
-        var url = "diagram.html?script=matrix.js";
+        console.log(diagram.src);
+        console.log(diagram.contentWindow.location);
+
+        var url = "diagram.html?script=model.js";
         url += "&axes=" + axes_selector.value;
         url += "&mult=" + mult_selector.value;
         diagram.src = url;

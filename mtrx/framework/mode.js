@@ -3,7 +3,7 @@ class Mode
 {
     constructor()
     {
-        const axis = The.Config.get('axis')
+        const axis = The.Config.get('axes')
         this.rhs = axis == 'r';
     }
 
