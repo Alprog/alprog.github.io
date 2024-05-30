@@ -36,6 +36,7 @@ loadScript("framework/grid.js");
 loadScript("framework/mesh.js");
 loadScript("framework/utils.js");
 loadScript("framework/mode.js");
+loadScript("framework/config.js");
 loadScript("framework/coordinate_system.js");
 loadScript("framework/rotator.js");
 loadScript("framework/sphere.js");

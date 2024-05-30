@@ -36,6 +36,7 @@ class Diagram
         requestAnimationFrame(()=>{
             this.update();
             this.render();
+            config.update();
         });
     }
 

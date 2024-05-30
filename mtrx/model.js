@@ -1,4 +1,6 @@
 
+config.force_default("axis", "RUF");
+
 var diagram = new Diagram();
 
 var rootObject = new Mesh();
