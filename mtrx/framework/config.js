@@ -3,60 +3,38 @@ class Config
 {
     constructor()
     {
-        this.defaults = {
-            lang: "en",
-            axes: "RUF",
-            mult: "pre"
-        };
-
-        this.params = {};
-        this.current = {};
-
-        var url_params = new URLSearchParams(window.location.search);
-        for (let [key, value] of url_params)
+        for (var key in The.Defaults)
         {
-            this.params[key] = value;
-            this.current[key] = value;
+            this[key] = The.Defaults[key];
         }
-    }
 
-    get(key)
-    {
-        return this.current[key] ?? this.defaults[key];
-    }
-
-    set_default(key, value)
-    {
-        this.defaults[key] = value;
-    }
-
-    force_default(key, value)
-    {
-        this.defaults[key] = value;
-        this.current[key] = value;
-    }
-
-    update()
-    {
-        var url = "diagram.html";
-        var delimiter = "?";
-        for (const key in this.current)
+        for (var key in The.AddressBar.params)
         {
-            var value = this.current[key];
-            if (value)
+            this[key] = The.AddressBar.params[key];
+        }
+
+        for (var key in this)
+        {
+            if (key == "m1" || key == "m2")
             {
-                if (value != this.defaults[key] || this.params[key])
-                {
-                    url += delimiter + key + "=" + value;
-                    delimiter = "&";    
-                }
+                this[key] = this.deserialize_matrix( this[key] );
             }
         }
-        if (url != this.url)
-        {
-            window.history.replaceState(null, "Title", url);
-            this.url = url;
-        }
     }
 
+    deserialize_matrix(text)
+    {
+        var arr = text.split(',');
+        for (var i = 0; i < arr.length; i++)
+        {
+            arr[i] = Number(arr[i]);
+        }
+
+        return new Matrix4x4(
+            new Vector( arr[0], arr[1], arr[2], arr[3]),
+            new Vector( arr[4], arr[5], arr[6], arr[7]),
+            new Vector( arr[8], arr[9], arr[10], arr[11]),
+            new Vector( arr[12], arr[13], arr[14], arr[15]),
+        );
+    }
 }

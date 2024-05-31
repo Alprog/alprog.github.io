@@ -199,4 +199,23 @@ class Matrix4x4
 		}
 		return minor_mtrx;
 	}
+
+	equals(m)
+	{
+		for (var row = 0; row < 4; row++)
+		{
+			if (!this[row].equals(m[row]))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	serialize()
+	{
+		return this.axisX.serialize() + "," + this.axisY.serialize() + "," +
+		       this.axisZ.serialize() + "," + this.translation.serialize();
+	}
 }

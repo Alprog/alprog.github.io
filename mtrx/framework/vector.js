@@ -147,10 +147,10 @@ class Vector
 	multiply(m)
 	{
 		var v = this.clone();
-    this[0] = v.x * m.axisX[0] + v.y * m.axisY[0] + v.z * m.axisZ[0] + v.w * m.translation[0];
-    this[1] = v.x * m.axisX[1] + v.y * m.axisY[1] + v.z * m.axisZ[1] + v.w * m.translation[1];
-    this[2] = v.x * m.axisX[2] + v.y * m.axisY[2] + v.z * m.axisZ[2] + v.w * m.translation[2];
-    this[3] = v.x * m.axisX[3] + v.y * m.axisY[3] + v.z * m.axisZ[3] + v.w * m.translation[3];		
+    	this[0] = v.x * m.axisX[0] + v.y * m.axisY[0] + v.z * m.axisZ[0] + v.w * m.translation[0];
+    	this[1] = v.x * m.axisX[1] + v.y * m.axisY[1] + v.z * m.axisZ[1] + v.w * m.translation[1];
+    	this[2] = v.x * m.axisX[2] + v.y * m.axisY[2] + v.z * m.axisZ[2] + v.w * m.translation[2];
+    	this[3] = v.x * m.axisX[3] + v.y * m.axisY[3] + v.z * m.axisZ[3] + v.w * m.translation[3];		
 	}
 
 	equals(v)
@@ -161,5 +161,10 @@ class Vector
 	toString()
 	{
 		return this.x + ", " + this.y + ", " + this.z + ", " + this.w;
+	}
+
+	serialize()
+	{
+		return round2(this.x) + "," + round2(this.y) + "," + round2(this.z) + "," + round2(this.w);
 	}
 }

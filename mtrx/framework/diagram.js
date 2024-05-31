@@ -36,7 +36,7 @@ class Diagram
         requestAnimationFrame(()=>{
             this.update();
             this.render();
-            The.Config.update();
+            The.AddressBar.sync_with_config();
         });
     }
 
