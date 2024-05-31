@@ -1,5 +1,5 @@
 
-The.Config.force_default("axes", "RUF");
+The.AddressBar.force_param("axes", "RUF");
 
 var diagram = new Diagram();
 

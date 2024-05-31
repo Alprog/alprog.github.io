@@ -56,4 +56,4 @@ loadScript("models/airplane.js");
 
 const urlParams = new URLSearchParams(window.location.search);
 const script = urlParams.get('script');
-loadScript(script);
+loadScript('diagrams/' + script);

@@ -14,7 +14,8 @@ class AddressBar
 
     force_param(key, value)
     {
-        this.key = value;
+        this.params[key] = value;
+        this.update_url();
     }
 
     sync_with_config()
