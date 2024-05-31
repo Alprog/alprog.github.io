@@ -31,8 +31,8 @@ function onConventionChange(e)
     }
 }
 
-axes_selector.addEventListener("change", onConventionChange);
-mult_selector.addEventListener("change", onConventionChange);
+if (axes_selector) axes_selector.addEventListener("change", onConventionChange);
+if (mult_selector) mult_selector.addEventListener("change", onConventionChange);
 
 var selectors_dictionary = {};
 
