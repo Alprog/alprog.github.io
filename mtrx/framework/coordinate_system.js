@@ -4,6 +4,15 @@ const axisNames = "XYZ";
 const LHS = 0;
 const RHS = 1;
 
+var axes_variants = [
+    "BDL", "BDR", "BLD", "BLU", "BRD", "BRU", "BUL", "BUR", 
+    "DBL", "DBR", "DFL", "DFR", "DLB", "DLF", "DRB", "DRF", 
+    "FDL", "FDR", "FLD", "FLU", "FRD", "FRU", "FUL", "FUR", 
+    "LBD", "LBU", "LDB", "LDF", "LFD", "LFU", "LUB", "LUF", 
+    "RBD", "RBU", "RDB", "RDF", "RFD", "RFU", "RUB", "RUF", 
+    "UBL", "UBR", "UFL", "UFR", "ULB", "ULF", "URB", "URF"
+];
+
 class BaseDirection
 {
     constructor(name, axisIndex, axisSign)
