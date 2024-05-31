@@ -67,10 +67,22 @@ function onMouseWheel(e)
 
 function onSliderChange()
 {
-    projector.innerHTML = slides[slider.value];
+    var html = slides[slider.value];
+
+    var startIndex = html.indexOf('?');
+    if ( startIndex >= 0 )
+    {
+        var endIndex = html.indexOf('"', startIndex);
+
+        var params = html.substring(startIndex, endIndex);
+        params = overwriteConventionParameters(params);
+        html = html.substring(0, startIndex) + params + html.substring(endIndex);
+    }
+    
+    projector.innerHTML = html;
 
     var index = Number(slider.value) + 1;
-    counter.innerText = index + " of " + slides.length; 
+    counter.innerText = index + " of " + slides.length;
 } 
 
 onSliderChange();

@@ -1,4 +1,39 @@
 
+var axes_selector = document.getElementById("axes_selector");
+var mult_selector = document.getElementById("mult_selector");
+
+function overwriteConventionParameters(line)
+{
+    var params = line.split('&');
+    for (var i = params.length - 1; i >= 0; i--)
+    {
+        var param = params[i];
+        if (param.startsWith("axes=") || param.startsWith("mult="))
+        {
+            params.splice(i, 1);
+        }
+    }
+
+    params.push("axes=" + axes_selector.value);
+    params.push("mult=" + mult_selector.value);
+
+    return params.join('&');
+}
+
+function onConventionChange(e)
+{
+    var diagrams = document.getElementsByClassName("diagram");
+    for (const diagram of diagrams)
+    {
+        var search = diagram.contentWindow.location.search;
+        search = overwriteConventionParameters(search);
+        diagram.src ="diagram.html" + search;
+    }
+}
+
+axes_selector.addEventListener("change", onConventionChange);
+mult_selector.addEventListener("change", onConventionChange);
+
 var selectors_dictionary = {};
 
 selectors_dictionary.language_selector = `
