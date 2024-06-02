@@ -43,7 +43,7 @@ body {
 }
 
 #projector {
-    background-color: #ccc;
+    background-color: white;
     flex: auto;
     display: flex;
     align-items: center;
@@ -63,9 +63,17 @@ img {
     max-height: 100%;
 }
 
-.fullscreen {
+.img_fullscreen {
     width: 100%;
     height: 100%;
+}
+
+.img_mult {
+    height: 100%;
+}
+
+.img_sheet {
+    width: 90%;
 }
 
 .navigation_button_block {

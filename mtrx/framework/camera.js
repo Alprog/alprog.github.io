@@ -61,13 +61,6 @@ class Camera
         }
     }
 
-    setOrtho(height)
-    {
-		var width = height * this.aspect;
-		var depth = 1500;
-		
-    }
-
     getViewDirection()
     {
         var direction = diff(this.lookAt, this.position);
