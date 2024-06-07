@@ -49,11 +49,11 @@ class Mesh
     {
         matrix = matrix ?? Matrix4x4.Identity();
         this.addQuad(matrix);
-        this.addQuad(mult(Matrix4x4.RotationX_LHS(Math.PI / 2), matrix));
-        this.addQuad(mult(Matrix4x4.RotationX_LHS(Math.PI), matrix));
-        this.addQuad(mult(Matrix4x4.RotationX_LHS(-Math.PI / 2), matrix));
-        this.addQuad(mult(Matrix4x4.RotationY_LHS(Math.PI / 2), matrix));
-        this.addQuad(mult(Matrix4x4.RotationY_LHS(-Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationX(Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationX(Math.PI), matrix));
+        this.addQuad(mult(Matrix4x4.RotationX(-Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationY(Math.PI / 2), matrix));
+        this.addQuad(mult(Matrix4x4.RotationY(-Math.PI / 2), matrix));
     }
 
     render(renderer)

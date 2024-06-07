@@ -50,48 +50,27 @@ class Matrix4x4
 		new Vector(0, 0, 0, 1)
 	)
 	
-	static RotationX_LHS = (a) => new Matrix4x4(
+	static RotationX = (a) => new Matrix4x4(
 		new Vector(1, 0, 0, 0),
 		new Vector(0, Math.cos(a), Math.sin(a), 0),
 		new Vector(0, -Math.sin(a), Math.cos(a), 0),
 		new Vector(0, 0, 0, 1)
 	)
 	
-	static RotationX_RHS = (a) => new Matrix4x4(
-		new Vector(1, 0, 0, 0),
-		new Vector(0, Math.cos(a), -Math.sin(a), 0),
-		new Vector(0, Math.sin(a), Math.cos(a), 0),
-		new Vector(0, 0, 0, 1)
-	)
-	
-	static RotationY_LHS = (a) => new Matrix4x4(
+	static RotationY = (a) => new Matrix4x4(
 		new Vector(Math.cos(a), 0, -Math.sin(a), 0),
 		new Vector(0, 1, 0, 0),
 		new Vector(Math.sin(a), 0, Math.cos(a), 0),
 		new Vector(0, 0, 0, 1)
 	)
 
-	static RotationY_RHS = (a) => new Matrix4x4(
-		new Vector(Math.cos(a), 0, Math.sin(a), 0),
-		new Vector(0, 1, 0, 0),
-		new Vector(-Math.sin(a), 0, Math.cos(a), 0),
-		new Vector(0, 0, 0, 1)
-	)
-
-	static RotationZ_LHS = (a) => new Matrix4x4(
+	static RotationZ = (a) => new Matrix4x4(
 		new Vector(Math.cos(a), Math.sin(a), 0, 0),
 		new Vector(-Math.sin(a), Math.cos(a), 0, 0),
 		new Vector(0, 0, 1, 0),
 		new Vector(0, 0, 0, 1)
 	)
-	
-	static RotationZ_RHS = (a) => new Matrix4x4(
-		new Vector(Math.cos(a), -Math.sin(a), 0, 0),
-		new Vector(Math.sin(a), Math.cos(a), 0, 0),
-		new Vector(0, 0, 1, 0),
-		new Vector(0, 0, 0, 1)
-	)
-	
+
 	static Translation = (t) => new Matrix4x4(
 		new Vector(1, 0, 0, 0),
 		new Vector(0, 1, 0, 0),

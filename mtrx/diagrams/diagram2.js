@@ -24,16 +24,16 @@ function helper(matrix)
 }
 
 helper(Matrix4x4.Identity());
-helper(Matrix4x4.RotationX_LHS(Math.PI / 2));
-helper(Matrix4x4.RotationX_LHS(Math.PI));
-helper(Matrix4x4.RotationX_LHS(-Math.PI / 2));
-helper(Matrix4x4.RotationY_LHS(Math.PI / 2));
-helper(Matrix4x4.RotationY_LHS(-Math.PI / 2));
+helper(Matrix4x4.RotationX(Math.PI / 2));
+helper(Matrix4x4.RotationX(Math.PI));
+helper(Matrix4x4.RotationX(-Math.PI / 2));
+helper(Matrix4x4.RotationY(Math.PI / 2));
+helper(Matrix4x4.RotationY(-Math.PI / 2));
 
 var s = Matrix4x4.Scaling(new Vector(50, 20, 30));
-var rx = Matrix4x4.RotationX_LHS(0);
-var ry = Matrix4x4.RotationY_LHS(0);
-var rz = Matrix4x4.RotationZ_LHS(Math.PI / 6);
+var rx = Matrix4x4.RotationX(0);
+var ry = Matrix4x4.RotationY(0);
+var rz = Matrix4x4.RotationZ(Math.PI / 6);
 var t = Matrix4x4.Translation(new Vector(50, 70));
 var TRS = mult(s, rx, ry, rz, t);
 //console.log(TRS)
@@ -45,7 +45,7 @@ var a = 0;
 
 diagram.onUpdated = () => 
 {
-    mesh.transform.premultiply( Matrix4x4.RotationX_LHS(0.010) );
+    mesh.transform.premultiply( Matrix4x4.RotationX(0.010) );
 };
 
 dom_flush();
