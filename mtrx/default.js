@@ -1,4 +1,5 @@
 
+var dimentions_selector = document.getElementById("dimentions_selector");
 var axes_selector = document.getElementById("axes_selector");
 var vector_selector = document.getElementById("vector_selector");
 
@@ -14,8 +15,8 @@ function overwriteConventionParameters(line)
         }
     }
 
-    params.push("axes=" + axes_selector.value);
     params.push("vector=" + vector_selector.value);
+    params.push("axes=" + axes_selector.value);
 
     return params.join('&');
 }
@@ -31,8 +32,12 @@ function onConventionChange(e)
     }
 }
 
-if (axes_selector) axes_selector.addEventListener("change", onConventionChange);
-if (vector_selector) vector_selector.addEventListener("change", onConventionChange);
+function onDimentionsChange(e)
+{
+    var html = selectors_dictionary["axes_selector_" + dimentions_selector.value];
+    axes_selector.innerHTML = html;
+    onConventionChange(null);
+}
 
 var selectors_dictionary = {};
 
@@ -41,12 +46,19 @@ selectors_dictionary.language_selector = `
     <!--option value="RU">Русский</option-->'
 `;
 
-selectors_dictionary.vector_selector = `
-    <option value="row">Row-vector</option>
-    <option value="column">Column-vector</option>
+selectors_dictionary.dimentions_selector = `
+    <option value="3D">3D</option>
+    <option value="2D">2D</option>
 `;
 
-selectors_dictionary.axes_selector = `
+selectors_dictionary.axes_selector_2D = `
+    <option value="RU">RU (Math)</option>
+    <option value="RD">RD (Canvas)</option>
+    <option value="LU">LU</option>
+    <option value="LD">LD</option>
+`;
+
+selectors_dictionary.axes_selector_3D = `
     <optgroup label="Popular Left-Handed">
         <option value="RUF">RUF (Unity)</option>
         <option value="FRU">FRU (Unreal)</option>
@@ -105,6 +117,13 @@ selectors_dictionary.axes_selector = `
     </optgroup>		
 `;
 
+selectors_dictionary.axes_selector = selectors_dictionary.axes_selector_3D;
+
+selectors_dictionary.vector_selector = `
+    <option value="row">Row-vector</option>
+    <option value="column">Column-vector</option>
+`;
+
 for (var key in selectors_dictionary)
 {
     var selector = document.getElementById(key);
@@ -113,3 +132,7 @@ for (var key in selectors_dictionary)
         selector.innerHTML = selectors_dictionary[key];
     }
 }
+
+if (dimentions_selector) dimentions_selector.addEventListener("change", onDimentionsChange);
+if (axes_selector) axes_selector.addEventListener("change", onConventionChange);
+if (vector_selector) vector_selector.addEventListener("change", onConventionChange);

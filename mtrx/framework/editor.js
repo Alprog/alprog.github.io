@@ -60,9 +60,6 @@ class Editor
             var vector = matrix_object[row];
             for (var col = 0; col < 4; col++)
             {
-                if (col == 3 || row == 3)
-                    continue;
-
                 var field = editor.createChildInput(null, field_classes);
                 field.binding = new Binding(field, vector, col);
                 field.binding.load();
