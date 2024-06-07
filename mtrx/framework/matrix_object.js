@@ -22,7 +22,11 @@ class MatrixObject extends Matrix4x4
 
         this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation, on_changed));
         this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation, on_changed));
-        this.children.push(new AxisPin(this.axisZ, this.axisX, this.axisY, this.translation, on_changed));
+        
+        if (The.CoordinateSystem.is3D())
+        {
+            this.children.push(new AxisPin(this.axisZ, this.axisX, this.axisY, this.translation, on_changed));
+        }
     }
 
     render(renderer)
@@ -35,7 +39,10 @@ class MatrixObject extends Matrix4x4
         var width = 2;
         renderer.drawLine(origin, x, "red", width);
         renderer.drawLine(origin, y, "green", width);
-        renderer.drawLine(origin, z, "blue", width);
+        if (The.CoordinateSystem.is3D())
+        {
+            renderer.drawLine(origin, z, "blue", width);
+        }
         renderer.drawLine(Vector.ZeroPoint(), this.translation, "magenta", width);
    
         width = 0.5;
@@ -44,16 +51,20 @@ class MatrixObject extends Matrix4x4
         var yz = sum(origin, this[1], this[2]);
         var xz = sum(origin, this[0], this[2]);
         var xyz = sum(origin, this[0], this[1], this[2]);
+        
         renderer.drawLine(x, xy, color, width);
         renderer.drawLine(y, xy, color, width);
-        renderer.drawLine(y, yz, color, width);
-        renderer.drawLine(z, yz, color, width);
-        renderer.drawLine(x, xz, color, width);
-        renderer.drawLine(z, xz, color, width);
 
-        var color = "black";
-        renderer.drawLine(xyz, xy, color, width);
-        renderer.drawLine(xyz, yz, color, width);
-        renderer.drawLine(xyz, xz, color, width);
+        if (The.CoordinateSystem.is3D())
+        {
+            renderer.drawLine(y, yz, color, width);
+            renderer.drawLine(z, yz, color, width);
+            renderer.drawLine(x, xz, color, width);
+            renderer.drawLine(z, xz, color, width);
+            renderer.drawLine(xyz, xy, color, width);
+            renderer.drawLine(xyz, yz, color, width);
+            renderer.drawLine(xyz, xz, color, width);  
+        }
+       
     }
 }

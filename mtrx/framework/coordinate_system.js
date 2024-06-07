@@ -4,7 +4,11 @@ const axisNames = "XYZ";
 const LHS = 0;
 const RHS = 1;
 
-var axes_variants = [
+var axes_2d_variants = [
+    "LD", "LU", "RD", "RU" 
+];
+
+var axes_3d_variants = [
     "BDL", "BDR", "BLD", "BLU", "BRD", "BRU", "BUL", "BUR", 
     "DBL", "DBR", "DFL", "DFR", "DLB", "DLF", "DRB", "DRF", 
     "FDL", "FDR", "FLD", "FLU", "FRD", "FRU", "FUL", "FUR", 
@@ -59,7 +63,13 @@ class CoordinateSystem
 {
     constructor()
     {
-        const axesCode = The.Config.axes;
+        var axesCode = The.Config.axes;
+        this.dimensions = axesCode.length;
+
+        if (this.is2D())
+        {
+            axesCode += "F"; 
+        }
 
         this.handness = detectHandness(axesCode);
 
@@ -86,6 +96,8 @@ class CoordinateSystem
         }
     }
 
+    is2D() { return this.dimensions == 2; }
+    is3D() { return this.dimensions == 3; }
     isLHS() { return this.handness == LHS; }
     isRHS() { return this.handness == RHS; }
 }

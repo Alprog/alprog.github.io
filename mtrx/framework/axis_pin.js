@@ -85,7 +85,10 @@ class AxisPin
 		{
 			if (this.normal_axis != this.axisA)
 			{
-				renderer.drawLine(this.translation, sum(this.translation, this.normal_axis), "black", 5)
+				if (The.CoordinateSystem.is3D())
+				{
+					renderer.drawLine(this.translation, sum(this.translation, this.normal_axis), "black", 5)
+				}
 
 				/*var second_axis = this.normal_axis == this.axisB ? this.axisC : this.axisB;
 				var p0 = this.translation;
