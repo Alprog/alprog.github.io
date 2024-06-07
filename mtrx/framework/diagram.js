@@ -68,6 +68,11 @@ class Diagram
     {
         if (this.canvas.refreshSize())
         {
+            for (var editor of editors)
+            {
+                editor.ajust_size();
+            }
+
             this.camera.setAspect(this.canvas.getAspect());
             this.renderer.refreshPresentMatrix();
         }

@@ -15,8 +15,11 @@ class Binding
         {
             text = text.substring(0, 5);
         }
-        this.textedit.value = text;
-        this.ajust_size();
+        if (this.textedit.value != text)
+        {
+            this.textedit.value = text;
+            this.ajust_size();    
+        }
     }
 
     save()
@@ -39,13 +42,15 @@ class Binding
     }
 }
 
-const is_column_vector = urlParams.get('vector') == 'column';
+var editors = [];
 
 class Editor
 {
     constructor(matrix_object)
     {
-        var classes = "matrix_editor " + (is_column_vector ? "column_major" : "row_major");
+        var major = The.Config.vector == 'column' ? "column_major" : "row_major";
+        var dimenstions = The.CoordinateSystem.is2D() ? "2d" : "3d";
+        var classes = `matrix_editor ${major} ${dimenstions}`;
         
         var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
         var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
@@ -64,8 +69,19 @@ class Editor
                 field.binding = new Binding(field, vector, col);
                 field.binding.load();
                 field.onchange = (e) => e.target.binding.save();
+
                 this.fields.push(field);
             }
+        }
+
+        editors.push(this);
+    }
+
+    ajust_size()
+    {
+        for (var field of this.fields)
+        {
+            field.binding.ajust_size();
         }
     }
 
