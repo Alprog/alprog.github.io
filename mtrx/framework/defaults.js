@@ -5,7 +5,7 @@ class Defaults
     {
         this.lang = "en";
         this.axes = "RUF";
-        this.mult = "pre";
+        this.vector = "row";
         this.set("m1", Matrix4x4.Identity());
         this.set("m2", Matrix4x4.Identity());
     }

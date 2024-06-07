@@ -1,6 +1,6 @@
 
 var axes_selector = document.getElementById("axes_selector");
-var mult_selector = document.getElementById("mult_selector");
+var vector_selector = document.getElementById("vector_selector");
 
 function overwriteConventionParameters(line)
 {
@@ -8,14 +8,14 @@ function overwriteConventionParameters(line)
     for (var i = params.length - 1; i >= 0; i--)
     {
         var param = params[i];
-        if (param.startsWith("axes=") || param.startsWith("mult="))
+        if (param.startsWith("axes=") || param.startsWith("vector="))
         {
             params.splice(i, 1);
         }
     }
 
     params.push("axes=" + axes_selector.value);
-    params.push("mult=" + mult_selector.value);
+    params.push("vector=" + vector_selector.value);
 
     return params.join('&');
 }
@@ -32,7 +32,7 @@ function onConventionChange(e)
 }
 
 if (axes_selector) axes_selector.addEventListener("change", onConventionChange);
-if (mult_selector) mult_selector.addEventListener("change", onConventionChange);
+if (vector_selector) vector_selector.addEventListener("change", onConventionChange);
 
 var selectors_dictionary = {};
 
@@ -41,9 +41,9 @@ selectors_dictionary.language_selector = `
     <!--option value="RU">Русский</option-->'
 `;
 
-selectors_dictionary.mult_selector = `
-    <option value="pre">Pre-multiplication</option>
-    <option value="post">Post-multiplication</option>
+selectors_dictionary.vector_selector = `
+    <option value="row">Row-vector</option>
+    <option value="column">Column-vector</option>
 `;
 
 selectors_dictionary.axes_selector = `

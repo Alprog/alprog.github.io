@@ -39,13 +39,13 @@ class Binding
     }
 }
 
-const is_post_multiplication = urlParams.get('mult') == 'post';
+const is_column_vector = urlParams.get('vector') == 'column';
 
 class Editor
 {
     constructor(matrix_object)
     {
-        var classes = "matrix_editor " + (is_post_multiplication ? "column_major" : "row_major");
+        var classes = "matrix_editor " + (is_column_vector ? "column_major" : "row_major");
         
         var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
         var editor = get_by_id("side_panel_content").createChildDiv(null, classes);

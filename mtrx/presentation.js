@@ -1,24 +1,64 @@
 
 
 var slides = [
-    '<img src="slides/title.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_001.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_002.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_003.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_004.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_005.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_006.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_007.png" class="img_fullscreen"/>',
-    '<img src="slides/intro_008.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-0.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-1.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-2.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-3.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-4.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-5.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-6.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-7.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-8.png" class="img_fullscreen"/>',
+
+    '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
+    
+    '<img src="slides/slide-9.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-10.png" class="img_fullscreen"/>',
+
     '<img src="slides/mult_0.png" class="img_mult"/>',
     '<img src="slides/mult_1.png" class="img_mult"/>',
     '<img src="slides/mult_2.png" class="img_mult"/>',
     '<img src="slides/mult_3.png" class="img_mult"/>',
     '<img src="slides/mult_4.png" class="img_mult"/>',
-    '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
-    '<iframe class="diagram" title="D1" src="diagram.html?script=model.js"></iframe>',
+
+    '<img src="slides/slide-11.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-12.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-13.png" class="img_fullscreen"/>',
+
     '<img src="freya.webp"/>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=model.js"></iframe>',
     '<iframe class="diagram" title="D1" src="reality.html"></iframe>',
+
+    '<img src="slides/slide-14.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-15.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-16.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-17.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-18.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-19.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-20.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-21.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-22.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-23.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-24.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-25.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-26.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-27.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-28.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-29.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-30.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-31.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-32.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-33.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-34.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-35.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-36.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-37.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-38.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-39.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-40.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-41.png" class="img_fullscreen"/>',
+
     '<img src="slides/sheet_1.png" class="img_sheet"/>',
     '<img src="slides/sheet_2.png" class="img_sheet"/>',
     '<img src="slides/sheet_3.png" class="img_sheet"/>',
@@ -41,7 +81,9 @@ var slides = [
     '<img src="slides/sheet_20.png" class="img_sheet"/>',
     '<img src="slides/sheet_21.png" class="img_sheet"/>',
     '<img src="slides/sheet_22.png" class="img_sheet"/>',
-    '<img src="slides/sheet_23.png" class="img_sheet"/>'
+    '<img src="slides/sheet_23.png" class="img_sheet"/>',
+
+    '<img src="slides/slide-42.png" class="img_fullscreen"/>',
 ];
 
 var currentSlide = 0;
