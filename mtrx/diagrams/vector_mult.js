@@ -14,8 +14,8 @@ var diagram = new Diagram(true);
 diagram.addObject(new Rotator(diagram.camera, new Vector(2.5, 2.5, 2.5, 1)));
 diagram.addGrid();
 
-diagram.addObject(new VectorObject(The.Config.v, "a"));
-diagram.addObject(new MatrixObject(The.Config.m1, "b"));
+The.Config.wrapToObject("v", diagram, "a");
+The.Config.wrapToObject("m1", diagram, "b");
 
 var result = mult(The.Config.v, The.Config.m1);
 var vM = new VectorObject(result, "result");

@@ -62,4 +62,17 @@ class Config
 
         return Matrix4x4.Identity();
     }
+
+    wrapToObject(key, diagram, gridName)
+    {
+        if (this[key] instanceof Matrix4x4)
+        {
+            this[key] = new MatrixObject(this[key], gridName);
+        }
+        else if (this[key] instanceof Vector)
+        {
+            this[key] = new VectorObject(this[key], gridName);
+        }
+        diagram.addObject(this[key]);
+    }
 }

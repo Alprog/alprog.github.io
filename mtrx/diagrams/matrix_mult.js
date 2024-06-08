@@ -21,15 +21,17 @@ var diagram = new Diagram(true);
 diagram.addObject(new Rotator(diagram.camera, new Vector(2.5, 2.5, 2.5, 1)));
 diagram.addGrid();
 
-diagram.addObject(new MatrixObject(The.Config.m1, "a"));
-diagram.addObject(new MatrixObject(The.Config.m2, "b"));
+The.Config.wrapToObject("m1", diagram, "a");
+The.Config.wrapToObject("m2", diagram, "b");
 
-var m3 = mult(The.Config.m1, The.Config.m2);
-diagram.addObject(new MatrixObject(m3, "result"));
+var m3 = new MatrixObject(mult(The.Config.m1, The.Config.m2), "result");
+diagram.addObject(m3);
 
-this.onUpdated = () =>
+diagram.onUpdated = () =>
 {
-
+    var result = mult(The.Config.m1, The.Config.m2);
+    m3.set(result);
+    m3.editor.refresh();
 };
 
 dom_flush();
