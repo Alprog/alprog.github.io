@@ -77,6 +77,7 @@ class Camera
     
             var forward = diff(this.lookAt, this.position);
             forward.normalize();
+            forward.w = 0;
 
             if (The.CoordinateSystem.isRHS())
             {

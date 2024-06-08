@@ -58,6 +58,7 @@ class Mesh
 
     render(renderer)
     {
+        var isLHS = The.CoordinateSystem.isLHS();
         for (const face of this.faces)
         {
             var material = this.materials[face[0]] ?? Material.Default();
@@ -66,7 +67,14 @@ class Mesh
             {
                 var b = this.vertices[face[i - 1]];
                 var c = this.vertices[face[i]];
-                renderer.drawTriangle(a, b, c, material.diffuse);
+                if (isLHS)
+                {
+                    renderer.drawTriangle(a, c, b, material.diffuse);
+                }
+                else
+                {
+                    renderer.drawTriangle(a, b, c, material.diffuse);
+                }
             }
         }
     }

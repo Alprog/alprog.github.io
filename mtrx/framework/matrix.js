@@ -71,6 +71,13 @@ class Matrix4x4
 		new Vector(0, 0, 0, 1)
 	)
 
+	static Rotation(direction, a)
+	{
+		a *= direction.axisSign;
+		var funcName = "Rotation" + direction.axisName;
+			return Matrix4x4[funcName](a); 
+	}
+
 	static Translation = (t) => new Matrix4x4(
 		new Vector(1, 0, 0, 0),
 		new Vector(0, 1, 0, 0),

@@ -100,4 +100,30 @@ class CoordinateSystem
     is3D() { return this.dimensions == 3; }
     isLHS() { return this.handness == LHS; }
     isRHS() { return this.handness == RHS; }
+
+    getConvertionMatrix(fromAxes, toAxes)
+    {
+        toAxes = toAxes ?? The.Config.axes;
+
+        var swaps = { R: "L", L: "R", U: "D", D: "U", F: "B", B: "F" };
+        var table = {};
+
+        for (var i = 0; i < 3; i++)
+        {
+            var letter = toAxes[i];
+            var vector = Vector.Zero();
+            vector[i] = 1;
+            table[letter] = vector;
+            table[swaps[letter]] = vector.get_scaled(-1);
+        }
+
+        var rows = {};
+
+        for (var i = 0; i < 3; i++)
+        {
+            rows[i] = table[fromAxes[i]];
+        }
+
+        return new Matrix4x4(rows[0], rows[1], rows[2], Vector.ZeroPoint() );
+    }
 }
