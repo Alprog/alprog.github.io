@@ -46,32 +46,44 @@ var editors = [];
 
 class Editor
 {
-    constructor(matrix_object, gridName)
+    constructor(object, gridName)
     {
-        var is2D = The.CoordinateSystem.is2D();
         var grid = get_by_id(gridName);
 
         this.fields = [];
-        var components = "xyzw";
-        for (var row = 0; row < 4; row++)
+       
+        if (object instanceof Matrix4x4)
         {
-            var field_classes = "field_editor field_editor_" + components[row];
-            var vector = matrix_object[row];
-            for (var col = 0; col < 4; col++)
+            for (var rowIndex = 0; rowIndex < 4; rowIndex++)
             {
-                if (is2D && (row == 2 || col == 2))
-                    continue;
-
-                var field = grid.createChildInput(null, field_classes);
-                field.binding = new Binding(field, vector, col);
-                field.binding.load();
-                field.onchange = (e) => e.target.binding.save();
-
-                this.fields.push(field);
+                this.createRow(grid, rowIndex, object[rowIndex]);
             }
+        }
+        else if (object instanceof Vector)
+        {
+            this.createRow(grid, rowIndex, object);
         }
 
         editors.push(this);
+    }
+
+    createRow(grid, rowIndex, vector)
+    {
+        var is2D = The.CoordinateSystem.is2D();
+        var components = "xyzw";
+        var field_classes = "field_editor field_editor_" + components[rowIndex];
+        for (var colIndex = 0; colIndex < 4; colIndex++)
+        {
+            if (is2D && (rowIndex == 2 || colIndex == 2))
+                continue;
+
+            var field = grid.createChildInput(null, field_classes);
+            field.binding = new Binding(field, vector, colIndex);
+            field.binding.load();
+            field.onchange = (e) => e.target.binding.save();
+
+            this.fields.push(field);
+        }
     }
 
     ajust_size()

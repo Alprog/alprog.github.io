@@ -15,7 +15,7 @@ class Config
 
         for (var key in this)
         {
-            if (key == "m1" || key == "m2")
+            if (key == "m1" || key == "m2" || key == "v")
             {
                 this[key] = this.deserialize_matrix( this[key] );
             }
@@ -48,6 +48,16 @@ class Config
                 new Vector( 0, 0, 0, 0),
                 new Vector( arr[6], arr[7], 0, arr[9])
             );
+        }
+
+        if (arr.length == 4)
+        {
+            return new Vector( arr[0], arr[1], arr[2], arr[3]);
+        }
+
+        if (arr.length == 3)
+        {
+            return new Vector( arr[0], arr[1], 0, arr[2]);
         }
 
         return Matrix4x4.Identity();

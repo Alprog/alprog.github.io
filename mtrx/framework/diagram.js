@@ -8,14 +8,15 @@ class Diagram
         if (has_side_panel)
         {
             var side_panel = main_panel.createChildDiv("side_panel");
-            var side_panel_content = side_panel.createChildDiv("side_panel_content");
+            
 
             var is2D = The.CoordinateSystem.is2D();
-
             var major = The.Config.vector == 'column' ? "column_major" : "row_major";
             var dimenstions = is2D ? "grid3x3" : "grid4x4";
-            var classes = `matrix_editor ${major} ${dimenstions}`;
+            
+            var side_panel_content = side_panel.createChildDiv("side_panel_content", major);
 
+            var classes = `matrix_editor ${major} ${dimenstions}`;
             side_panel_content.createChildDiv("info", classes);
             side_panel_content.createChildDiv("b", classes);
             side_panel_content.createChildDiv("a", classes);

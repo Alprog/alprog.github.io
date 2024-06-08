@@ -47,6 +47,7 @@ loadScript("framework/renderer.js");
 loadScript("framework/rotator.js");
 loadScript("framework/sphere.js");
 loadScript("framework/vector.js");
+loadScript("framework/vector_object.js");
 loadScript("framework/utils.js");
 
 loadScript("framework/the.js");
