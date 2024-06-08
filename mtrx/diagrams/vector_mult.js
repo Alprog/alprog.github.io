@@ -18,11 +18,14 @@ diagram.addObject(new VectorObject(The.Config.v, "a"));
 diagram.addObject(new MatrixObject(The.Config.m1, "b"));
 
 var result = mult(The.Config.v, The.Config.m1);
-diagram.addObject(new VectorObject(result, "result"));
+var vM = new VectorObject(result, "result");
+diagram.addObject(vM);
 
-this.onUpdated = () =>
+diagram.onUpdated = () =>
 {
-
+    var result = mult(The.Config.v, The.Config.m1);
+    vM.set(result);
+    vM.editor.refresh();
 };
 
 dom_flush();

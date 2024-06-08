@@ -85,6 +85,14 @@ class Matrix4x4
 		new Vector(t.x, t.y, t.z, 1)
 	)
 
+	set(m)
+	{
+		this.axisX.set(m.axisX);
+		this.axisY.set(m.axisY);
+		this.axisZ.set(m.axisZ);
+		this.translation.set(m.translation);
+	}
+
 	set_column(index, vector)
 	{
 		this[0][index] = vector[0];
