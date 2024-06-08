@@ -43,10 +43,20 @@ html, body
 .matrix_editor
 {
     display: grid;
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     aspect-ratio: 1;
     gap: 3px;
+}
+
+.grid3x3
+{
+    grid-template-rows: auto auto auto;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid4x4
+{
+    grid-template-rows: auto auto auto auto;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .row_major
@@ -87,7 +97,7 @@ html, body
 
 .field_editor_w
 {
-    color: magenta;    
+    color: magenta;
 }
 
 canvas

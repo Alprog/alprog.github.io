@@ -46,16 +46,10 @@ var editors = [];
 
 class Editor
 {
-    constructor(matrix_object)
+    constructor(matrix_object, gridName)
     {
-        var major = The.Config.vector == 'column' ? "column_major" : "row_major";
-        var dimenstions = The.CoordinateSystem.is2D() ? "2d" : "3d";
-        var classes = `matrix_editor ${major} ${dimenstions}`;
-        
-        var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
-        var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
-        var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
-        var editor = get_by_id("side_panel_content").createChildDiv(null, classes);
+        var is2D = The.CoordinateSystem.is2D();
+        var grid = get_by_id(gridName);
 
         this.fields = [];
         var components = "xyzw";
@@ -65,7 +59,10 @@ class Editor
             var vector = matrix_object[row];
             for (var col = 0; col < 4; col++)
             {
-                var field = editor.createChildInput(null, field_classes);
+                if (is2D && (row == 2 || col == 2))
+                    continue;
+
+                var field = grid.createChildInput(null, field_classes);
                 field.binding = new Binding(field, vector, col);
                 field.binding.load();
                 field.onchange = (e) => e.target.binding.save();

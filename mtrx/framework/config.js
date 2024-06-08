@@ -30,11 +30,26 @@ class Config
             arr[i] = Number(arr[i]);
         }
 
-        return new Matrix4x4(
-            new Vector( arr[0], arr[1], arr[2], arr[3]),
-            new Vector( arr[4], arr[5], arr[6], arr[7]),
-            new Vector( arr[8], arr[9], arr[10], arr[11]),
-            new Vector( arr[12], arr[13], arr[14], arr[15]),
-        );
+        if (arr.length == 16)
+        {
+            return new Matrix4x4(
+                new Vector( arr[0], arr[1], arr[2], arr[3]),
+                new Vector( arr[4], arr[5], arr[6], arr[7]),
+                new Vector( arr[8], arr[9], arr[10], arr[11]),
+                new Vector( arr[12], arr[13], arr[14], arr[15]),
+            );    
+        }
+
+        if (arr.length == 9)
+        {
+            return new Matrix4x4(
+                new Vector( arr[0], arr[1], 0, arr[2]),
+                new Vector( arr[3], arr[4], 0, arr[5]),
+                new Vector( 0, 0, 0, 0),
+                new Vector( arr[6], arr[7], 0, arr[9])
+            );
+        }
+
+        return Matrix4x4.Identity();
     }
 }
