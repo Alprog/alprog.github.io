@@ -2,7 +2,7 @@
 var diagram = new Diagram();
 
 diagram.camera = new Camera(
-    sum(The.CoordinateSystem.Forward.unit.get_scaled(9)),
+    sum(The.CoordinateSystem.Backward.unit.get_scaled(9)),
     Vector.ZeroPoint(),
     Math.PI / 4,
     diagram.canvas.getAspect()
