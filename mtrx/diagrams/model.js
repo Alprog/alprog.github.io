@@ -21,6 +21,8 @@ var model = new Littleman();
 var matrix = The.CoordinateSystem.getConvertionMatrix("RUB");
 model.transform = mult(Matrix4x4.Scaling(Vector.One().get_scaled(3)), matrix);
 
+model.transform = mult(model.transform, Matrix4x4.Rotation(The.CoordinateSystem.Up, Math.PI));
+
 rootObject.children = [
     model,
 

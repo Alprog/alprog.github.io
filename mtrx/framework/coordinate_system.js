@@ -103,7 +103,7 @@ class CoordinateSystem
 
     getConvertionMatrix(fromAxes, toAxes)
     {
-        toAxes = toAxes ?? The.Config.axes;
+        toAxes = toAxes ?? The.Config.axes + "F";
 
         var swaps = { R: "L", L: "R", U: "D", D: "U", F: "B", B: "F" };
         var table = {};

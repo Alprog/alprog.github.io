@@ -1,14 +1,14 @@
 
 class Rotator
 {
-    constructor(camera, lookAt)
+    constructor(camera, lookAt, yaw, pitch, distance)
     {
         this.camera = camera;
         this.lookAt = lookAt;
 
-        this.yaw = 0;
-        this.pitch = 0;
-        this.distance = 11;
+        this.yaw = yaw ?? 0;
+        this.pitch = pitch ?? 0;
+        this.distance = distance ?? 10;
 
         this.refreshCamera();
     }
