@@ -18,6 +18,10 @@ class Config
             if (key == "a" || key == "b")
             {
                 this[key] = this.deserialize_matrix( this[key] );
+                if (this.axes.length == 2)
+                {
+                    this[key].make2D();
+                }
             }
         }
     }

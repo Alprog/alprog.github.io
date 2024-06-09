@@ -46,7 +46,7 @@ var editors = [];
 
 class Editor
 {
-    constructor(object, gridName)
+    constructor(object, gridName, enabled)
     {
         var grid = get_by_id(gridName);
 

@@ -212,4 +212,12 @@ class Matrix4x4
 		return this.axisX.serialize() + "," + this.axisY.serialize() + "," +
 		       this.axisZ.serialize() + "," + this.translation.serialize();
 	}
+
+	make2D()
+	{
+		this.axisX.make2D();
+		this.axisY.make2D();
+		this.axisZ = new Vector(0, 0, 1, 0);
+		this.translation.make2D();
+	}
 }

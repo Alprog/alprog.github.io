@@ -1,12 +1,17 @@
 
 class VectorObject extends Vector
 {
-    constructor(vector, gridName)
+    constructor(vector, gridName, enabled)
     {
+        enabled = enabled ?? true;
+
         super(vector[0], vector[1], vector[2], vector[3]);
         this.children = [];
-        this.addPins();
-        this.editor = new Editor(this, gridName);
+        if (enabled)
+        {
+            this.addPins();
+        }
+        this.editor = new Editor(this, gridName, enabled);
     }
 
     addPins()

@@ -167,4 +167,9 @@ class Vector
 	{
 		return round2(this.x) + "," + round2(this.y) + "," + round2(this.z) + "," + round2(this.w);
 	}
+
+	make2D()
+	{
+		this.z = 0;
+	}
 }

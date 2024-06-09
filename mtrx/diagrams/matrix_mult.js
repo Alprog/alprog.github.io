@@ -24,7 +24,7 @@ diagram.addGrid();
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
 
-var result = new MatrixObject(mult(The.Config.a, The.Config.b), "result");
+var result = new MatrixObject(mult(The.Config.a, The.Config.b), "result", false);
 diagram.addObject(result);
 
 diagram.onUpdated = () =>
