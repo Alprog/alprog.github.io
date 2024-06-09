@@ -114,7 +114,7 @@ class Vector
 		this.x /= length;
 		this.y /= length;
 		this.z /= length;
-		}
+	}
 
 	homo_normalize()
 	{
@@ -168,6 +168,15 @@ class Vector
 	serialize()
 	{
 		return round2(this.x) + "," + round2(this.y) + "," + round2(this.z) + "," + round2(this.w);
+	}
+
+	as_point()
+	{
+		if (this.w == 0)
+		{
+			return new Vector(this.x, this.y, this.z, 1);
+		}
+		return this;
 	}
 
 	make2D()

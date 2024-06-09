@@ -27,6 +27,19 @@ class VectorObject extends Vector
     {
         var anchor = this.anchor ?? Vector.ZeroPoint();
         var width = 2;
-        renderer.drawLine(anchor, this, "black", width);       
+        var tip_radius = 10;
+
+        if (this.w == 0)
+        {
+            var endPoint = sum(anchor, this);
+            renderer.drawLine(anchor, endPoint, "gray", width);
+
+            renderer.drawArrow(Vector.ZeroPoint(), this, "black", width, tip_radius); 
+        }
+        else
+        {
+            renderer.drawLine(anchor, this, "black", width);    
+        }
+
     }
 }

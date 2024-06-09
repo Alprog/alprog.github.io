@@ -23,22 +23,25 @@ model.transform = mult(Matrix4x4.Scaling(Vector.One()), matrix);
 
 model.transform = mult(model.transform, Matrix4x4.Rotation(The.CoordinateSystem.Up, Math.PI));
 
+var tip_radius = 20;
+var font = "24px serif";
+
 rootObject.children = [
     model,
 
-    new Line(Vector.ZeroPoint(), Vector.UnitX(), "gray", 5),
-    new Line(Vector.ZeroPoint(), Vector.UnitY(), "gray", 5),
-    new Line(Vector.ZeroPoint(), Vector.UnitZ(), "gray", 5),
-    new Line(Vector.ZeroPoint(), Vector.UnitX().get_scaled(-1), "gray", 5),
-    new Line(Vector.ZeroPoint(), Vector.UnitY().get_scaled(-1), "gray", 5),
-    new Line(Vector.ZeroPoint(), Vector.UnitZ().get_scaled(-1), "gray", 5),
+    new Line(Vector.ZeroPoint(), Vector.UnitX(), "gray", 5, tip_radius),
+    new Line(Vector.ZeroPoint(), Vector.UnitY(), "gray", 5, tip_radius),
+    new Line(Vector.ZeroPoint(), Vector.UnitZ(), "gray", 5, tip_radius),
+    new Line(Vector.ZeroPoint(), Vector.UnitX().get_scaled(-1), "gray", 5, tip_radius),
+    new Line(Vector.ZeroPoint(), Vector.UnitY().get_scaled(-1), "gray", 5, tip_radius),
+    new Line(Vector.ZeroPoint(), Vector.UnitZ().get_scaled(-1), "gray", 5, tip_radius),
 
-    new Label("Left", The.CoordinateSystem.Left.unit),
-    new Label("Up",The.CoordinateSystem.Up.unit),
-    new Label("Backward", The.CoordinateSystem.Backward.unit),
-    new Label("Right", The.CoordinateSystem.Right.unit),
-    new Label("Down", The.CoordinateSystem.Down.unit),
-    new Label("Forward", The.CoordinateSystem.Forward.unit)
+    new Label("Left", The.CoordinateSystem.Left.unit, font),
+    new Label("Up",The.CoordinateSystem.Up.unit, font),
+    new Label("Backward", The.CoordinateSystem.Backward.unit, font),
+    new Label("Right", The.CoordinateSystem.Right.unit, font),
+    new Label("Down", The.CoordinateSystem.Down.unit, font),
+    new Label("Forward", The.CoordinateSystem.Forward.unit, font)
 ];
 
 diagram.addObject(rootObject);

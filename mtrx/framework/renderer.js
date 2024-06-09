@@ -79,6 +79,7 @@ class Renderer
     //----------------------------------------------------
 
     drawLine() { this.drawLineInternal(...cloneElements(arguments)); }
+    drawArrow() { this.drawArrowInternal(...cloneElements(arguments)); }
     drawTriangle() { this.drawTriangleInternal(...cloneElements(arguments)); }
     drawCircle() { this.drawCircleInternal(...cloneElements(arguments)); }
     drawText() { this.drawTextInternal(...cloneElements(arguments)); }
@@ -87,6 +88,23 @@ class Renderer
     {
         this.makeCloud( p0, p1 ).transformTo( CANVAS_SPACE );
         this.canvas.drawLine(p0, p1, color, width);
+    }
+
+    drawArrowInternal(p0, p1, color, width, tip_radius)
+    {
+        this.makeCloud( p0, p1 ).transformTo( CANVAS_SPACE );
+        this.canvas.drawLine(p0, p1, color, width);
+
+        if (tip_radius)
+        {
+            var dir = diff(p1, p0).get_normalized();
+            var base = diff(p1, dir.get_scaled(tip_radius));
+            var norm = new Vector(-dir.y, dir.x);
+            var norm_offset = norm.get_scaled(tip_radius * 0.6);
+            var p2 = sum(base, norm_offset);
+            var p3 = diff(base, norm_offset);
+            this.canvas.drawTriangle(p1, p2, p3, color);     
+        }
     }
 
     drawTriangleInternal(a, b, c, color)
@@ -132,9 +150,9 @@ class Renderer
         this.canvas.drawCircle(center, radius, color, width);
     }
 
-    drawTextInternal(text, position)
+    drawTextInternal(text, position, font)
     {
         this.makeCloud( position ).transformTo( CANVAS_SPACE );
-        this.canvas.drawText(text, position);
+        this.canvas.drawText(text, position, font);
     }
 }

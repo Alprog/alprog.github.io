@@ -21,16 +21,21 @@ class Pin
 	drag(mouse_args)
 	{
         var plane = this.get_drag_plane(mouse_args.ray.direction);
-        this.set_position(mouse_args.ray.castToPlane(plane));
+		var point = mouse_args.ray.castToPlane(plane);
+		if (plane.center.w == 0)
+		{
+			point.w = 0;
+		}
+        this.set_position(point);
 		this.on_changed();
 		this.dragging = true; 
 	}
 
 	hover(renderer)
 	{
-		var position = this.get_position();
+		var point = this.get_position().as_point();		
 		var matrix = renderer.matrix_table.getMatrix(WORLD_SPACE, CANVAS_SPACE);
-		var screenPoint = mult(position, matrix);
+		var screenPoint = mult(point, matrix);
 		screenPoint.homo_normalize();
 
 		var delta = diff(screenPoint, renderer.canvas.mousePosition).get_length2D();
