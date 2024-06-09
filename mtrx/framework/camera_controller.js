@@ -1,15 +1,15 @@
 
 class CameraController
 {
-    constructor(camera, lookAt, yaw, pitch, distance)
+    constructor(camera, lookAt, distance, yaw, pitch)
     {
         this.camera = camera;
         this.lookAt = lookAt;
 
+        this.distance = distance ?? 2;
         this.yaw = yaw ?? 0;
         this.pitch = pitch ?? 0;
-        this.distance = distance ?? 2;
-
+        
         this.refreshCamera();
     }
 

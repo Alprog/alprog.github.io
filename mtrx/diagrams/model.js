@@ -21,8 +21,6 @@ var model = new Littleman();
 var matrix = The.CoordinateSystem.getConvertionMatrix("RUB");
 model.transform = mult(Matrix4x4.Scaling(Vector.One()), matrix);
 
-model.transform = mult(model.transform, Matrix4x4.Rotation(The.CoordinateSystem.Up, Math.PI));
-
 var tip_radius = 20;
 var font = "24px serif";
 
@@ -43,6 +41,8 @@ rootObject.children = [
     new Label("Down", The.CoordinateSystem.Down.unit, font),
     new Label("Forward", The.CoordinateSystem.Forward.unit, font)
 ];
+
+rootObject.transform = Matrix4x4.Rotation(The.CoordinateSystem.Up, Math.PI);
 
 diagram.addObject(rootObject);
 
