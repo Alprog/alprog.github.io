@@ -1,18 +1,18 @@
 
 
-The.Defaults.set("a", new Vector(1, 2, 3, 1));
+The.Defaults.set("a", new Vector(0.2, 0.4, 0.6, 1));
 
-var s = Matrix4x4.Scaling(new Vector(1, 1, 1));
+var s = Matrix4x4.Scaling(new Vector(0.2, 0.2, 0.2));
 var rx = Matrix4x4.RotationX(0);
 var ry = Matrix4x4.RotationY(0);
 var rz = Matrix4x4.RotationZ(0);
-var t = Matrix4x4.Translation(new Vector(1, 1, 1));
+var t = Matrix4x4.Translation(new Vector(0.2, 0.2, 0.2));
 var TRS = mult(s, rx, ry, rz, t);
 The.Defaults.set("b", TRS);
 
 var diagram = new Diagram(true);
-diagram.addObject(new Rotator(diagram.camera, new Vector(2.5, 2.5, 2.5, 1)));
 diagram.addGrid();
+diagram.addObject(new Rotator(diagram.camera, diagram.grid.center));
 
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");

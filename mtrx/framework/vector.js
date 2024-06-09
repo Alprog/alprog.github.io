@@ -20,7 +20,8 @@ class Vector
 	set w(value) { this[3] = value }
 
 	static Zero = () => new Vector(0, 0, 0, 0)
-	static One = () => new Vector(1, 1, 1, 1)
+	static Half = () => new Vector(0.5, 0.5, 0.5, 0.5);
+	static One = () => new Vector(1, 1, 1, 1);
 
 	static Right = () => The.CoordinateSystem.Right.direction.clone();
 	static Left = () => The.CoordinateSystem.Left.direction.clone();
@@ -37,6 +38,7 @@ class Vector
 	static DirectionZ = () => new Vector(0, 0, 1, 0);
 
 	static ZeroPoint = () => new Vector(0, 0, 0, 1);
+	static HalfPoint = () => new Vector(0.5, 0.5, 0.5, 1);
 
     get_length()
     {

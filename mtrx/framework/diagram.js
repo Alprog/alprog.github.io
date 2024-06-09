@@ -171,7 +171,8 @@ class Diagram
 
     addGrid()
     {
-        return this.addObject(new Grid());
+        this.grid = new Grid();
+        return this.addObject(this.grid);
     }
 
     addMesh()

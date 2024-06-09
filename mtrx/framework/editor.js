@@ -54,14 +54,15 @@ class Editor
        
         if (object instanceof Matrix4x4)
         {
-            for (var rowIndex = 0; rowIndex < 4; rowIndex++)
+            var components = [ "XXXx", "YYYy", "ZZZz", "WWWw" ];
+            for (var majorIndex of this.getIndicies())
             {
-                this.createRow(grid, rowIndex, object[rowIndex]);
+                this.createRow(grid, object[majorIndex], components[majorIndex]);
             }
         }
         else if (object instanceof Vector)
         {
-            this.createRow(grid, rowIndex, object);
+            this.createRow(grid, object, "XYZW");
         }
 
         if (disabled)
@@ -75,21 +76,21 @@ class Editor
         editors.push(this);
     }
 
-    createRow(grid, rowIndex, vector)
+    createRow(grid, vector, components)
     {
-        var is2D = The.CoordinateSystem.is2D();
-        var components = "xyzw";
-        var field_classes = "field_editor field_editor_" + components[rowIndex];
-        for (var colIndex = 0; colIndex < 4; colIndex++)
+        for (var minorIndex of this.getIndicies())
         {
-            if (is2D && (rowIndex == 2 || colIndex == 2))
-                continue;
-
+            var component = components[minorIndex];
+            var lowerCaseComponent = component.toLowerCase();
+            var field_classes = "field_editor field_editor_" + lowerCaseComponent;
             var field = grid.createChildInput(null, field_classes);
-            field.binding = new Binding(field, vector, colIndex);
+            field.binding = new Binding(field, vector, minorIndex);
             field.binding.load();
             field.onchange = (e) => e.target.binding.save();
-
+            if (component == lowerCaseComponent)
+            {
+                field.disabled = true;
+            }
             this.fields.push(field);
         }
     }
@@ -108,5 +109,17 @@ class Editor
         {
             field.binding.load();
         }
-    }    
+    } 
+    
+    getIndicies()
+    {
+        if (The.CoordinateSystem.is2D())
+        {
+            return [0, 1, /* 2, */ 3];
+        }
+        else
+        {
+            return [0, 1, 2, 3];
+        }
+    }
 }

@@ -80,6 +80,11 @@ html, body
     aspect-ratio: 1;
 }
 
+.field_editor:disabled
+{
+    background-color: #eeeeee;
+}
+
 .field_editor_x
 {
     color: red;

@@ -8,7 +8,7 @@ class Rotator
 
         this.yaw = yaw ?? 0;
         this.pitch = pitch ?? 0;
-        this.distance = distance ?? 10;
+        this.distance = distance ?? 2;
 
         this.refreshCamera();
     }
