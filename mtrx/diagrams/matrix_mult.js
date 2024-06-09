@@ -17,7 +17,8 @@ var t = Matrix4x4.Translation(new Vector(1.5, 0.2, 0));
 var TRS = mult(s, rx, ry, rz, t);
 The.Defaults.set("b", TRS);
 
-var diagram = new Diagram(true);
+var diagram = new Diagram();
+diagram.createSidePanel();
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 3));
 

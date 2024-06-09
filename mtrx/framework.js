@@ -46,6 +46,7 @@ loadScript("framework/pin.js");
 loadScript("framework/point_cloud.js");
 loadScript("framework/ray.js");
 loadScript("framework/renderer.js");
+loadScript("framework/side_panel.js");
 loadScript("framework/sphere.js");
 loadScript("framework/vector.js");
 loadScript("framework/vector_object.js");

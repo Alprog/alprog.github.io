@@ -9,7 +9,8 @@ html, body
 
 #main_panel
 {
-    display: flex; 
+    display: flex;
+    flex-direction: row-reverse; 
     height: 100%;
 }
 
