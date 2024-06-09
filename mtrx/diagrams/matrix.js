@@ -7,13 +7,14 @@ var ry = Matrix4x4.RotationY(0);
 var rz = Matrix4x4.RotationZ(Math.PI / 6);
 var t = Matrix4x4.Translation(new Vector(1, 2));
 var TRS = mult(s, rx, ry, rz, t);
-The.Defaults.set("m1", TRS);
+The.Defaults.set("a", TRS);
 
 
 var diagram = new Diagram(true);
 diagram.addObject(new Rotator(diagram.camera, new Vector(2.5, 2.5, 2.5, 1)));
 diagram.addGrid();
-var matrix_object = new MatrixObject(The.Config.m1, "result");
+
+var matrix_object = new MatrixObject(The.Config.a, "result");
 diagram.addObject(matrix_object);
 
 dom_flush();

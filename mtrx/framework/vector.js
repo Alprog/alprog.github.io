@@ -90,29 +90,29 @@ class Vector
 
     sub(v)
     {
-		  this.x -= v.x;
-		  this.y -= v.y;
-		  this.z -= v.z;
+		this.x -= v.x;
+		this.y -= v.y;
+		this.z -= v.z;
     }
 	
     scale(k, scale_w)
     {
-      this.x *= k;
-      this.y *= k;
-      this.z *= k;
-      if (scale_w)
-      {
-        this.w *= k;
-      }
+		this.x *= k;
+		this.y *= k;
+		this.z *= k;
+		if (scale_w)
+		{
+			this.w *= k;
+		}
     }
 		
 	normalize()
 	{
-    var length = this.get_length();
-    this.x /= length;
-    this.y /= length;
-    this.z /= length;
-	}
+		var length = this.get_length();
+		this.x /= length;
+		this.y /= length;
+		this.z /= length;
+		}
 
 	homo_normalize()
 	{

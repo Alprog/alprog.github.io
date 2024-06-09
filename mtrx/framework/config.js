@@ -15,7 +15,7 @@ class Config
 
         for (var key in this)
         {
-            if (key == "m1" || key == "m2" || key == "v")
+            if (key == "a" || key == "b")
             {
                 this[key] = this.deserialize_matrix( this[key] );
             }
