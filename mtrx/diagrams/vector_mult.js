@@ -5,7 +5,7 @@ The.Defaults.set("a", new Vector(0.2, 0.4, 0.6, 1));
 var s = Matrix4x4.Scaling(new Vector(1, 1, 1));
 var rx = Matrix4x4.RotationX(0);
 var ry = Matrix4x4.RotationY(0);
-var rz = Matrix4x4.RotationZ(-Math.PI / 2);
+var rz = Matrix4x4.RotationZ(0);
 var t = Matrix4x4.Translation(new Vector(1.5, 0.2, 0));
 var TRS = mult(s, rx, ry, rz, t);
 The.Defaults.set("b", TRS);
