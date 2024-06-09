@@ -1,17 +1,15 @@
 
 class VectorObject extends Vector
 {
-    constructor(vector, gridName, enabled)
+    constructor(vector, gridName, disabled)
     {
-        enabled = enabled ?? true;
-
         super(vector[0], vector[1], vector[2], vector[3]);
         this.children = [];
-        if (enabled)
+        if (!disabled)
         {
             this.addPins();
         }
-        this.editor = new Editor(this, gridName, enabled);
+        this.editor = new Editor(this, gridName, disabled);
     }
 
     addPins()
@@ -27,8 +25,8 @@ class VectorObject extends Vector
 
     render(renderer)
     {
-        var origin = Vector.ZeroPoint();
+        var anchor = this.anchor ?? Vector.ZeroPoint();
         var width = 2;
-        renderer.drawLine(origin, this, "black", width);       
+        renderer.drawLine(anchor, this, "black", width);       
     }
 }

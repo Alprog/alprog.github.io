@@ -1,17 +1,15 @@
 
 class MatrixObject extends Matrix4x4
 {
-    constructor(matrix, gridName, enabled)
+    constructor(matrix, gridName, disabled)
     {
-        enabled = enabled ?? true;
-
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
         this.children = [];
-        if (enabled)
+        if (!disabled)
         {
             this.addPins();
         }
-        this.editor = new Editor(this, gridName, enabled);
+        this.editor = new Editor(this, gridName, disabled);
     }
 
     addPins()
@@ -48,7 +46,9 @@ class MatrixObject extends Matrix4x4
         {
             renderer.drawLine(origin, z, "blue", width);
         }
-        renderer.drawLine(Vector.ZeroPoint(), this.translation, "magenta", width);
+
+        var anchor = this.anchor ?? Vector.ZeroPoint();
+        renderer.drawLine(anchor, this.translation, "magenta", width);
    
         width = 0.5;
         var color = "black";

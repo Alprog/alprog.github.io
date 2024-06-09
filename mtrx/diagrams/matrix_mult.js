@@ -24,13 +24,14 @@ diagram.addGrid();
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
 
-var result = new MatrixObject(mult(The.Config.a, The.Config.b), "result", false);
+var result = new MatrixObject(mult(The.Config.a, The.Config.b), "result", true);
 diagram.addObject(result);
 
 diagram.onUpdated = () =>
 {
     result.set(mult(The.Config.a, The.Config.b));
     result.editor.refresh();
+    result.anchor = The.Config.b.translation;
 };
 
 dom_flush();

@@ -46,7 +46,7 @@ var editors = [];
 
 class Editor
 {
-    constructor(object, gridName, enabled)
+    constructor(object, gridName, disabled)
     {
         var grid = get_by_id(gridName);
 
@@ -62,6 +62,14 @@ class Editor
         else if (object instanceof Vector)
         {
             this.createRow(grid, rowIndex, object);
+        }
+
+        if (disabled)
+        {
+            for (var field of this.fields)
+            {
+                field.disabled = true;
+            }
         }
 
         editors.push(this);
