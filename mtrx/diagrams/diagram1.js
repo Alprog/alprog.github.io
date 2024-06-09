@@ -1,7 +1,7 @@
 
 var diagram = new Diagram();
 
-diagram.addObject(new Rotator(diagram.camera, Vector.One().get_scaled(75)));
+diagram.addObject(new CameraController(diagram.camera, Vector.One().get_scaled(75)));
 diagram.addGrid();
 
 var a = 0;

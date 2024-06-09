@@ -68,6 +68,14 @@ class Camera
         return direction;
     }
 
+    getForward()
+    {
+        var forward = diff(this.lookAt, this.position);
+        forward.normalize();
+        forward.w = 0;
+        return forward;
+    }
+
     getViewMatrix()
     {
         if (!this.viewMatrix)
@@ -75,21 +83,12 @@ class Camera
             var offset = this.position.get_scaled(-1);
             var offsetMtrx = Matrix4x4.Translation(offset);
     
-            var forward = diff(this.lookAt, this.position);
-            forward.normalize();
-            forward.w = 0;
+            var forward = this.getForward();
 
             if (The.CoordinateSystem.isRHS())
             {
                 forward.negate();
             }
-
-            // var axisA = getBaseAxis(forward, 'Forward');
-            // var axisB = getBaseAxis(The.CoordinateSystem.Up.direction, 'Up');
-            // var axisC = calc3rdAxis(axisA, axisB);
-            // axisC.normalize();
-            // axisB = calc3rdAxis(axisA, axisC);
-            // var orientationMtrx = createBasis(axisA, axisB, axisC);
             
             var right = cross(The.CoordinateSystem.Up.direction, forward);
             right.normalize();

@@ -9,28 +9,27 @@ class Canvas
 
 		element.addEventListener("wheel", (e) => { this.onMouseWheel(e)});
 		element.addEventListener("mousemove", (e) => { this.onMouseMove(e)});
-		element.addEventListener("mousedown", (e) => { this.setPressed(true); });
+		element.addEventListener("mousedown", (e) => { this.onMouseDown(e); });
 		element.addEventListener("mouseup", (e) => { this.setPressed(false); });
 		element.addEventListener("mouseout", (e) => { this.setPressed(false); });
+		element.addEventListener('contextmenu', event => event.preventDefault());
 		this.element = element;
 
-		
-		this.refreshSize();
-		
+		this.refreshSize();	
 
 		this.ctx = element.getContext("2d");
 		
 		this.worldToScreenMtrx = Matrix4x4.Identity();
 
-		this.scale = 1;
 		this.color = "black";
 		this.width = 1;
 		this.mousePosition = Vector.ZeroPoint();
 	}
 
-	setPressed(pressed)
+	setPressed(pressed, button)
 	{
 		this.pressed = pressed;
+		this.button = button;
 		this.element.style = pressed ? "cursor:grab" : "";
 	}
 
@@ -53,22 +52,21 @@ class Canvas
 
 	onMouseWheel(event)
 	{
-		var zoomStep = 1.1;
-		var zoomValue = event.deltaY > 0 ? 1 / zoomStep : zoomStep;
-		this.zoom(zoomValue);
-		event.preventDefault();
-		event.stopPropagation();
-		return false
+		if (this.diagram.onMouseWheel(event))
+		{
+			event.preventDefault();
+			event.stopPropagation();	
+		}
+	}
+
+	onMouseDown(event)
+	{
+		this.setPressed(true, event.button);
 	}
 
 	onMouseMove(event)
 	{
 		this.mousePosition = new Vector(event.offsetX, event.offsetY, 0, 1);
-	}
-
-	zoom(value)
-	{
-		this.scale = this.scale * value;
 	}
 
 	clear()

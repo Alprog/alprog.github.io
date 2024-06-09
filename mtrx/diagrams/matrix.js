@@ -12,7 +12,7 @@ The.Defaults.set("a", TRS);
 
 var diagram = new Diagram(true);
 diagram.addGrid();
-diagram.addObject(new Rotator(diagram.camera, diagram.grid.center));
+diagram.addObject(new CameraController(diagram.camera, diagram.grid.center));
 
 var matrix_object = new MatrixObject(The.Config.a, "result");
 diagram.addObject(matrix_object);

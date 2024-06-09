@@ -136,15 +136,16 @@ class Diagram
         var prevClipPos = this.mouseClipPos ?? Vector.Zero();
         this.mouseClipPos = this.calcMouseClipPos();
 
-        var mouse_args = {
-            ray: this.calcMouseRay(),
-            delta: diff(this.mouseClipPos, prevClipPos)
-        };
-
         if (this.canvas.pressed)
         {
             if (this.hovered_object)
             {
+                var mouse_args = {
+                    ray: this.calcMouseRay(),
+                    delta: diff(this.mouseClipPos, prevClipPos),
+                    button: this.canvas.button
+                };
+
                 this.hovered_object.drag(mouse_args);
             }
         }
@@ -152,6 +153,17 @@ class Diagram
         {
             var object = this.mouse_pick(this.objects);
             this.hover(object);        
+        }
+    }
+
+    onMouseWheel(event)
+    {
+        for (var child of this.objects)
+        {
+            if (child.onMouseWheel && child.onMouseWheel(event))
+            {
+                return true;
+            }
         }
     }
 

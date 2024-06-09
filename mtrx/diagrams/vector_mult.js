@@ -12,7 +12,7 @@ The.Defaults.set("b", TRS);
 
 var diagram = new Diagram(true);
 diagram.addGrid();
-diagram.addObject(new Rotator(diagram.camera, diagram.grid.center));
+diagram.addObject(new CameraController(diagram.camera, diagram.grid.center));
 
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
