@@ -18,6 +18,7 @@ function loadStyle(path)
 
 loadStyle("diagram_styles.css");
 
+loadScript("framework/animator.js");
 loadScript("framework/address_bar.js");
 loadScript("framework/axis_pin.js");
 loadScript("framework/camera.js");

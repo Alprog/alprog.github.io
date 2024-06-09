@@ -9,23 +9,30 @@ class Diagram
         {
             var side_panel = main_panel.createChildDiv("side_panel");
             
+            var control_panel = side_panel.createChildDiv("control_panel");
+            {
+                var button = control_panel.createChild("button", "animator_button");
+                button.innerHTML = "animator";
+            }
+
 
             var is2D = The.CoordinateSystem.is2D();
             var major = The.Config.vector == 'column' ? "column_major" : "row_major";
             var dimenstions = is2D ? "grid3x3" : "grid4x4";
             
-            var side_panel_content = side_panel.createChildDiv("side_panel_content", major);
+            var multiplication_grid = side_panel.createChildDiv("multiplication_grid", major);
 
             var classes = `matrix_editor ${major} ${dimenstions}`;
-            side_panel_content.createChildDiv("info", classes);
-            side_panel_content.createChildDiv("b", classes);
-            side_panel_content.createChildDiv("a", classes);
-            side_panel_content.createChildDiv("result", classes);
+            multiplication_grid.createChildDiv("info", classes);
+            multiplication_grid.createChildDiv("b", classes);
+            multiplication_grid.createChildDiv("a", classes);
+            multiplication_grid.createChildDiv("result", classes);
         }
         
         var canvas_panel = main_panel.createChildDiv("canvas_panel");
 
         this.canvas = new Canvas(this);
+        this.animator = new Animator(this);
 
         this.camera = new Camera(
             new Vector(0, 0, -350),
@@ -45,9 +52,12 @@ class Diagram
 
     requestRender()
     {
-        requestAnimationFrame(()=>{
-            this.update();
+        this.prevTimeStamp = 0;
+        requestAnimationFrame((timeStamp)=>{
+            var deltaTime = timeStamp - this.prevTimeStamp;
+            this.update(deltaTime);
             this.render();
+            this.prevTimeStamp = timeStamp;
             The.AddressBar.sync_with_config();
         });
     }
@@ -76,8 +86,10 @@ class Diagram
         }
     }
 
-    update()
+    update(deltaTime)
     {
+        this.animator.update(deltaTime);
+
         if (this.canvas.refreshSize())
         {
             for (var editor of editors)

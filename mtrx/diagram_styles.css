@@ -29,9 +29,16 @@ html, body
     resize: horizontal;
     overflow: hidden;
     display: flex;
+    flex-direction: column;
 }
 
-#side_panel_content
+#control_panel
+{
+    display: flex;
+    margin: auto;
+}
+
+#multiplication_grid
 {
     display: grid;
     grid-template-rows: auto auto;
