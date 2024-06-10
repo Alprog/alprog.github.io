@@ -1,6 +1,6 @@
 
 
-The.Defaults.set("a", new Vector(0.2, 0.4, 0.6, 1));
+The.Defaults.set("a", new Vector(0.2, 0.4, 0.6, 0));
 
 var s = Matrix4x4.Scaling(new Vector(1, 1, 1));
 var rx = Matrix4x4.RotationX(0);
@@ -13,7 +13,7 @@ The.Defaults.set("b", TRS);
 var diagram = new Diagram();
 diagram.createSidePanel();
 diagram.addGrid();
-diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 3));
+diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4));
 
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
@@ -27,5 +27,7 @@ diagram.onUpdated = () =>
     result.editor.refresh();
     result.anchor = The.Config.b.translation;
 };
+
+diagram.animator.init();
 
 dom_flush();

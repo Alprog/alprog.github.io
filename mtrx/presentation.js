@@ -11,7 +11,7 @@ var slides = [
     '<img src="slides/slide-7.png" class="img_fullscreen"/>',
     '<img src="slides/slide-8.png" class="img_fullscreen"/>',
 
-    '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=promo.js"></iframe>',
     
     '<img src="slides/slide-9.png" class="img_fullscreen"/>',
     '<img src="slides/slide-10.png" class="img_fullscreen"/>',
@@ -58,6 +58,8 @@ var slides = [
     '<img src="slides/slide-39.png" class="img_fullscreen"/>',
     '<img src="slides/slide-40.png" class="img_fullscreen"/>',
     '<img src="slides/slide-41.png" class="img_fullscreen"/>',
+    
+    '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
 
     '<img src="slides/sheet_1.png" class="img_sheet"/>',
     '<img src="slides/sheet_2.png" class="img_sheet"/>',
@@ -78,10 +80,18 @@ var slides = [
     '<img src="slides/sheet_17.png" class="img_sheet"/>',
     '<img src="slides/sheet_18.png" class="img_sheet"/>',
     '<img src="slides/sheet_19.png" class="img_sheet"/>',
+
+    '<iframe class="diagram" title="D1" src="diagram.html?script=point_mult.js"></iframe>',
+
     '<img src="slides/sheet_20.png" class="img_sheet"/>',
+
+    '<iframe class="diagram" title="D1" src="diagram.html?script=direction_mult.js"></iframe>',
+
     '<img src="slides/sheet_21.png" class="img_sheet"/>',
     '<img src="slides/sheet_22.png" class="img_sheet"/>',
     '<img src="slides/sheet_23.png" class="img_sheet"/>',
+
+    '<iframe class="diagram" title="D1" src="diagram.html?script=matrix_mult.js"></iframe>',
 
     '<img src="slides/slide-42.png" class="img_fullscreen"/>',
 ];
