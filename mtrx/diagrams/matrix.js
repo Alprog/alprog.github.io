@@ -11,7 +11,7 @@ The.Defaults.set("a", TRS);
 
 
 var diagram = new Diagram();
-diagram.createSidePanel();
+diagram.createSidePanel("single");
 
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, diagram.grid.center));

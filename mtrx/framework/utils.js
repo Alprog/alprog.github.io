@@ -38,3 +38,8 @@ function getBestElement(array, functor)
     }
     return best_element;
 }
+
+function shortText(value)
+{
+    return value.toString().substring(0, 5);
+}

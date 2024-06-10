@@ -50,7 +50,21 @@ class Pin
 	render(renderer)
 	{
 		var position = this.get_position();
-		renderer.drawCircle(position, pin_radius, this.get_color(), pin_width)
+		renderer.drawCircle(position, pin_radius, this.get_color(), pin_width);
+
+		if (this.hovered)
+		{
+			var projected = position.clone();
+			projected.y = 0; 
+			renderer.drawLine(position, projected, "gray", 1);
+			renderer.drawText(shortText(position.x), projected, 2);
+
+			var projected = position.clone();
+			projected.x = 0; 
+			renderer.drawLine(position, projected, "gray", 1);
+			renderer.drawText(shortText(position.y), projected, 2);
+		}
+
 		this.dragging = false;
 	}
 }

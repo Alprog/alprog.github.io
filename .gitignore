@@ -24,3 +24,5 @@ Thumbs.db
 .vs
 bin
 obj
+
+mtrx/tools/*.pdf

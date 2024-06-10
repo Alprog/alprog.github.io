@@ -59,12 +59,14 @@ html, body
 {
     grid-template-rows: auto auto auto;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: auto;
 }
 
 .grid4x4
 {
     grid-template-rows: auto auto auto auto;
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: auto;
 }
 
 .row_major

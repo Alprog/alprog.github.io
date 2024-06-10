@@ -22,7 +22,7 @@ var matrix = The.CoordinateSystem.getConvertionMatrix("RUB");
 model.transform = mult(Matrix4x4.Scaling(Vector.One()), matrix);
 
 var tip_radius = 20;
-var font = "24px serif";
+var font = 3;
 
 rootObject.children = [
     model,

@@ -10,11 +10,7 @@ class Binding
 
     load()
     {
-        var text = this.vector[this.index].toString();
-        if (text.length > 5)
-        {
-            text = text.substring(0, 5);
-        }
+        var text = shortText(this.vector[this.index]);
         if (this.textedit.value != text)
         {
             this.textedit.value = text;

@@ -1,7 +1,7 @@
 
 class Diagram
 {	
-	constructor(has_side_panel)
+	constructor(layout)
 	{
         this.main_panel = document.body.createChildDiv("main_panel");
 
@@ -163,9 +163,9 @@ class Diagram
         this.requestRender();
 	}
 
-    createSidePanel()
+    createSidePanel(layout)
     {
-        this.sidePanel = new SidePanel(this);
+        this.sidePanel = new SidePanel(this, layout);
         return this.sidePanel;
     }
 

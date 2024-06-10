@@ -8,7 +8,7 @@ class Custom
 {
 	render(renderer)
 	{   
-        renderer.drawText(The.Config.axes, diagram.grid.center);
+        renderer.drawText(The.Config.axes, diagram.grid.center, 15);
     }
 }
 

@@ -104,12 +104,15 @@ class Canvas
 		this.ctx.stroke();
 	}
 
-	drawText(text, startPoint, font)
+	drawText(text, startPoint, size)
 	{
+		size = size ?? 4;
+		size = Math.round(this.element.offsetHeight * size / 100);
+
 		this.ctx.fillStyle = "black"
-		this.ctx.font = font ?? "16px serif";
+		this.ctx.font = size + "px serif";
 		this.ctx.textAlign = "center";
+		this.ctx.textBaseline = 'middle';
 		this.ctx.fillText(text, startPoint.x, startPoint.y);
 	}
-
 }
