@@ -10,11 +10,12 @@ var slides = [
     '<img src="slides/slide-6.png" class="img_fullscreen"/>',
     '<img src="slides/slide-7.png" class="img_fullscreen"/>',
     '<img src="slides/slide-8.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-9.png" class="img_fullscreen"/>',
 
     '<iframe class="diagram" title="D1" src="diagram.html?script=promo.js"></iframe>',
     
-    '<img src="slides/slide-9.png" class="img_fullscreen"/>',
     '<img src="slides/slide-10.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-11.png" class="img_fullscreen"/>',
 
     '<img src="slides/mult_0.png" class="img_mult"/>',
     '<img src="slides/mult_1.png" class="img_mult"/>',
@@ -22,15 +23,16 @@ var slides = [
     '<img src="slides/mult_3.png" class="img_mult"/>',
     '<img src="slides/mult_4.png" class="img_mult"/>',
 
-    '<img src="slides/slide-11.png" class="img_fullscreen"/>',
+
     '<img src="slides/slide-12.png" class="img_fullscreen"/>',
     '<img src="slides/slide-13.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-14.png" class="img_fullscreen"/>',
 
     '<img src="freya.webp"/>',
     '<iframe class="diagram" title="D1" src="diagram.html?script=model.js"></iframe>',
     '<iframe class="diagram" title="D1" src="reality.html"></iframe>',
 
-    '<img src="slides/slide-14.png" class="img_fullscreen"/>',
+
     '<img src="slides/slide-15.png" class="img_fullscreen"/>',
     '<img src="slides/slide-16.png" class="img_fullscreen"/>',
     '<img src="slides/slide-17.png" class="img_fullscreen"/>',
@@ -58,6 +60,10 @@ var slides = [
     '<img src="slides/slide-39.png" class="img_fullscreen"/>',
     '<img src="slides/slide-40.png" class="img_fullscreen"/>',
     '<img src="slides/slide-41.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-42.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-43.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-44.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-45.png" class="img_fullscreen"/>',
     
     '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
 
@@ -93,7 +99,14 @@ var slides = [
 
     '<iframe class="diagram" title="D1" src="diagram.html?script=matrix_mult.js"></iframe>',
 
-    '<img src="slides/slide-42.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-46.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-47.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-48.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-49.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-50.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-51.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-52.png" class="img_fullscreen"/>',
+    '<img src="slides/slide-53.png" class="img_fullscreen"/>',
 ];
 
 var currentSlide = 0;
