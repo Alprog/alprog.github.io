@@ -1,5 +1,5 @@
 
-The.AddressBar.force_param("axes", "RUB")
+The.AddressBar.force_param("axes", "RUF")
 
 var matrix = new Matrix4x4();
 var s = Matrix4x4.Scaling(new Vector(0.4, 0.2, 0.4));
@@ -40,7 +40,7 @@ diagram.onUpdated = () =>
 
     var s = Matrix4x4.Scaling(Vector.One().get_scaled(0.03));
     var t1 = Matrix4x4.Translation(new Vector(0.5, 0, 0));
-    var r = Matrix4x4.RotationY(a);
+    var r = Matrix4x4.RotationY(-a);
     var t2 = Matrix4x4.Translation(new Vector(0.5, 0.5, 0.5));
     airplane.transform = mult(convert, s, t1, r, t2);
 

@@ -17,10 +17,10 @@ var slides = [
     
     // ------------ Basic
 
-    '<h1>world</h1>', // Diagram
-    '<h1>vector-point</h1>', // Diagram
+    '<iframe class="diagram" title="D1" src="diagram.html?script=world.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector-point.js"></iframe>',
     '<img src="slides/homogeneous.png" class="img_sheet"/>',
-    '<h1>vector-homo</h1>', // Diagram
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector-homo.js"></iframe>',
     '<img src="slides/anatomy.png" class="img_sheet"/>',
     '<h1>show matrix</h1>', // Diagram
     '<h1>matrix2d</h1>', // Diagram

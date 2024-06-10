@@ -87,6 +87,7 @@ class CameraController
         var zoomStep = 1.1;
 		var zoomValue = event.deltaY > 0 ? zoomStep : 1 / zoomStep;
         this.distance *= zoomValue;
+        this.distance = max(1, this.distance);
         this.refreshCamera();
         return true;
     }

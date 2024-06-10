@@ -175,9 +175,9 @@ class Diagram
         return object;
     }
 
-    addGrid()
+    addGrid(drawLabels)
     {
-        this.grid = new Grid();
+        this.grid = new Grid(drawLabels);
         return this.addObject(this.grid);
     }
 

@@ -1,6 +1,8 @@
 
-var pin_radius = 8
-var pin_width = 3
+
+var dot_radius = 2;
+var pin_radius = 8;
+var pin_width = 3;
 
 class Pin
 {
@@ -50,7 +52,9 @@ class Pin
 	render(renderer)
 	{
 		var position = this.get_position();
-		renderer.drawCircle(position, pin_radius, this.get_color(), pin_width);
+		
+		var radius = this.hovered ? pin_radius : dot_radius;
+		renderer.drawCircle(position, radius, this.get_color(), pin_width);
 
 		if (this.hovered)
 		{

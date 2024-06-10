@@ -1,7 +1,4 @@
 
-var pin_radius = 8
-var pin_width = 3
-
 class AxisPin
 {
 	constructor(axisA, axisB, axisC, translation, on_changed)
@@ -80,7 +77,8 @@ class AxisPin
 	render(renderer)
 	{
 		var position = this.get_position();
-		renderer.drawCircle(position, pin_radius, this.get_color(), pin_width);
+		var radius = this.hovered ? pin_radius : dot_radius;
+		renderer.drawCircle(position, radius, this.get_color(), pin_width);
 		if (this.dragging)
 		{
 			if (this.normal_axis != this.axisA)

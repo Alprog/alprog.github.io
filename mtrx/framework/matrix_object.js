@@ -40,7 +40,9 @@ class MatrixObject extends Matrix4x4
         var z = sum(origin, this[2]);
         
         var width = 2;
-        renderer.drawLine(origin, x, "red", width);
+        var translation_width = 1;
+        var tip_radius = 10;
+        renderer.drawArrow(origin, x, "red", width, tip_radius);
         renderer.drawLine(origin, y, "green", width);
         if (The.CoordinateSystem.is3D())
         {
@@ -48,7 +50,7 @@ class MatrixObject extends Matrix4x4
         }
 
         var anchor = this.anchor ?? Vector.ZeroPoint();
-        renderer.drawLine(anchor, this.translation, "magenta", width);
+        renderer.drawLine(anchor, this.translation, "magenta", translation_width);
    
         width = 0.5;
         var color = "black";

@@ -27,7 +27,7 @@ class SidePanel
 
         if (single)
         {
-            this.element.createChildDiv("result", classes);    
+            this.element.createChildDiv("a", classes);    
         }
         else
         {

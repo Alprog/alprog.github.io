@@ -104,12 +104,12 @@ class Canvas
 		this.ctx.stroke();
 	}
 
-	drawText(text, startPoint, size)
+	drawText(text, startPoint, size, color)
 	{
 		size = size ?? 4;
 		size = Math.round(this.element.offsetHeight * size / 100);
 
-		this.ctx.fillStyle = "black"
+		this.ctx.fillStyle = color ?? "black"
 		this.ctx.font = size + "px serif";
 		this.ctx.textAlign = "center";
 		this.ctx.textBaseline = 'middle';

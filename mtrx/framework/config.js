@@ -71,11 +71,11 @@ class Config
     {
         if (this[key] instanceof Matrix4x4)
         {
-            this[key] = new MatrixObject(this[key], gridName);
+            this[key] = new MatrixObject(this[key], gridName ?? key);
         }
         else if (this[key] instanceof Vector)
         {
-            this[key] = new VectorObject(this[key], gridName);
+            this[key] = new VectorObject(this[key], gridName ?? key);
         }
         diagram.addObject(this[key]);
     }

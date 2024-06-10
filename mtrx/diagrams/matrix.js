@@ -16,7 +16,7 @@ diagram.createSidePanel("single");
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, diagram.grid.center));
 
-var matrix_object = new MatrixObject(The.Config.a, "result");
+var matrix_object = new MatrixObject(The.Config.a, "a");
 diagram.addObject(matrix_object);
 
 dom_flush();

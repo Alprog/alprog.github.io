@@ -150,9 +150,9 @@ class Renderer
         this.canvas.drawCircle(center, radius, color, width);
     }
 
-    drawTextInternal(text, position, font)
+    drawTextInternal(text, position, size, color)
     {
         this.makeCloud( position ).transformTo( CANVAS_SPACE );
-        this.canvas.drawText(text, position, font);
+        this.canvas.drawText(text, position, size, color);
     }
 }
