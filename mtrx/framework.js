@@ -20,7 +20,9 @@ loadStyle("diagram_styles.css");
 
 loadScript("framework/animator.js");
 loadScript("framework/address_bar.js");
+loadScript("framework/base_pin.js");
 loadScript("framework/axis_pin.js");
+loadScript("framework/pin.js");
 loadScript("framework/camera.js");
 loadScript("framework/camera_controller.js");
 loadScript("framework/canvas.js");
@@ -42,7 +44,6 @@ loadScript("framework/matrix_table.js");
 loadScript("framework/mesh.js");
 loadScript("framework/mode.js");
 loadScript("framework/object_rotator.js");
-loadScript("framework/pin.js");
 loadScript("framework/point_cloud.js");
 loadScript("framework/ray.js");
 loadScript("framework/renderer.js");

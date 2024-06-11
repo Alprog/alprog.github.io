@@ -1,16 +1,12 @@
 
 
-var dot_radius = 2;
-var pin_radius = 8;
-var pin_width = 3;
-
-class Pin
+class Pin extends BasePin
 {
 	constructor(getter, setter, on_changed)
 	{
+		super(on_changed);
 		this.get_position = getter;
 		this.set_position = setter;
-		this.on_changed = on_changed;
 	}
 
 	get_drag_plane(direction)
@@ -31,22 +27,6 @@ class Pin
         this.set_position(point);
 		this.on_changed();
 		this.dragging = true; 
-	}
-
-	hover(renderer)
-	{
-		var point = this.get_position().as_point();		
-		var matrix = renderer.matrix_table.getMatrix(WORLD_SPACE, CANVAS_SPACE);
-		var screenPoint = mult(point, matrix);
-		screenPoint.homo_normalize();
-
-		var delta = diff(screenPoint, renderer.canvas.mousePosition).get_length2D();
-		return delta <= pin_radius;	
-	}
-
-	get_color()
-	{
-		return this.dragging ? "orange" : this.hovered ? "grey" : "black";
 	}
 
 	render(renderer)

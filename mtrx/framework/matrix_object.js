@@ -43,10 +43,10 @@ class MatrixObject extends Matrix4x4
         var translation_width = 1;
         var tip_radius = 10;
         renderer.drawArrow(origin, x, "red", width, tip_radius);
-        renderer.drawLine(origin, y, "green", width);
+        renderer.drawArrow(origin, y, "green", width, tip_radius);
         if (The.CoordinateSystem.is3D())
         {
-            renderer.drawLine(origin, z, "blue", width);
+            renderer.drawArrow(origin, z, "blue", width, tip_radius);
         }
 
         var anchor = this.anchor ?? Vector.ZeroPoint();

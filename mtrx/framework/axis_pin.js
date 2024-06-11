@@ -1,13 +1,14 @@
 
-class AxisPin
+class AxisPin extends BasePin
 {
 	constructor(axisA, axisB, axisC, translation, on_changed)
 	{
+		super(on_changed);
+
 		this.axisA = axisA; // editable
 		this.axisB = axisB;
 		this.axisC = axisC;
 		this.translation = translation;
-		this.on_changed = on_changed;
 	}
 
 	get_drag_plane(direction)
@@ -55,23 +56,6 @@ class AxisPin
 	get_position()
 	{
 		return sum(this.translation, this.axisA);
-	}
-
-	hover(renderer)
-	{
-		var position = this.get_position();
-
-		var matrix = renderer.matrix_table.getMatrix(WORLD_SPACE, CANVAS_SPACE);
-		var screenPoint = mult(position, matrix);
-		screenPoint.homo_normalize();
-
-		var delta = diff(screenPoint, renderer.canvas.mousePosition).get_length2D();
-		return delta <= pin_radius;	
-	}
-
-	get_color()
-	{
-		return this.dragging ? "orange" : this.hovered ? "grey" : "black";
 	}
 
 	render(renderer)
