@@ -5,7 +5,7 @@ class Diagram
 	{
         this.main_panel = document.body.createChildDiv("main_panel");
 
-        var canvas_panel = this.main_panel.createChildDiv("canvas_panel");
+        var canvas_panel = this.createCanvasPanel();
 
         this.canvas = new Canvas(this);
         this.animator = new Animator(this);
@@ -184,5 +184,10 @@ class Diagram
     addMesh()
     {
         return this.addObject(new Mesh());
+    }
+
+    createCanvasPanel()
+    {
+        return this.main_panel.createChildDiv("canvas_panel");
     }
 }

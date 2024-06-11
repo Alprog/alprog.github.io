@@ -12,13 +12,9 @@ The.Defaults.set("a", TRS);
 
 
 var diagram = new Diagram();
-diagram.createSidePanel();
 
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, diagram.grid.center));
-
-var matrix_object = new MatrixObject(The.Config.a, "result");
-diagram.addObject(matrix_object);
 
 var airplane = new Airplane();
 var man = new Littleman();

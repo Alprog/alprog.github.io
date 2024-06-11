@@ -22,8 +22,7 @@ var slides = [
     '<img src="slides/homogeneous.png" class="img_sheet"/>',
     '<iframe class="diagram" title="D1" src="diagram.html?script=vector-homo.js"></iframe>',
     '<img src="slides/anatomy.png" class="img_sheet"/>',
-    '<h1>show matrix</h1>', // Diagram
-    '<h1>matrix2d</h1>', // Diagram
+    '<iframe class="diagram" title="D1" src="diagram.html?script=anatomy.js"></iframe>',
     '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
 
     // ------------ Multiplication
@@ -56,8 +55,7 @@ var slides = [
     '<img src="slides/sheet_18.png" class="img_sheet"/>',
     '<img src="slides/sheet_19.png" class="img_sheet"/>',
     
-    '<iframe class="diagram" title="D1" src="diagram.html?script=point_mult.js"></iframe>', // 2d
-    '<iframe class="diagram" title="D1" src="diagram.html?script=point_mult.js"></iframe>', // 3d
+    '<iframe class="diagram" title="D1" src="diagram.html?script=point_mult.js"></iframe>',
 
     '<img src="slides/sheet_20.png" class="img_sheet"/>',
 
@@ -71,7 +69,7 @@ var slides = [
 
      // ------------ Perspective
     '<img src="slides/perspective.png" class="img_sheet"/>',
-    '<h1>show perspective matrix</h1>', // Diagram
+    '<iframe class="diagram" title="D1" src="diagram.html?script=perspective.js"></iframe>',
     '<img src="slides/sheet_24.png" class="img_sheet"/>',
     '<img src="slides/sheet_25.png" class="img_sheet"/>',
     '<img src="slides/perspective2.png" class="img_sheet"/>',
