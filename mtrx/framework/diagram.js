@@ -92,11 +92,19 @@ class Diagram
             if (this.hovered_object)
             {
                 this.hovered_object.hovered = false;
+                if (this.hovered_object.onHoveredChanged)
+                {
+                    this.hovered_object.onHoveredChanged(false);
+                }
             }
             this.hovered_object = object;
             if (this.hovered_object)
             {
                 this.hovered_object.hovered = true;
+                if (this.hovered_object.onHoveredChanged)
+                {
+                    this.hovered_object.onHoveredChanged(true);
+                }
             }
         }
     }

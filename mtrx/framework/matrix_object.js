@@ -5,8 +5,8 @@ class MatrixObject extends Matrix4x4
     {
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
         this.children = [];
-        this.addPins( disabled );
         this.editor = new Editor(this, gridName, disabled);
+        this.addPins( disabled );
     }
 
     addPins(disabled)

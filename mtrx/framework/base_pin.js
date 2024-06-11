@@ -14,6 +14,7 @@ class BasePin
     {
         this.on_changed = on_changed;
 		this.disabled = disabled;
+		this.fields = [];
     }
 
     hover(renderer)
@@ -125,5 +126,23 @@ class BasePin
 
 		renderer.setDashes([]);
 	}
+
+	addXYZFields(vector)
+	{
+		for (var key in vector.fields)
+		{
+			if (key != 3)
+			{
+				this.fields.push(vector.fields[key]);
+			}
+		}
+	}
 	
+	onHoveredChanged(value)
+	{
+		for (var field of this.fields)
+		{
+			field.style.backgroundColor = value ? "yellow" : "";
+		}
+	}
 }

@@ -5,8 +5,8 @@ class VectorObject extends Vector
     {
         super(vector[0], vector[1], vector[2], vector[3]);
         this.children = [];
-        this.addPins(disabled);
         this.editor = new Editor(this, gridName, disabled);
+        this.addPins(disabled);        
     }
 
     addPins(disabled)

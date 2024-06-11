@@ -9,6 +9,8 @@ class AxisPin extends BasePin
 		this.axisB = axisB;
 		this.axisC = axisC;
 		this.translation = translation;
+
+		this.addXYZFields(this.axisA)
 	}
 
 	get_position()

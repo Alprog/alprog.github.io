@@ -15,11 +15,11 @@ diagram.createSidePanel();
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4.2));
 
+var result = new VectorObject(Vector.Zero(), "result", true);
+diagram.addObject(result);
+
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
-
-var result = new VectorObject(mult(The.Config.a, The.Config.b), "result", true);
-diagram.addObject(result);
 
 diagram.onUpdated = () =>
 {

@@ -88,6 +88,9 @@ class Editor
                 field.disabled = true;
             }
             this.fields.push(field);
+
+            vector.fields = vector.fields ?? {};
+            vector.fields[minorIndex] = field;
         }
     }
 

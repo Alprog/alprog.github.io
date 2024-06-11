@@ -6,6 +6,7 @@ class VectorPin extends BasePin
 	{
 		super(on_changed, disabled);
 		this.vector = vector;
+		this.addXYZFields(this.vector);
 	}
 
 	get_position()
