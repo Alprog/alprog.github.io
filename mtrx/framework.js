@@ -20,9 +20,6 @@ loadStyle("diagram_styles.css");
 
 loadScript("framework/animator.js");
 loadScript("framework/address_bar.js");
-loadScript("framework/base_pin.js");
-loadScript("framework/axis_pin.js");
-loadScript("framework/pin.js");
 loadScript("framework/camera.js");
 loadScript("framework/camera_controller.js");
 loadScript("framework/canvas.js");
@@ -52,6 +49,10 @@ loadScript("framework/sphere.js");
 loadScript("framework/vector.js");
 loadScript("framework/vector_object.js");
 loadScript("framework/utils.js");
+
+loadScript("framework/base_pin.js");
+loadScript("framework/axis_pin.js");
+loadScript("framework/vector_pin.js");
 
 loadScript("framework/the.js");
 

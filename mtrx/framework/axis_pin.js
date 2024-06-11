@@ -11,12 +11,42 @@ class AxisPin extends BasePin
 		this.translation = translation;
 	}
 
+	get_position()
+	{
+		return sum(this.translation, this.axisA);
+	}
+
+	set_position(position)
+	{
+		this.axisA.set(diff(position, this.translation));
+	}
+
 	get_drag_plane(direction)
 	{
 		var axes = [this.axisB, this.axisC];
 		var axis = getBestElement(axes, (axis) => Math.abs(dot(axis.get_normalized(), direction)));
 		this.normal_axis = axis;
 		return {center: this.get_position(), normal: axis.get_normalized()};
+	}
+
+	//--------------------------------------
+
+	drag(mouse_args)
+	{
+		if (!this.prev_dragging)
+		{
+			this.dragging_plane = this.get_drag_plane(mouse_args.ray.direction);
+		}
+		
+		if (this.normal_axis == this.axisA)
+			return;
+
+		var point = mouse_args.ray.castToPlane(this.dragging_plane);
+		point.w = 0;
+		this.set_position(point);
+		this.normalize();
+		this.on_changed();
+		this.dragging = true; 
 	}
 
 	normalize()
@@ -33,29 +63,6 @@ class AxisPin extends BasePin
 			var dir = cross(this.axisA.get_normalized(), this.axisB.get_normalized());
 			this.axisC.set(dir.get_scaled(length));
 		}
-	}
-
-	drag(mouse_args)
-	{
-		if (!this.prev_dragging)
-		{
-			this.dragging_plane = this.get_drag_plane(mouse_args.ray.direction);
-		}
-		
-		if (this.normal_axis == this.axisA)
-			return;
-
-		var point = mouse_args.ray.castToPlane(this.dragging_plane);
-		point.w = 0;
-        this.axisA.set(diff(point, this.translation));
-		this.normalize();
-		this.on_changed();
-		this.dragging = true; 
-	}
-
-	get_position()
-	{
-		return sum(this.translation, this.axisA);
 	}
 
 	render(renderer)
@@ -81,6 +88,15 @@ class AxisPin extends BasePin
 				renderer.drawLine(p1, p2, "black", 1);*/
 			}
 		}
+
+		if (this.hovered)
+		{
+			if (The.CoordinateSystem.is2D())
+			{
+				this.render2DDiff(renderer, this.translation, this.axisA);
+			}
+		}
+
 		this.prev_dragging = this.dragging;
 		this.dragging = false;
 	}

@@ -15,12 +15,7 @@ class VectorObject extends Vector
     addPins()
     {
         var on_changed = () => this.editor.refresh();
-        
-        this.children.push(new Pin(
-            () => this,
-            (v) => this.set(v),
-            on_changed
-        ));
+        this.children.push(new VectorPin(this, on_changed));
     }
 
     render(renderer)

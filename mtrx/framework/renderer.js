@@ -76,6 +76,11 @@ class Renderer
         this.commands = [];
     }
 
+    setDashes(pattern)
+	{
+		this.canvas.ctx.setLineDash( pattern );
+	}
+
     //----------------------------------------------------
 
     drawLine() { this.drawLineInternal(...cloneElements(arguments)); }

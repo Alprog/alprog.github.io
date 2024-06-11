@@ -17,11 +17,7 @@ class MatrixObject extends Matrix4x4
         var on_changed = () => this.editor.refresh();
 
         // translation
-        this.children.push(new Pin(
-            () => this.translation,
-            (v) => this.translation.set(v),
-            on_changed
-        ));
+        this.children.push(new VectorPin(this.translation, on_changed));
 
         this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation, on_changed));
         this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation, on_changed));
