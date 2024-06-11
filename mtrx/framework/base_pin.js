@@ -1,5 +1,6 @@
 
 
+var disabled_dot_radius = 1;
 var dot_radius = 2;
 var pin_radius = 8;
 var pin_width = 3;
@@ -9,9 +10,10 @@ var lineWidth = 1;
 
 class BasePin
 {
-    constructor(on_changed)
+    constructor(on_changed, disabled)
     {
         this.on_changed = on_changed;
+		this.disabled = disabled;
     }
 
     hover(renderer)
@@ -25,9 +27,29 @@ class BasePin
 		return delta <= pin_radius;	
 	}
 
+	get_radius()
+	{
+		if (this.disabled)
+			return disabled_dot_radius;
+
+		if (this.hovered)
+			return pin_radius;
+
+		return dot_radius;
+	}
+
 	get_color()
 	{
-		return this.dragging ? "orange" : this.hovered ? "grey" : "black";
+		if (this.disabled)
+			return "gray";
+
+		if (this.dragging)
+			return "orange";
+
+		if (this.hovered)
+			return "gray";
+
+		return "black";
 	}
 
 	renderOffsetBox(renderer, position)

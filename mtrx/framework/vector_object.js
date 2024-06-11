@@ -5,17 +5,14 @@ class VectorObject extends Vector
     {
         super(vector[0], vector[1], vector[2], vector[3]);
         this.children = [];
-        if (!disabled)
-        {
-            this.addPins();
-        }
+        this.addPins(disabled);
         this.editor = new Editor(this, gridName, disabled);
     }
 
-    addPins()
+    addPins(disabled)
     {
         var on_changed = () => this.editor.refresh();
-        this.children.push(new VectorPin(this, on_changed));
+        this.children.push(new VectorPin(this, on_changed, disabled));
     }
 
     render(renderer)

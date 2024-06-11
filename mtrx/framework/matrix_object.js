@@ -5,22 +5,19 @@ class MatrixObject extends Matrix4x4
     {
         super(matrix[0], matrix[1], matrix[2], matrix[3]);
         this.children = [];
-        if (!disabled)
-        {
-            this.addPins();
-        }
+        this.addPins( disabled );
         this.editor = new Editor(this, gridName, disabled);
     }
 
-    addPins()
+    addPins(disabled)
     {
         var on_changed = () => this.editor.refresh();
 
         // translation
-        this.children.push(new VectorPin(this.translation, on_changed));
+        this.children.push(new VectorPin(this.translation, on_changed, disabled));
 
-        this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation, on_changed));
-        this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation, on_changed));
+        this.children.push(new AxisPin(this.axisX, this.axisY, this.axisZ, this.translation, on_changed, disabled));
+        this.children.push(new AxisPin(this.axisY, this.axisZ, this.axisX, this.translation, on_changed, disabled));
         
         if (The.CoordinateSystem.is3D())
         {

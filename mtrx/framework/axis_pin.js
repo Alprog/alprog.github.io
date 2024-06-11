@@ -1,9 +1,9 @@
 
 class AxisPin extends BasePin
 {
-	constructor(axisA, axisB, axisC, translation, on_changed)
+	constructor(axisA, axisB, axisC, translation, on_changed, disabled)
 	{
-		super(on_changed);
+		super(on_changed, disabled);
 
 		this.axisA = axisA; // editable
 		this.axisB = axisB;
@@ -68,8 +68,7 @@ class AxisPin extends BasePin
 	render(renderer)
 	{
 		var position = this.get_position();
-		var radius = this.hovered ? pin_radius : dot_radius;
-		renderer.drawCircle(position, radius, this.get_color(), pin_width);
+		renderer.drawCircle(position, this.get_radius(), this.get_color(), pin_width);
 		if (this.dragging)
 		{
 			if (this.normal_axis != this.axisA)

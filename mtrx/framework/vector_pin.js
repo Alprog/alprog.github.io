@@ -2,9 +2,9 @@
 
 class VectorPin extends BasePin
 {
-	constructor(vector, on_changed)
+	constructor(vector, on_changed, disabled)
 	{
-		super(on_changed);
+		super(on_changed, disabled);
 		this.vector = vector;
 	}
 
@@ -41,9 +41,8 @@ class VectorPin extends BasePin
 
 	render(renderer)
 	{
-		var position = this.get_position();		
-		var radius = this.hovered ? pin_radius : dot_radius;
-		renderer.drawCircle(position, radius, this.get_color(), pin_width);
+		var position = this.get_position();
+		renderer.drawCircle(position, this.get_radius(), this.get_color(), pin_width);
 
 		if (this.hovered)
 		{
