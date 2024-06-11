@@ -13,7 +13,7 @@ The.Defaults.set("b", TRS);
 var diagram = new Diagram();
 diagram.createSidePanel();
 diagram.addGrid();
-diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4));
+diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4.2));
 
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");

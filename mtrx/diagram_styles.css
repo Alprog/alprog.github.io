@@ -24,7 +24,7 @@ html, body
 {
     flex: 0 0 auto;
     min-width: 200px;
-    width: 450px;
+    width: 33%;
     max-width: calc(100vw - 200px);
     background-color:#ccc;
     resize: horizontal;
