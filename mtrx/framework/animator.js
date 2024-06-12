@@ -52,6 +52,7 @@ class Animator
                 return;
             }
         }
+        this.stop();
     }
 
     render(renderer)
