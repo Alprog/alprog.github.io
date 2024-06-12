@@ -12,7 +12,7 @@ class Animator
 
     toggle()
     {
-        if (this.isEnabled)
+        if (this.segments.length > 0)
         {
             this.stop();
         }
@@ -25,17 +25,16 @@ class Animator
     restart()
     {
         this.stop();
-        this.isEnabled = true;
+        this.rebuild();
     }
 
     stop()
     {
-        for (var segment of this.segments)
-        {
-            segment.time = 0;
-        }
-        this.isEnded = false;
-        this.isEnabled = false;
+        this.segments = [];
+    }
+
+    rebuild()
+    {
     }
 
     addSegment(segment)
@@ -45,31 +44,24 @@ class Animator
 
     update(deltaTime)
     {
-        if (this.isEnabled)
+        for (var segment of this.segments)
         {
-            for (var segment of this.segments)
+            deltaTime = segment.update(deltaTime);
+            if (deltaTime == 0)
             {
-                deltaTime = segment.update(deltaTime);
-                if (deltaTime == 0)
-                {
-                    return;
-                }
+                return;
             }
-            this.isEnded = true;
         }
     }
 
-    render()
+    render(renderer)
     {
-        if (this.isEnabled)
+        for (var segment of this.segments)
         {
-            for (var segment of this.segments)
+            if (segment.time > 0)
             {
-                if (segment.time > 0)
-                {
-                    segment.render();
-                }
-            }            
+                segment.render(renderer);
+            }
         }
     }
 }

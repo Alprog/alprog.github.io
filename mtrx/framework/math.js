@@ -67,3 +67,8 @@ function round2(value)
 {
     return Math.round((value + Number.EPSILON) * 100) / 100;
 }
+
+function lerp(a, b, k)
+{
+    return sum(a, diff(b, a).get_scaled(k));
+}

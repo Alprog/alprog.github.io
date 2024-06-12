@@ -28,7 +28,25 @@ diagram.onUpdated = () =>
     result.anchor = The.Config.b.translation;
 };
 
-var animator = diagram.createAnimator();
-animator.addSegment(new AnimatedSegment());
-animator.addSegment(new AnimatedSegment());
+var animator = diagram.addAnimator();
+
+var a = The.Config.a;
+var b = The.Config.b;
+
+animator.rebuild = () =>
+{
+    var p0 = Vector.ZeroPoint();
+    var p1 = b.translation.get_normalized();
+    var p2 = sum(p1, b.axisX.get_scaled(a.x));
+    var p3 = sum(p2, b.axisY.get_scaled(a.y));
+    var p4 = sum(p3, b.axisZ.get_scaled(a.z));
+    var width = 4;   
+   
+    animator.addSegment(new AnimatedSegment(p0, p1, "magenta", width));
+    animator.addSegment(new AnimatedSegment(p1, p2, "red", width));
+    animator.addSegment(new AnimatedSegment(p2, p3, "green", width));
+    animator.addSegment(new AnimatedSegment(p3, p4, "blue", width));
+};
+
+
 dom_flush();

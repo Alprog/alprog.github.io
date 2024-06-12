@@ -170,10 +170,6 @@ class Diagram
 		this.canvas.clear();
         this.renderer.setCamera(this.camera);
 		this.renderer.renderObjects(this.objects);
-        if (this.animator)
-        {
-            this.animator.render();
-        }
         this.requestRender();
 	}
 
@@ -200,7 +196,7 @@ class Diagram
         return this.addObject(new Mesh());
     }
 
-    createAnimator()
+    addAnimator()
     {
         this.animator = new Animator(this);
         this.addObject(this.animator);
