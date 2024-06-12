@@ -83,45 +83,56 @@ var slides = [
     
 
     '<img src="slides/next.png" class="img_sheet"/>',
-    
-    // ------------ Conventions
-    '<img src="slides/conventions-0.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-1.png" class="img_fullscreen"/>',
-
-    '<img src="slides/freya.webp"/>',
-    '<iframe class="diagram" title="D1" src="diagram.html?script=model.js"></iframe>',
-    '<iframe class="diagram" title="D1" src="reality.html"></iframe>',
-
-    '<img src="slides/conventions-2.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-3.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-4.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-5.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-6.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-7.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-8.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-9.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-10.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-11.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-12.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-13.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-14.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-15.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-16.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-17.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-18.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-19.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-20.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-21.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-22.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-23.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-24.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-25.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-26.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-27.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-28.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-29.png" class="img_fullscreen"/>',
-    '<img src="slides/conventions-30.png" class="img_fullscreen"/>'
 ];
+
+this.params = {};
+var url_search_params = new URLSearchParams(window.location.search);
+for (let [key, value] of url_search_params)
+{
+    this.params[key] = value;
+}    
+
+if (params.slides == "conventions")
+{
+    slides = [
+        '<img src="slides/conventions-0.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-1.png" class="img_fullscreen"/>',
+    
+        '<img src="slides/freya.webp"/>',
+        '<iframe class="diagram" title="D1" src="diagram.html?script=model.js"></iframe>',
+        '<iframe class="diagram" title="D1" src="reality.html"></iframe>',
+    
+        '<img src="slides/conventions-2.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-3.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-4.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-5.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-6.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-7.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-8.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-9.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-10.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-11.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-12.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-13.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-14.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-15.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-16.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-17.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-18.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-19.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-20.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-21.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-22.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-23.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-24.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-25.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-26.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-27.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-28.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-29.png" class="img_fullscreen"/>',
+        '<img src="slides/conventions-30.png" class="img_fullscreen"/>'
+    ];
+}
 
 var currentSlide = 0;
 
