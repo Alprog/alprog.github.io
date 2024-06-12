@@ -29,6 +29,6 @@ diagram.onUpdated = () =>
     result.anchor = The.Config.b.translation;
 };
 
-diagram.animator.init();
+var animator = diagram.createAnimator();
 
 dom_flush();

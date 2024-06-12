@@ -8,7 +8,6 @@ class Diagram
         var canvas_panel = this.createCanvasPanel();
 
         this.canvas = new Canvas(this);
-        this.animator = new Animator(this);
 
         this.camera = new Camera(
             new Vector(0, 0, -350),
@@ -64,7 +63,10 @@ class Diagram
 
     update(deltaTime)
     {
-        this.animator.update(deltaTime);
+        if (this.animator)
+        {
+            this.animator.update(deltaTime);
+        }
 
         if (this.canvas.refreshSize())
         {
@@ -168,6 +170,10 @@ class Diagram
 		this.canvas.clear();
         this.renderer.setCamera(this.camera);
 		this.renderer.renderObjects(this.objects);
+        if (this.animator)
+        {
+            this.animator.render();
+        }
         this.requestRender();
 	}
 
@@ -192,6 +198,13 @@ class Diagram
     addMesh()
     {
         return this.addObject(new Mesh());
+    }
+
+    createAnimator()
+    {
+        this.animator = new Animator(this);
+        this.addObject(this.animator);
+        return this.animator;
     }
 
     createCanvasPanel()

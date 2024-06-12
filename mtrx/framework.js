@@ -19,6 +19,7 @@ function loadStyle(path)
 loadStyle("diagram_styles.css");
 
 loadScript("framework/animator.js");
+loadScript('framework/animated_segment.js')
 loadScript("framework/address_bar.js");
 loadScript("framework/camera.js");
 loadScript("framework/camera_controller.js");

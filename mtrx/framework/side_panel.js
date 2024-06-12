@@ -39,14 +39,13 @@ class SidePanel
         }
     }
 
-    createAnimatorButton()
+    createAnimatorButton(animator)
     {
         var button = this.getControlPanel().createChild("button", "animator_button");
         button.innerHTML = "run";
 
         button.onclick = () =>
         {
-            var animator = this.diagram.animator;
             animator.toggle();
             button.innerHTML = animator.isRunning ? "stop" : "run";
         }
