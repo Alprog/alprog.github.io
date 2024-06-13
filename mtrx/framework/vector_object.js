@@ -6,7 +6,7 @@ class VectorObject extends Vector
         super(vector[0], vector[1], vector[2], vector[3]);
         this.children = [];
         this.editor = new Editor(this, gridName, disabled);
-        this.addPins(disabled);        
+        this.addPins(disabled);
     }
 
     addPins(disabled)
@@ -41,6 +41,5 @@ class VectorObject extends Vector
         {
             renderer.drawLine(anchor, this, "black", width);
         }
-
     }
 }

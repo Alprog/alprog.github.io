@@ -52,10 +52,13 @@ class Renderer
                 modelMatrix = mult(modelMatrix, parentMatrix);
             }
             this.setModelMatrix(modelMatrix);
-            object.render(this);
-            if (object.children)
+            if (object.visible ?? true)
             {
-                this.renderObjects(object.children, modelMatrix);
+                object.render(this);
+                if (object.children)
+                {
+                    this.renderObjects(object.children, modelMatrix);
+                }
             }
         }
         this.flushCommands();
