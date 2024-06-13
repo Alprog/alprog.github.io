@@ -38,6 +38,30 @@ class Binding
     }
 }
 
+function getDimString(count)
+{
+    return "minmax(0, 1fr) ".repeat(count);
+}
+
+function setDimensions(grid, major, minor)
+{
+    console.log("major" + major);
+    console.log("minor" + minor);
+
+    if (The.Config.vector == 'row')
+    {
+        grid.style.gridTemplateRows = getDimString(major);
+        grid.style.gridTemplateColumns = getDimString(minor);
+    }
+    else
+    {
+        grid.style.gridTemplateRows = getDimString(minor);
+        grid.style.gridTemplateColumns = getDimString(major);
+    }
+
+    console.log(grid.style);
+}
+
 var editors = [];
 
 class Editor
@@ -46,10 +70,13 @@ class Editor
     {
         this.grid = get_by_id(gridName);
 
+        var dimensions = The.CoordinateSystem.dimensions;
         this.fields = [];
        
         if (object instanceof Matrix4x4)
         {
+            setDimensions(this.grid, dimensions + 1, dimensions + 1);
+
             var components = [ "XXXx", "YYYy", "ZZZz", "WWWw" ];
             for (var majorIndex of this.getIndicies())
             {
@@ -58,6 +85,8 @@ class Editor
         }
         else if (object instanceof Vector)
         {
+            setDimensions(this.grid, 1, dimensions + 1);
+
             var components = The.Config.editW == "true" ? "XYZW" : "XYZw";
             this.createRow(this.grid, object, components );
         }

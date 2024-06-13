@@ -31,12 +31,21 @@ html, body
     overflow: hidden;
     display: flex;
     flex-direction: column;
+
+    justify-content: center;
 }
 
 #control_panel
 {
     display: flex;
-    margin: auto 10px;
+    margin: 10px 0;
+}
+
+#single_grid
+{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
 }
 
 #multiplication_grid
@@ -45,28 +54,12 @@ html, body
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
-    margin: auto;
 }
 
 .matrix_editor
 {
     display: grid;
-    aspect-ratio: 1;
     gap: 3px;
-}
-
-.grid3x3
-{
-    grid-template-rows: auto auto auto;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: auto;
-}
-
-.grid4x4
-{
-    grid-template-rows: auto auto auto auto;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin: auto;
 }
 
 .row_major

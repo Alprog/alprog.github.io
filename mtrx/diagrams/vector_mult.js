@@ -15,6 +15,10 @@ diagram.createSidePanel();
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4.2));
 
+var pattern = The.CoordinateSystem.is3D() ? "4fr 1fr" : "3fr 1fr";
+var property = The.Config.vector == "row" ? "gridTemplateRows" : "gridTemplateColumns";
+diagram.sidePanel.grid.style[property] = pattern;
+
 var result = new VectorObject(Vector.Zero(), "result", true);
 diagram.addObject(result);
 
@@ -24,8 +28,7 @@ The.Config.wrapToObject("b", diagram, "b");
 var setResultVisible = (visible) =>
 {
     result.visible = visible;
-    result.editor.grid.style.display = visible ? "" : "none";
-    result.editor.ajust_size();
+    result.editor.grid.style.visibility = visible ? "" : "hidden";
 }
 
 setResultVisible(false);
@@ -47,6 +50,7 @@ animator.rebuild = () =>
     var p4 = sum(p3, b.axisZ.get_scaled(a.z));
     var width = 3;
     var pauseTime = 400;
+    var finalPauseTime = 600;
 
     animator.addSegment(new CallbackSegment(() => result_switcher.set(false) ));
     animator.addSegment(new AnimatedSegment(p0, p1, "magenta", width));
@@ -69,7 +73,7 @@ animator.rebuild = () =>
     }
 
     animator.addSegment(new CallbackSegment(() => result_switcher.set(true) ));
-    animator.addSegment(new WaitSegment(pauseTime));
+    animator.addSegment(new WaitSegment(finalPauseTime));
 };
 
 diagram.onUpdated = () =>

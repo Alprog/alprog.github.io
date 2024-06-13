@@ -22,7 +22,6 @@ diagram.createSidePanel();
 diagram.addGrid();
 diagram.addObject(new CameraController(diagram.camera, new Vector(1.25, 0.5, 0.5), 4.2));
 
-
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
 
@@ -35,5 +34,15 @@ diagram.onUpdated = () =>
     result.editor.refresh();
     result.anchor = The.Config.b.translation;
 };
+
+var setResultVisible = (visible) =>
+{
+    result.visible = visible;
+    result.editor.grid.style.visibility = visible ? "" : "hidden";
+}
+
+setResultVisible(false);
+
+diagram.sidePanel.createResultCheckBox(setResultVisible);
 
 dom_flush();

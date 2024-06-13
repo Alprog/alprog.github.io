@@ -27,15 +27,16 @@ class SidePanel
 
         if (single)
         {
-            this.element.createChildDiv("a", classes);    
+            this.grid = this.element.createChildDiv("single_grid", major);
+            this.grid.createChildDiv("a", classes);    
         }
         else
         {
-            var multiplication_grid = this.element.createChildDiv("multiplication_grid", major);
-            multiplication_grid.createChildDiv("info", classes);
-            multiplication_grid.createChildDiv("b", classes);
-            multiplication_grid.createChildDiv("a", classes);
-            multiplication_grid.createChildDiv("result", classes);
+            this.grid = this.element.createChildDiv("multiplication_grid", major);
+            this.grid.createChildDiv("info", classes);
+            this.grid.createChildDiv("b", classes);
+            this.grid.createChildDiv("a", classes);
+            this.grid.createChildDiv("result", classes);
         }
     }
 
