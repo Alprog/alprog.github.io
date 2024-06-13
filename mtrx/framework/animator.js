@@ -10,9 +10,23 @@ class Animator
         diagram.sidePanel.createAnimatorButton(this);
     }
 
+    isRunning()
+    {
+        return this.segments.length > 0;
+    }
+
+    isOnLastSegment()
+    {
+        var lastIndex = this.segments.length - 1;
+        if (lastIndex >= 0)
+        {
+            return this.segments[lastIndex].time > 0;
+        }
+    }
+
     toggle()
     {
-        if (this.segments.length > 0)
+        if (this.isRunning())
         {
             this.stop();
         }

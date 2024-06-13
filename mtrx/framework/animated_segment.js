@@ -1,17 +1,10 @@
 
-class AnimatedSegment
+class WaitSegment
 {
-    constructor(startPoint, endPoint, color, width)
+    constructor(fullTime)
     {
         this.time = 0;
-        this.animationTime = 1000;
-        this.pauseTime = 400;
-        this.fullTime = this.animationTime + this.pauseTime;
-    
-        this.startPoint = startPoint;
-        this.endPoint = endPoint;
-        this.color = color;
-        this.width = width;
+        this.fullTime = fullTime;
     }
 
     update(deltaTime)
@@ -34,7 +27,24 @@ class AnimatedSegment
 
     render(renderer)
     {
-        var lerpK = min(1, this.time / this.animationTime);
+    }
+}
+
+class AnimatedSegment extends WaitSegment
+{
+    constructor(startPoint, endPoint, color, width)
+    {
+        super(1000);      
+    
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
+        this.color = color;
+        this.width = width;
+    }
+
+    render(renderer)
+    {
+        var lerpK = min(1, this.time / this.fullTime);
 
         var endPoint = lerp(this.startPoint, this.endPoint, lerpK);
 

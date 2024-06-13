@@ -36,7 +36,7 @@ html, body
 #control_panel
 {
     display: flex;
-    margin: auto;
+    margin: auto 10px;
 }
 
 #multiplication_grid
@@ -123,4 +123,9 @@ canvas
     margin: 0;
     padding: 0;
     border: 0px; 
+}
+
+#w_slider, #animator_button
+{
+    width: 100%;
 }

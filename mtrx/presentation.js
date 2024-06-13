@@ -20,9 +20,9 @@ var slides = [
 
     '<iframe class="diagram" title="D1" src="diagram.html?script=world.js"></iframe>',
     '<img src="slides/conventions-slides.png" class="img_fullscreen"/>',
-    '<iframe class="diagram" title="D1" src="diagram.html?script=vector-point.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector.js&editW=false"></iframe>',
     '<img src="slides/homogeneous.png" class="img_sheet"/>',
-    '<iframe class="diagram" title="D1" src="diagram.html?script=vector-homo.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector.js&editW=true"></iframe>',
     '<img src="slides/anatomy.png" class="img_sheet"/>',
     '<iframe class="diagram" title="D1" src="diagram.html?script=anatomy.js"></iframe>',
     '<iframe class="diagram" title="D1" src="diagram.html?script=matrix.js"></iframe>',
@@ -57,11 +57,11 @@ var slides = [
     '<img src="slides/sheet_18.png" class="img_sheet"/>',
     '<img src="slides/sheet_19.png" class="img_sheet"/>',
     
-    '<iframe class="diagram" title="D1" src="diagram.html?script=point_mult.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,1"></iframe>',
 
     '<img src="slides/sheet_20.png" class="img_sheet"/>',
 
-    '<iframe class="diagram" title="D1" src="diagram.html?script=direction_mult.js"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,0"></iframe>',
 
     '<img src="slides/sheet_21.png" class="img_sheet"/>',
     '<img src="slides/sheet_22.png" class="img_sheet"/>',

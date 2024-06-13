@@ -58,7 +58,8 @@ class Editor
         }
         else if (object instanceof Vector)
         {
-            this.createRow(grid, object, "XYZW");
+            var components = The.Config.editW == "true" ? "XYZW" : "XYZw";
+            this.createRow(grid, object, components );
         }
 
         if (disabled)
@@ -82,7 +83,7 @@ class Editor
             var field = grid.createChildInput(null, field_classes);
             field.binding = new Binding(field, vector, minorIndex);
             field.binding.load();
-            field.onchange = (e) => e.target.binding.save();
+            field.oninput = (e) => e.target.binding.save();
             if (component == lowerCaseComponent)
             {
                 field.disabled = true;

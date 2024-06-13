@@ -42,12 +42,39 @@ class SidePanel
     createAnimatorButton(animator)
     {
         var button = this.getControlPanel().createChild("button", "animator_button");
-        button.innerHTML = "run";
+        button.innerHTML = "toggle animation";
 
         button.onclick = () =>
         {
             animator.toggle();
-            button.innerHTML = animator.isRunning ? "stop" : "run";
         }
+    }
+
+    createWSlider(vector)
+    {
+        var slider = this.getControlPanel().createChildInput("w_slider");
+        slider.type = "range";
+        slider.value = 0;
+        slider.min = -1;
+        slider.max = 0.9;
+        slider.step = 0.01;
+
+        var field = vector.fields[3];
+        var max = 10;
+
+        slider.oninput = () => {
+            var k = Number(slider.value);
+            var value = k < 0 ? (k + 1) : (1 + k * max);
+            vector.w = Number(value);
+            field.binding.load();
+        };
+    
+        field.oninput = (e) => {
+            e.target.binding.save();
+
+            var k = vector.w;
+            var value = k < 1 ? (k - 1) : ( k - 1 ) / max;
+            slider.value = value;
+        };
     }
 }
