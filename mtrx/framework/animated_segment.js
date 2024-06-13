@@ -1,4 +1,26 @@
 
+class CallbackSegment
+{
+    constructor(callback)
+    {
+        this.callback = callback;
+    }
+
+    update(deltaTime)
+    {
+        if (this.callback)
+        {
+            this.callback();
+            this.callback = null;
+        }
+        return deltaTime;
+    }
+
+    render()
+    {
+    }
+}
+
 class WaitSegment
 {
     constructor(fullTime)

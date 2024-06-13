@@ -77,4 +77,27 @@ class SidePanel
             slider.value = value;
         };
     }
+
+    createResultCheckBox(callback)
+    {
+        var label = this.getControlPanel().createChild("label");       
+        label.style.width = "150px";
+
+        var switcher = label.createChildInput();
+        switcher.type = "checkbox";
+
+        var a = label.createChild("a");
+        a.innerHTML = "Show&nbspresult";
+
+        switcher.onchange = (e) => {
+            callback(switcher.checked)
+        };
+
+        switcher.set = (value) => {
+            switcher.checked = value;
+            callback(value);
+        };
+        
+        return switcher;
+    }
 }

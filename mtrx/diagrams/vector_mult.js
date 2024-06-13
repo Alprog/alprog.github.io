@@ -21,6 +21,17 @@ diagram.addObject(result);
 The.Config.wrapToObject("a", diagram, "a");
 The.Config.wrapToObject("b", diagram, "b");
 
+var setResultVisible = (visible) =>
+{
+    result.visible = visible;
+    result.editor.grid.style.display = visible ? "" : "none";
+    result.editor.ajust_size();
+}
+
+setResultVisible(false);
+
+var result_switcher = diagram.sidePanel.createResultCheckBox(setResultVisible);
+
 var animator = diagram.addAnimator();
 
 var a = The.Config.a;
@@ -37,6 +48,7 @@ animator.rebuild = () =>
     var width = 3;
     var pauseTime = 400;
 
+    animator.addSegment(new CallbackSegment(() => result_switcher.set(false) ));
     animator.addSegment(new AnimatedSegment(p0, p1, "magenta", width));
     animator.addSegment(new WaitSegment(pauseTime));
     animator.addSegment(new AnimatedSegment(p1, p2, "red", width));
@@ -56,6 +68,7 @@ animator.rebuild = () =>
         animator.addSegment(new AnimatedSegment(p4, p5, "magenta", width));
     }
 
+    animator.addSegment(new CallbackSegment(() => result_switcher.set(true) ));
     animator.addSegment(new WaitSegment(pauseTime));
 };
 
@@ -64,9 +77,6 @@ diagram.onUpdated = () =>
     result.set(mult(The.Config.a, The.Config.b));
     result.editor.refresh();
     result.anchor = The.Config.b.translation;
-
-    var visible = !animator.isRunning() || animator.isOnLastSegment();
-    result.visible = visible;
 };
 
 dom_flush();

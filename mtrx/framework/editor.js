@@ -44,7 +44,7 @@ class Editor
 {
     constructor(object, gridName, disabled)
     {
-        var grid = get_by_id(gridName);
+        this.grid = get_by_id(gridName);
 
         this.fields = [];
        
@@ -53,13 +53,13 @@ class Editor
             var components = [ "XXXx", "YYYy", "ZZZz", "WWWw" ];
             for (var majorIndex of this.getIndicies())
             {
-                this.createRow(grid, object[majorIndex], components[majorIndex]);
+                this.createRow(this.grid, object[majorIndex], components[majorIndex]);
             }
         }
         else if (object instanceof Vector)
         {
             var components = The.Config.editW == "true" ? "XYZW" : "XYZw";
-            this.createRow(grid, object, components );
+            this.createRow(this.grid, object, components );
         }
 
         if (disabled)
