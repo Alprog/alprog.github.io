@@ -40,15 +40,11 @@ class SidePanel
         }
     }
 
-    createAnimatorButton(animator)
+    createAnimatorButton(callback)
     {
         var button = this.getControlPanel().createChild("button", "animator_button");
         button.innerHTML = "toggle animation";
-
-        button.onclick = () =>
-        {
-            animator.toggle();
-        }
+        button.onclick = callback;
     }
 
     createWSlider(vector)

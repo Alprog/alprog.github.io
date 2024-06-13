@@ -40,6 +40,40 @@ var animator = diagram.addAnimator();
 var a = The.Config.a;
 var b = The.Config.b;
 
+function forceHighlightVector(vector)
+{
+    for (var key in vector.fields)
+    {
+        vector.fields[key].style.backgroundColor = "";
+    }
+   
+    for (var i = 1; i < arguments.length; i++)
+    {
+        var field = vector.fields[arguments[i]];
+        if (field)
+        {
+            field.style.backgroundColor = "yellow";
+        }
+    }        
+}
+
+function forceHighlight(vector_component, matrix_axis)
+{
+    forceHighlightVector(The.Config.a, vector_component);
+
+    var matrix = The.Config.b;
+    for (var field of matrix.editor.fields)
+    {
+        field.style.backgroundColor = "";
+    }
+
+    var matrix_vector = matrix[matrix_axis];
+    if (matrix_vector)
+    {
+        forceHighlightVector(matrix_vector, 0, 1, 2);
+    }
+}
+
 animator.rebuild = () =>
 {
     var p0 = Vector.ZeroPoint();
@@ -53,15 +87,22 @@ animator.rebuild = () =>
     var finalPauseTime = 600;
 
     animator.addSegment(new CallbackSegment(() => result_switcher.set(false) ));
+    if (a.w != 0)
+    {
+        animator.addSegment(new CallbackSegment(() => forceHighlight(3, "translation") ));
+    }
     animator.addSegment(new AnimatedSegment(p0, p1, "magenta", width));
     animator.addSegment(new WaitSegment(pauseTime));
+    animator.addSegment(new CallbackSegment(() => forceHighlight(0, "axisX") ));
     animator.addSegment(new AnimatedSegment(p1, p2, "red", width));
     animator.addSegment(new WaitSegment(pauseTime));
+    animator.addSegment(new CallbackSegment(() => forceHighlight(1, "axisY") ));
     animator.addSegment(new AnimatedSegment(p2, p3, "green", width));
     
     if (The.CoordinateSystem.is3D())
     {
         animator.addSegment(new WaitSegment(pauseTime));
+        animator.addSegment(new CallbackSegment(() => forceHighlight(2, "axisZ") ));
         animator.addSegment(new AnimatedSegment(p3, p4, "blue", width));
     }
 
@@ -72,9 +113,15 @@ animator.rebuild = () =>
         animator.addSegment(new AnimatedSegment(p4, p5, "magenta", width));
     }
 
+    animator.addSegment(new CallbackSegment(() => forceHighlight("none", "none") ));
     animator.addSegment(new CallbackSegment(() => result_switcher.set(true) ));
     animator.addSegment(new WaitSegment(finalPauseTime));
 };
+
+diagram.sidePanel.createAnimatorButton(() => {
+    animator.toggle();
+    forceHighlight("none", "none")
+});
 
 diagram.onUpdated = () =>
 {

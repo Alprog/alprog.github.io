@@ -6,8 +6,6 @@ class Animator
         this.diagram = diagram;
         this.isEnabled = false;
         this.segments = [];
-
-        diagram.sidePanel.createAnimatorButton(this);
     }
 
     isRunning()
