@@ -10,4 +10,9 @@ diagram.createSidePanel("single");
 
 The.Config.wrapToObject("a", diagram);
 
+if (The.Config.editW == "true")
+{
+    diagram.sidePanel.createWSlider(The.Config.a);
+}
+
 dom_flush(); 

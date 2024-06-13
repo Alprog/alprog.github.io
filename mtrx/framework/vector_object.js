@@ -23,6 +23,15 @@ class VectorObject extends Vector
 
         if (this.w == 0)
         {
+            var point = this.clone();
+            point.w = 0.01;
+            renderer.setDashes([10, 10]);
+            renderer.drawLine(Vector.ZeroPoint(), point, "gray", 1);
+            renderer.setDashes([]);
+        }
+
+        if (this.w == 0)
+        {
             var endPoint = sum(anchor, this);
             renderer.drawLine(anchor, endPoint, "gray", width);
 
@@ -30,7 +39,7 @@ class VectorObject extends Vector
         }
         else
         {
-            renderer.drawLine(anchor, this, "black", width);    
+            renderer.drawLine(anchor, this, "black", width);
         }
 
     }

@@ -11,14 +11,17 @@ class VectorPin extends BasePin
 
 	get_position()
 	{
-		return this.vector;
+		var position = this.vector.clone();
+		position.homo_normalize();
+		return position;
 	}
 
 	set_position(position)
 	{
-		this.vector.x = position.x;
-		this.vector.y = position.y;
-		this.vector.z = position.z;
+		var factor = this.vector.w == 0 ? 1 : this.vector.w;
+		this.vector.x = position.x * factor;
+		this.vector.y = position.y * factor;
+		this.vector.z = position.z * factor;
 	}
 
 	get_drag_plane(direction)
