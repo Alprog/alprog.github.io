@@ -125,7 +125,7 @@ canvas
     border: 0px; 
 }
 
-#w_slider
+#w_slider, #animator_button
 {
     width: 100%;
 }

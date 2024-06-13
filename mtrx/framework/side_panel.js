@@ -42,12 +42,11 @@ class SidePanel
     createAnimatorButton(animator)
     {
         var button = this.getControlPanel().createChild("button", "animator_button");
-        button.innerHTML = "run";
+        button.innerHTML = "toggle animation";
 
         button.onclick = () =>
         {
             animator.toggle();
-            button.innerHTML = animator.isRunning ? "stop" : "run";
         }
     }
 
