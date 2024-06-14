@@ -57,11 +57,11 @@ var slides = [
     '<img src="slides/sheet_18.png" class="img_sheet"/>',
     '<img src="slides/sheet_19.png" class="img_sheet"/>',
     
-    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,1"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,1&b=0.7,0,0,0,0,0.7,0,0,0,0,0.7,0,1.5,0.2,0,1"></iframe>',
 
     '<img src="slides/sheet_20.png" class="img_sheet"/>',
 
-    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,0"></iframe>',
+    '<iframe class="diagram" title="D1" src="diagram.html?script=vector_mult.js&a=0.2,0.4,0.6,0&b=-0.59,-0.69,0,0,0.76,-0.65,0,0,0,0,1,0,1.71,0.36,0,1"></iframe>',
 
     '<img src="slides/sheet_21.png" class="img_sheet"/>',
     '<img src="slides/sheet_22.png" class="img_sheet"/>',
